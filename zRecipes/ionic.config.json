@@ -1,0 +1,7 @@
+{
+  "name": "zRecipes",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "angular"
+}
