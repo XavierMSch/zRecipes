@@ -1,0 +1,64 @@
+<ion-split-pane when="lg">
+  <ion-menu>
+    <ion-header>
+      <ion-toolbar class="logo-toolbar">
+        <ion-title class="logo-title">
+          <div class="logo-container">
+            <ion-img class="side-menu-logo" src="../../../assets/icon/logo.png" alt="Logo de zRecipes"></ion-img>
+            <span>zRecipes</span>
+          </div>
+        </ion-title>
+
+      </ion-toolbar>
+    </ion-header>
+    <ion-content>
+      <ion-list>
+        <ion-item button routerLink="/home">
+          <ion-icon name="home-outline" slot="start" aria-label="Inicio"></ion-icon>
+          Inicio
+        </ion-item>
+        <ion-item button routerLink="/search">
+          <ion-icon name="search-outline" slot="start" aria-label="Explorar"></ion-icon>
+          Explorar
+        </ion-item>
+        <ion-item button routerLink="/my-recipes">
+          <ion-icon name="restaurant-outline" slot="start" aria-label="Creadas"></ion-icon>
+          Creadas
+        </ion-item>
+        <ion-item button routerLink="/favorites">
+          <ion-icon name="bookmark-outline" slot="start" aria-label="Favoritos"></ion-icon>
+          Favoritos
+        </ion-item>
+        <ion-item button routerLink="/settings">
+          <ion-icon name="settings-outline" slot="start" aria-label="Ajustes"></ion-icon>
+          Ajustes
+        </ion-item>
+      </ion-list>
+    </ion-content>
+  </ion-menu>
+  <ion-router-outlet id="main-content"></ion-router-outlet>
+</ion-split-pane>
+<ion-tabs class="ion-hide-lg-up">
+  <ion-tab-bar slot="bottom">
+    <ion-tab-button (click)="navigateTo('/home')">
+      <ion-icon name="home-outline" aria-label="Inicio"></ion-icon>
+      Inicio
+    </ion-tab-button>
+    <ion-tab-button (click)="navigateTo('/search')">
+      <ion-icon name="search-outline" aria-label="Explorar"></ion-icon>
+      Explorar
+    </ion-tab-button>
+    <ion-tab-button (click)="navigateTo('/my-recipes')">
+      <ion-icon name="restaurant-outline" aria-label="Creadas"></ion-icon>
+      Creadas
+    </ion-tab-button>
+    <ion-tab-button (click)="navigateTo('/favorites')">
+      <ion-icon name="bookmark-outline" aria-label="Favoritos"></ion-icon>
+      Favoritos
+    </ion-tab-button>
+    <ion-tab-button (click)="navigateTo('/settings')">
+      <ion-icon name="settings-outline" aria-label="Ajustes"></ion-icon>
+      Ajustes
+    </ion-tab-button>
+  </ion-tab-bar>
+</ion-tabs>
