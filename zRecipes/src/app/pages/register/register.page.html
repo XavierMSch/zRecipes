@@ -1,13 +1,67 @@
-<ion-header [translucent]="true">
-  <ion-toolbar>
-    <ion-title>register</ion-title>
-  </ion-toolbar>
-</ion-header>
+<ion-content class="ion-padding">
+  <ion-grid fixed="true">
+    <ion-row class="ion-justify-content-center ion-align-items-center full-height">
+      <ion-col class="col-logo" size="12" size-lg="6" size-xl="4">
+        <ion-img class="logo" src="../../../assets/icon/logo.png" alt="El logo de z-Recipes" width="20"
+          height="20"></ion-img>
+      </ion-col>
+    </ion-row>
+    <ion-row class="ion-justify-content-center ion-align-items-center full-height">
+      <ion-col size="12" size-lg="6" size-xl="4">
+        <ion-input type="text" autocapitalize="off" autocorrect="off" autocomplete="username" required="true"
+          label-placement="floating" fill="outline" placeholder="Ej: juangomez" label="Nombre de usuario">
+        </ion-input>
+        <ion-input type="text" autocapitalize="off" autocorrect="off" required="true" label-placement="floating"
+          fill="outline" placeholder="12345678-9" label="RUT">
+        </ion-input>
+        <ion-input type="email" autocapitalize="off" autocorrect="off" required="true" autocomplete="email"
+          label-placement="floating" fill="outline" placeholder="nombre@dominio.com" label="Email">
+        </ion-input>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
 
-<ion-content [fullscreen]="true">
-  <ion-header collapse="condense">
-    <ion-toolbar>
-      <ion-title size="large">register</ion-title>
-    </ion-toolbar>
-  </ion-header>
+  <ion-grid fixed="true">
+    <ion-row class="ion-justify-content-center ion-align-items-center full-height">
+      <ion-col size="12" size-lg="6" size-xl="4">
+        <ion-select required="true" aria-label="Región" interface="popover" fill="outline" placeholder="Región">
+          <ion-select-option value="aricaParinacota">Arica y Parinacota</ion-select-option>
+          <ion-select-option value="tarapaca">Tarapacá</ion-select-option>
+          <ion-select-option value="antofagasta">Antofagasta</ion-select-option>
+          <ion-select-option value="atacama">Atacama</ion-select-option>
+          <ion-select-option value="coquimbo">Coquimbo</ion-select-option>
+          <ion-select-option value="valparaiso">Valparaíso</ion-select-option>
+          <ion-select-option value="metropolitana">Metropolitana de Santiago</ion-select-option>
+          <ion-select-option value="ohiggins">Libertador General Bernardo O'Higgins</ion-select-option>
+          <ion-select-option value="maule">Maule</ion-select-option>
+          <ion-select-option value="nuble">Ñuble</ion-select-option>
+          <ion-select-option value="biobio">Biobío</ion-select-option>
+          <ion-select-option value="araucania">La Araucanía</ion-select-option>
+          <ion-select-option value="rios">Los Ríos</ion-select-option>
+          <ion-select-option value="lagos">Los Lagos</ion-select-option>
+          <ion-select-option value="aysen">Aysén del General Carlos Ibáñez del Campo</ion-select-option>
+          <ion-select-option value="magallanes">Magallanes y de la Antártica Chilena</ion-select-option>
+        </ion-select>
+        <ion-input type="text" autocapitalize="words" autocorrect="on" autocomplete="off" required="true"
+          label-placement="floating" fill="outline" placeholder="Ej: Los Andes" label="Comuna">
+        </ion-input>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+
+  <ion-grid fixed="true">
+    <ion-row class="ion-justify-content-center ion-align-items-center full-height">
+      <ion-col size="12" size-lg="6" size-xl="4">
+        <ion-input type="password" autocapitalize="off" autocorrect="off" autocomplete="new-password" required="true"
+          label-placement="floating" fill="outline" placeholder="********" label="Contraseña">
+          <ion-input-password-toggle slot="end"></ion-input-password-toggle>
+        </ion-input>
+        <ion-input type="text" autocapitalize="off" autocorrect="off" required="true" label-placement="floating"
+          fill="outline" placeholder="12345678-9" label="RUT">
+        </ion-input>
+        <ion-checkbox labelPlacement="start">Acepto los <a href="#" (click)="$event.stopPropagation()">términos y
+            condiciones</a></ion-checkbox>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
 </ion-content>
