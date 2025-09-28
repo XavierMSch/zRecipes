@@ -1,10 +1,5 @@
 <ion-content [fullscreen]="true">
   <div class="page-pane">
-    <!-- <app-responsive-nav-bar slot="fixed"></app-responsive-nav-bar> --> 
-    <div class="navbarplaceholder">
-      N A V B A R
-    </div>
-
     <div class="home-pane">
       <div class="greeting">
         <h2>¡Hola, <span class="highlight-text">Usuario</span>!</h2>
@@ -13,7 +8,7 @@
       <div class="recommended-recipes">
         <h1 class="recommended-title">Recetas Destacadas</h1>
         <ion-list class="recommended-recipes-list">
-          <app-recipe-card class="recipe-card" *ngFor="let recipe of recipes; trackBy: trackByRecipeId" [recipe]="recipe"></app-recipe-card>
+          <app-recipe-card routerLink="/recipe-info" class="recipe-card" *ngFor="let recipe of recipes; trackBy: trackByRecipeId" [recipe]="recipe"></app-recipe-card>
         </ion-list>
       </div>
     </div>
