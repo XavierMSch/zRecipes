@@ -1,7 +1,4 @@
-/* Para que Ionic detecte los colores con el atributo `color`,
-   deben estar definidos como CSS Custom Properties dentro de :root */
 :root {
-  /** primary **/
   --ion-color-primary: #F48946;
   --ion-color-primary-rgb: 244, 137, 70;
   --ion-color-primary-contrast: #ffffff;
@@ -9,7 +6,6 @@
   --ion-color-primary-shade: #d7773c;
   --ion-color-primary-tint: #f59357;
 
-  /** secondary-color (lo renombramos a 'secondary' para que Ionic lo use mejor) **/
   --ion-color-secondary: #FFD0B3;
   --ion-color-secondary-rgb: 255, 208, 179;
   --ion-color-secondary-contrast: #000000;
@@ -17,7 +13,6 @@
   --ion-color-secondary-shade: #e0b79e;
   --ion-color-secondary-tint: #ffd5ba;
 
-  /** danger **/
   --ion-color-danger: #f53d3d;
   --ion-color-danger-rgb: 245, 61, 61;
   --ion-color-danger-contrast: #ffffff;
@@ -25,7 +20,6 @@
   --ion-color-danger-shade: #d83636;
   --ion-color-danger-tint: #f65050;
 
-  /** medium **/
   --ion-color-medium: #92949c;
   --ion-color-medium-rgb: 146, 148, 156;
   --ion-color-medium-contrast: #ffffff;
@@ -33,12 +27,10 @@
   --ion-color-medium-shade: #808289;
   --ion-color-medium-tint: #9d9fa6;
 
-  /* Colores de la App */
   --ion-background-color: #1D1B20;
   --ion-text-color: #FFFFFF;
 }
 
-/* También puedes crear clases para usar tus colores directamente si lo prefieres */
 .ion-color-secondary-color {
   --ion-color-base: var(--ion-color-secondary);
   --ion-color-base-rgb: var(--ion-color-secondary-rgb);
@@ -47,10 +39,7 @@
   --ion-color-shade: var(--ion-color-secondary-shade);
   --ion-color-tint: var(--ion-color-secondary-tint);
 }
-// For information on how to create your own theme, please see:
-// http://ionicframework.com/docs/theming/
 
-// Color palette
 $--background-color: #1D1B20;
 $--navbar-background-color: #292929;
 $--primary-color: #F48946;
@@ -63,6 +52,5 @@ $--secondary-text-color: #000000;
 $--webicon-color: #000000;
 $--input-placeholder-color: #49454F;
 
-// Border configuration
 $--container-border-radius: 10px;
 $--img-border-radius: 20px;
