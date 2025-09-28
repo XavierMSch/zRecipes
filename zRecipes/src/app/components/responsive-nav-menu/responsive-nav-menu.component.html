@@ -10,25 +10,30 @@
         </ion-title>
       </ion-toolbar>
     </ion-header>
-     <ion-content>
-      <ion-list class="nav-list">
-        <ion-item button routerLink="/home" routerDirection="root" class="elem-list" routerLinkActive="router-link-active"> 
+    <ion-content>
+      <ion-list lines="none" class="nav-list">
+        <ion-item button routerLink="/home" routerDirection="root" class="elem-list"
+          routerLinkActive="router-link-active">
           <ion-icon [name]="getIconName('home-outline', '/home')" slot="start" class="icon-nav"></ion-icon>
           Inicio
         </ion-item>
-        <ion-item button routerLink="/search" routerDirection="root" class="elem-list" routerLinkActive="router-link-active">
+        <ion-item button routerLink="/search" routerDirection="root" class="elem-list"
+          routerLinkActive="router-link-active">
           <ion-icon [name]="getIconName('search-outline', '/search')" slot="start" class="icon-nav"></ion-icon>
           Explorar
         </ion-item>
-        <ion-item button routerLink="/my-recipes" routerDirection="root" class="elem-list" routerLinkActive="router-link-active">
+        <ion-item button routerLink="/my-recipes" routerDirection="root" class="elem-list"
+          routerLinkActive="router-link-active">
           <ion-icon [name]="getIconName('restaurant-outline', '/my-recipes')" slot="start" class="icon-nav"></ion-icon>
           Creadas
         </ion-item>
-        <ion-item button routerLink="/favorites" routerDirection="root" class="elem-list" routerLinkActive="router-link-active">
+        <ion-item button routerLink="/favorites" routerDirection="root" class="elem-list"
+          routerLinkActive="router-link-active">
           <ion-icon [name]="getIconName('bookmark-outline', '/favorites')" slot="start" class="icon-nav"></ion-icon>
           Favoritos
         </ion-item>
-        <ion-item button routerLink="/settings" routerDirection="root" class="elem-list" routerLinkActive="router-link-active">
+        <ion-item button routerLink="/settings" routerDirection="root" class="elem-list"
+          routerLinkActive="router-link-active">
           <ion-icon [name]="getIconName('settings-outline', '/settings')" slot="start" class="icon-nav"></ion-icon>
           Ajustes
         </ion-item>
@@ -44,7 +49,7 @@
           Inicio
         </ion-tab-button>
         <ion-tab-button tab="search" href="/tabs/search">
-          <ion-icon [name]="getTabIconName('search-outline', '/search')" class="tab-button" ></ion-icon>
+          <ion-icon [name]="getTabIconName('search-outline', '/search')" class="tab-button"></ion-icon>
           Explorar
         </ion-tab-button>
         <ion-tab-button tab="my-recipes" href="/tabs/my-recipes">
