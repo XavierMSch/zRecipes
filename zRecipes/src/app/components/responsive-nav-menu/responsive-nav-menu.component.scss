@@ -1,0 +1,39 @@
+.logo-toolbar {
+    text-align: center;
+}
+
+.logo-title {
+    text-align: center;
+}
+
+.logo-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+}
+
+.side-menu-logo {
+    width: 80px;
+    height: 80px;
+}
+
+ion-tab-button {
+    --background: transparent;
+    --background-selected: #F48946;
+    --background-selected-opacity: 0.2;
+    --color: #F48946;
+    --color-selected: #FFD0B3;
+    font-size: 13px;
+
+    /* Estado seleccionado */
+    &.tab-selected {
+        --background-selected: #F48946;
+        --color-selected: #FFD0B3;
+        --border-selected-color: #FFD0B3;
+    }
+}
+
+.button-inner {
+    width: 100%;
+}
