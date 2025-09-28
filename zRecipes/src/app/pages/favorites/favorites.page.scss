@@ -47,6 +47,19 @@ h1{
     position: relative;
 }
 
+.add-fab {
+    padding: 20px;
+}
+
+.add-icon {
+    font-size: 35px;
+}
+
+ion-fab-button {
+    height: 70px;
+    width: 70px;
+}
+
 ion-card-title{
     font-size: 25px;
     font-weight: bold;

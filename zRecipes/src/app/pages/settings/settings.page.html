@@ -1,13 +1,35 @@
 
 <ion-content [fullscreen]="true">
-    <ion-header collapse="condense">
-      <ion-toolbar>
-        <ion-title size="large">settings</ion-title>
-      </ion-toolbar>
-    </ion-header>
-    <div class="settings-container">
-      <div>
-        <h1>Ajustes</h1>
+  <div class="settings-container">
+    <div>
+      <h1>Ajustes</h1>
+    </div>
+    <div class="buttons-container" >
+      <div class="button-group">
+        <ion-button expand="block" fill="outline" color="primary">
+          <ion-icon name="moon-outline" slot="start"></ion-icon>
+          Tema
+        </ion-button>
+        <ion-button expand="block" fill="outline" color="secondary">
+          <ion-icon name="create-outline" slot="start"></ion-icon>
+          Editar Perfil
+        </ion-button>
+        <ion-button expand="block" fill="outline" color="primary">
+          <ion-icon name="shield-outline" slot="start"></ion-icon>
+          Seguridad
+        </ion-button>
+        <ion-button expand="block" fill="outline" color="secondary">
+          <ion-icon name="help-circle-outline" slot="start"></ion-icon>
+          Ayuda
+        </ion-button>
+        <ion-button expand="block" fill="outline" color="primary">
+          <ion-icon name="code-outline" slot="start"></ion-icon>
+          Modo Administrador
+        </ion-button>
+        <ion-button expand="block" fill="outline" color="medium">
+          <ion-icon name="log-out-outline" slot="start"></ion-icon>
+          Cerrar sesión
+        </ion-button>
       </div>
       <div class="buttons-container" >
         <div class="button-group">
