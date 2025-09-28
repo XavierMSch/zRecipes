@@ -1,9 +1,16 @@
+@import '../../../theme/variables.scss';
+
 h1{
     font-size: 32px;
     font-weight: bold;
     margin-bottom: 20px;
     color: var(--ion-color-secondary); 
 }
+
+.settings-container {
+    background-color: $--background-color; 
+}
+
 
 ion-button {
     --color: white;
