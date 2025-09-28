@@ -4,7 +4,7 @@ import { PreloadAllModules, RouterModule, Routes } from '@angular/router';
 const routes: Routes = [
   {
     path: '',
-    redirectTo: 'home',
+    redirectTo: 'login',
     pathMatch: 'full'
   },
   {
@@ -13,35 +13,39 @@ const routes: Routes = [
   },
   {
     path: 'search',
-    loadChildren: () => import('./pages/search/search.module').then( m => m.SearchPageModule)
+    loadChildren: () => import('./pages/search/search.module').then(m => m.SearchPageModule)
   },
   {
     path: 'my-recipes',
-    loadChildren: () => import('./pages/my-recipes/my-recipes.module').then( m => m.MyRecipesPageModule)
+    loadChildren: () => import('./pages/my-recipes/my-recipes.module').then(m => m.MyRecipesPageModule)
   },
   {
     path: 'favorites',
-    loadChildren: () => import('./pages/favorites/favorites.module').then( m => m.FavoritesPageModule)
+    loadChildren: () => import('./pages/favorites/favorites.module').then(m => m.FavoritesPageModule)
   },
   {
     path: 'settings',
-    loadChildren: () => import('./pages/settings/settings.module').then( m => m.SettingsPageModule)
+    loadChildren: () => import('./pages/settings/settings.module').then(m => m.SettingsPageModule)
   },
   {
     path: 'login',
-    loadChildren: () => import('./pages/login/login.module').then( m => m.LoginPageModule)
+    loadChildren: () => import('./pages/login/login.module').then(m => m.LoginPageModule)
   },
   {
     path: 'register',
-    loadChildren: () => import('./pages/register/register.module').then( m => m.RegisterPageModule)
+    loadChildren: () => import('./pages/register/register.module').then(m => m.RegisterPageModule)
   },
   {
     path: 'recipe-info',
-    loadChildren: () => import('./pages/recipe-info/recipe-info.module').then( m => m.RecipeInfoPageModule)
+    loadChildren: () => import('./pages/recipe-info/recipe-info.module').then(m => m.RecipeInfoPageModule)
   },
   {
     path: 'create-recipe',
-    loadChildren: () => import('./pages/create-recipe/create-recipe.module').then( m => m.CreateRecipePageModule)
+    loadChildren: () => import('./pages/create-recipe/create-recipe.module').then(m => m.CreateRecipePageModule)
+  },
+  {
+    path: 'landing',
+    loadChildren: () => import('./pages/landing/landing.module').then(m => m.LandingPageModule)
   },
 ];
 
