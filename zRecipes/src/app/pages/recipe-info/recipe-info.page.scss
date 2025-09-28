@@ -1,0 +1,117 @@
+@import '../../../theme/variables.scss';
+
+.page-pane {
+    display: flex;
+    background-color: $--background-color;
+}
+
+.navbarplaceholder {
+    width: 30%;
+    font-size: x-large;
+    font-weight: 600;
+    background-color: $--navbar-background-color;
+}
+
+.recipe-pane {
+    margin-left: 30px;
+    margin-right: 30px;
+    justify-content: center;
+    align-items: center;
+    align-content: center;
+}
+
+.container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.recipe-info-name {
+    text-align: center;
+}
+
+.recipe-img-container {
+    max-width: 300px;
+    aspect-ratio: 1 / 1;
+    border-radius: $--img-border-radius;
+    margin-top: 15px;
+    margin-bottom: 30px;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.recipe-img .step-img {
+    object-fit: contain;
+}
+
+.recipe-actions {
+    border-top: 1px solid $--secondary-color;
+    border-bottom: 1px solid $--secondary-color;
+}
+
+.recipe-origin {
+    padding: 0;
+    margin: 0;
+    font-size: small;
+    align-content: center;
+}
+
+.recipe-author {
+    margin-top: 0;
+    margin-bottom: 5px;
+}
+
+.recipe-version {
+    margin-top: 5px;
+}
+
+.highlight-text {
+    margin-top: 0;
+    margin-bottom: 0;
+    color: $--primary-color;
+}
+
+.action-favorite .action-fork {
+    display: inline-block;
+}
+
+.action-icon {
+    height: 30px;
+    width: 30px;
+    color: $--secondary-color;
+}
+
+
+
+.recipe-ingredient-list {
+    display: inline-block;
+    border-radius: $--container-border-radius;
+    --background: $--navbar-background-color;
+}
+
+.recipe-step-list {
+    display: inline-block;
+    flex-direction: column;
+    border-radius: $--container-border-radius;
+}
+
+.recipe-step {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.step-img-container {
+    max-width: 300px;
+    aspect-ratio: 1 / 1;
+    border-radius: $--img-border-radius;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    align-content: center;
+}
