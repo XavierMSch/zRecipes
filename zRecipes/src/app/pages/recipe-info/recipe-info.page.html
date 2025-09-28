@@ -1,13 +1,72 @@
-<ion-header [translucent]="true">
-  <ion-toolbar>
-    <ion-title>recipe-info</ion-title>
-  </ion-toolbar>
-</ion-header>
-
 <ion-content [fullscreen]="true">
-  <ion-header collapse="condense">
-    <ion-toolbar>
-      <ion-title size="large">recipe-info</ion-title>
-    </ion-toolbar>
-  </ion-header>
+  <div class="page-pane">
+    <!-- <app-responsive-nav-bar slot="fixed"></app-responsive-nav-bar> --> 
+    <div class="navbarplaceholder">
+      N A V B A R
+    </div>
+
+    <div class="recipe-pane">
+      <div class="container">
+        <h1 class="recipe-info-name">Nombre Receta</h1>
+        <div class="recipe-img-container">
+          <ion-img class="recipe-img" src="../../../assets/icon/food.png" alt="Imagen de receta"></ion-img>
+        </div>
+      </div>
+      <div class="recipe-actions">
+        <ion-grid>
+          <ion-row>
+            <ion-col class="recipe-origin" size="3">
+              <p class="recipe-author">Realizada por <span class="highlight-text">Autor</span></p>
+              <p class="recipe-version highlight-text">Receta Original</p>
+            </ion-col>
+            <ion-col class="action-favorite" offset="6">
+              <ion-icon class="action-icon" [name]="currentIcons[0]" (mouseover)="onMouseEnterFavorite()"
+                        (mouseleave)="onMouseLeaveFavorite()" (click)="onClickFavorite()"></ion-icon>
+            </ion-col>
+            <ion-col class="action-fork" size="1">
+              <ion-img class="action-icon" [src]="currentIcons[1]" (mouseover)="onMouseEnterFork()"
+                       (mouseleave)="onMouseLeaveFork()"></ion-img>
+            </ion-col>
+            <ion-col class="action-like" size="1">
+              <ion-img class="action-icon" [src]="currentIcons[2]" (mouseover)="onMouseEnterLike()"
+                       (mouseleave)="onMouseLeaveLike()" (click)="onClickLike()"></ion-img>
+            </ion-col>
+          </ion-row>
+        </ion-grid>
+      </div>
+      <p>Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.</p>
+      <div>
+        <h2>Ingredientes</h2>
+        <ion-list class="recipe-ingredient-list" [inset]="true">
+          <ion-item class="recipe-ingredient" *ngFor="let ingredient of ingredients">
+            <p>{{ ingredient }}</p>
+          </ion-item>
+        </ion-list>
+      </div>
+      <div>
+        <h2>Preparación</h2>
+        <ion-list class="recipe-step-list" lines="inset">
+          <ion-item class="recipe-step" *ngFor="let step of steps; let i = index">
+            <ion-grid>
+              <ion-row>
+                <ion-col>
+                  <h3>Paso {{ i + 1}}</h3>
+                </ion-col>
+              </ion-row>
+              <ion-row>
+                <ion-col>
+                  <p>{{ step }}</p>
+                </ion-col>
+              </ion-row>
+              <ion-row>
+                <ion-col class="step-img-container">
+                  <img class="step-img" src="#" alt="Imagen de paso de preparación">
+                </ion-col>
+              </ion-row>
+            </ion-grid>
+          </ion-item>
+        </ion-list>
+      </div>
+    </div>
+  </div>
 </ion-content>

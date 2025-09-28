@@ -1,0 +1,51 @@
+@import '../../../theme/variables.scss';
+
+.page-pane {
+    display: flex;
+    background-color: $--background-color;
+}
+
+.navbarplaceholder {
+    width: 30%;
+    font-size: x-large;
+    font-weight: 600;
+    background-color: $--navbar-background-color;
+}
+
+.home-pane {
+    margin-left: 30px;
+    margin-right: 30px;
+    justify-content: center;
+    align-items: center;
+    align-content: center;
+    background-color: $--background-color;
+}
+
+.greeting {
+    text-align: center;
+}
+
+.recommended-recipes {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    align-content: center;
+    justify-content: center;
+}
+
+.recommended-title, .highlight-text {
+    color: $--primary-color;
+}
+
+.recommended-recipes-list {
+    display: inline-block;
+    text-align: center;
+    align-items: center;
+    align-content: center;
+    justify-content: center;
+    background-color: $--background-color;
+}
+
+.recipe-card {
+    text-align: left;
+}
