@@ -20,20 +20,40 @@
     height: 80px;
 }
 
+.nav-list {
+    display: flex;
+    flex-direction: column;
+    background: transparent;
+    gap: 12px;
+}
+
+.elem-list {
+    --background: var(--ion-color-secondary); 
+    --color: black;
+    font-size: 18px;
+    font-weight: bold;
+    border-radius: 12px;
+    transition: background-color 0.3s, color 0.3s; 
+
+}
+.elem-list.router-link-active {
+    --background: var(--ion-color-primary); /* Fondo color primary */
+}
+.icon-nav {
+    font-size: 25px;
+    color: black;
+}
+
 ion-tab-button {
     --background: transparent;
-    --background-selected: $--primary-color;
-    --background-selected-opacity: 0.2;
-    --color: $--primary-color;
-    --color-selected: $--secondary-color;
+    --color: var(--ion-color-primary);
     font-size: 13px;
+}
 
-    /* Estado seleccionado */
-    &.tab-selected {
-        --background-selected: $--primary-color;
-        --color-selected: $--secondary-color;
-        --border-selected-color: $--secondary-color;
-    }
+ion-tab-button.tab-selected {
+    --background: var(--ion-color-secondary);
+    font-weight: 1000 !important; 
+    border-radius: 12px;
 }
 
 .button-inner {

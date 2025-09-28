@@ -1,3 +1,5 @@
+@import "../../../theme/variables.scss";
+
 h1{
     font-size: 32px;
     font-weight: bold;
@@ -42,6 +44,19 @@ h1{
     display: flex;
     flex-direction: column;
     position: relative;
+}
+
+.add-fab {
+    padding: 20px;
+}
+
+.add-icon {
+    font-size: 35px;
+}
+
+ion-fab-button {
+    height: 70px;
+    width: 70px;
 }
 
 ion-card-title{
