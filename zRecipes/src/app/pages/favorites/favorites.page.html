@@ -1,13 +1,15 @@
-<ion-header [translucent]="true">
-  <ion-toolbar>
-    <ion-title>favorites</ion-title>
-  </ion-toolbar>
-</ion-header>
-
 <ion-content [fullscreen]="true">
-  <ion-header collapse="condense">
-    <ion-toolbar>
-      <ion-title size="large">favorites</ion-title>
-    </ion-toolbar>
-  </ion-header>
+  <div class="favorites-container">
+    <h1>Favoritos</h1>
+    <div class="recipes-list">
+      <ion-card *ngFor="let recipe of favoriteRecipes" class="recipe-card" routerLink="/recipe/{{recipe.id}}">
+        <div class="image-container">
+          <img [src]="recipe.image" alt="{{ recipe.title }}" class="recipe-image"/>
+        </div>
+        <ion-card-header>
+          <ion-card-title>{{ recipe.title }}</ion-card-title>
+        </ion-card-header>
+      </ion-card>
+    </div>  
+  </div>
 </ion-content>
