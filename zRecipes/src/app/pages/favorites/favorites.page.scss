@@ -1,3 +1,5 @@
+@import '../../../theme/variables.scss';
+
 h1{
     font-size: 32px;
     font-weight: bold;
@@ -11,6 +13,7 @@ h1{
     height: 100%;
     text-align: center;
     align-items: center;
+    background-color: $--background-color;
 }
 
 .recipes-list {

@@ -12,17 +12,20 @@ export class RecipeInfoPage implements OnInit {
   defaultIcons: string[] = [
     'bookmark-outline',
     '../../../assets/icon/chef-outline.png',
-    '../../../assets/icon/cookie-outline.png'
+    '../../../assets/icon/cookie-outline.png',
+    'flag-outline'
   ];
   selectionIcons: string[] = [
     'bookmark',
     '../../../assets/icon/chef.png',
-    '../../../assets/icon/cookie.png'
+    '../../../assets/icon/cookie.png',
+    'flag'
   ]
   currentIcons: string[] = [
     'bookmark-outline',
     '../../../assets/icon/chef-outline.png',
-    '../../../assets/icon/cookie-outline.png'
+    '../../../assets/icon/cookie-outline.png',
+    'flag-outline'
   ]
   ingredients: string[] = [
     '175 g de galletas digestive',
@@ -44,6 +47,14 @@ export class RecipeInfoPage implements OnInit {
   ];
   constructor() { }
 
+  onMouseEnterReport() {
+    this.currentIcons[3] = this.selectionIcons[3];
+  }
+
+  onMouseLeaveReport() {
+      this.currentIcons[3] = this.defaultIcons[3];
+  }
+  
   onMouseEnterFavorite() {
     this.currentIcons[0] = this.selectionIcons[0];
   }
