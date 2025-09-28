@@ -17,5 +17,4 @@ export class ResponsiveNavMenuComponent implements OnInit {
   }
 
   ngOnInit() { }
-
 }
