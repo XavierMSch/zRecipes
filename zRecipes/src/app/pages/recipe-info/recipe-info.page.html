@@ -2,7 +2,13 @@
   <div class="page-pane">
     <div class="recipe-pane">
       <div class="container">
-        <h1 class="recipe-info-name">Nombre Receta</h1>
+        <div class="recipe-info-header">
+          <h1 class="recipe-info-name">Nombre Receta</h1>
+          <div class=".action-report-container">
+            <ion-icon class="action-icon action-report" [name]="currentIcons[3]" (mouseover)="onMouseEnterReport()"
+                      (mouseleave)="onMouseLeaveReport()"></ion-icon>
+          </div>
+        </div>
         <div class="recipe-img-container">
           <ion-img class="recipe-img" src="../../../assets/icon/food.png" alt="Imagen de receta"></ion-img>
         </div>
