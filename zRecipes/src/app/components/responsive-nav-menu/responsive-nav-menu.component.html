@@ -1,6 +1,6 @@
 <ion-split-pane contentId="main-content" when="lg">
   <!-- Menú lateral para pantallas grandes -->
-  <ion-menu contentId="main-content">
+  <ion-menu contentId="main-content" [swipeGesture]="false">
     <ion-header>
       <ion-toolbar class="logo-toolbar">
         <ion-title class="logo-title">
@@ -14,23 +14,23 @@
     <ion-content>
       <ion-list>
         <!-- Los enlaces deben apuntar a las rutas de las pestañas -->
-        <ion-item button routerLink="/tabs/home" routerDirection="root">
+        <ion-item button routerLink="/home" routerDirection="root">
           <ion-icon name="home-outline" slot="start"></ion-icon>
           Inicio
         </ion-item>
-        <ion-item button routerLink="/tabs/search" routerDirection="root">
+        <ion-item button routerLink="/search" routerDirection="root">
           <ion-icon name="search-outline" slot="start"></ion-icon>
           Explorar
         </ion-item>
-        <ion-item button routerLink="/tabs/my-recipes" routerDirection="root">
+        <ion-item button routerLink="/my-recipes" routerDirection="root">
           <ion-icon name="restaurant-outline" slot="start"></ion-icon>
           Creadas
         </ion-item>
-        <ion-item button routerLink="/tabs/favorites" routerDirection="root">
+        <ion-item button routerLink="/favorites" routerDirection="root">
           <ion-icon name="bookmark-outline" slot="start"></ion-icon>
           Favoritos
         </ion-item>
-        <ion-item button routerLink="/tabs/settings" routerDirection="root">
+        <ion-item button routerLink="/settings" routerDirection="root">
           <ion-icon name="settings-outline" slot="start"></ion-icon>
           Ajustes
         </ion-item>
