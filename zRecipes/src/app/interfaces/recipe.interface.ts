@@ -1,4 +1,4 @@
-export interface recipe {
+export interface Recipe {
     id: number,
     name: string,
     description: string,
@@ -7,7 +7,7 @@ export interface recipe {
     steps: { stepDesc: string, stepImg: string }[],
     author: string,
     isFork: boolean,
-    parentRecipe: number, // id de la receta padre
+    parentRecipe: number,
     numLikes: number,
     numSaved: number
 }
