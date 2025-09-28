@@ -1,0 +1,64 @@
+@import "../../../theme/variables.scss";
+
+.login-card {
+    width: 100%;
+    display: block;
+    padding: 0 12px;
+    box-sizing: border-box;
+}
+
+.logo-container {
+    display: flex;
+    justify-content: center;
+    margin-top: 24px;
+    margin-bottom: 12px;
+}
+
+.logo-container ion-img {
+    width: 200px;
+    height: auto;
+    max-width: 50%;
+    object-fit: contain;
+}
+
+.form-container {
+    ion-item {
+        --background: transparent;
+        border: none;
+        position: relative;
+    }
+
+    ion-input {
+        position: relative;
+        z-index: 2;
+    }
+
+    background-color: $--background-color;
+    border-radius: 10px;
+}
+
+.btn-submit-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    align-content: center;
+    padding-top: 30px;
+    padding-bottom: 10px;
+}
+
+.btn-submit {
+    font-family: Arial;
+    align-self: center;
+}
+
+.not-account {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    align-content: center;
+    padding-bottom: 12px;
+}
