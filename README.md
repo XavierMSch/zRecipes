@@ -1,10 +1,10 @@
 # zRecipes
+***Sistema de comunidad de conocimiento colaborativo de recetas***
+
 ## Presentado por:
 - Ignacio Córdova
 - Xavier Montoya
 - Diego Negrín
-
-## Sistema de comunidad de recetas
 
 ## Índice
 1. [Resumen del Proyecto](#resumen-del-proyecto)
@@ -12,8 +12,9 @@
 3. [Roles del Sistema](#roles-del-sistema)
 4. [Requerimientos](#requerimientos)
 5. [Arquitectura de la Información](#arquitectura-de-la-información)
-6. [Diseño de prototipos](#prototipo-de-diseño)
-7. [Tecnologías](#tecnologías)
+6. [Diseño de Prototipos](#prototipo-de-diseño)
+7. [Experiencia de Usuario](#experiencia-de-usuario)
+8. [Tecnologías](#tecnologías)
 
 
 ## Resumen del Proyecto
@@ -61,10 +62,24 @@ zRecipes es una aplicación diseñada para que los usuarios puedan crear, guarda
 [Estructura de Navegación](https://whimsical.com/web-y-movil-PZuFpkK7MZCCMFupwKgkWc)\
 [Userflow Diagram](https://whimsical.com/web-y-movil-2-GQ7umSDjNrvn2kFVQ4VMbQ)
 
-## Prototipo de diseño 
+## Prototipo de Diseño 
 [Figma - Prototipo versión web](https://www.figma.com/proto/Jmyy4ZCMmLQWhFumfUQfd6/zRecipes?node-id=3396-4412&t=Sekj0D7XzfvoQ3X9-1&scaling=min-zoom&content-scaling=fixed&page-id=0%3A1&starting-point-node-id=3396%3A4412)\
 [Figma - Prototipo versión móvil](https://www.figma.com/proto/Jmyy4ZCMmLQWhFumfUQfd6/zRecipes?node-id=5331-1801&p=f&t=ae14TDLrTogItKkq-1&scaling=min-zoom&content-scaling=fixed&page-id=5331%3A1554)
 
+## Experiencia de Usuario
+En esta sección se mencionan los principios y patrones relevantes para la experiencia de usuario en las UIs de la aplicación. 
+
+### Principios de UX
+- **Consistencia**
+- **Usabilidad**
+- **Feedback**
+
+### Patrones de Diseño UX y Accesibilidad
+- **Navegación por pestañas**
+- **Presentación de contenido en tarjetas**
+- **Alto contraste entre colores de fondo y contenido**
+- **Texto alternativo en imágenes**
+- **Opciones comprensibles**
 
 ## Tecnologías
 - **Ionic Framework**
