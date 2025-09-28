@@ -1,5 +1,4 @@
 <ion-split-pane contentId="main-content" when="lg">
-  <!-- Menú lateral para pantallas grandes -->
   <ion-menu class="navbar-pane" contentId="main-content" [swipeGesture]="false">
     <ion-header>
       <ion-toolbar class="logo-toolbar">
@@ -11,57 +10,53 @@
         </ion-title>
       </ion-toolbar>
     </ion-header>
-    <ion-content>
-      <ion-list>
-        <!-- Los enlaces deben apuntar a las rutas de las pestañas -->
-        <ion-item button routerLink="/home" routerDirection="root">
-          <ion-icon name="home-outline" slot="start"></ion-icon>
+     <ion-content>
+      <ion-list class="nav-list">
+        <ion-item button routerLink="/home" routerDirection="root" class="elem-list" routerLinkActive="router-link-active"> 
+          <ion-icon [name]="getIconName('home-outline', '/home')" slot="start" class="icon-nav"></ion-icon>
           Inicio
         </ion-item>
-        <ion-item button routerLink="/search" routerDirection="root">
-          <ion-icon name="search-outline" slot="start"></ion-icon>
+        <ion-item button routerLink="/search" routerDirection="root" class="elem-list" routerLinkActive="router-link-active">
+          <ion-icon [name]="getIconName('search-outline', '/search')" slot="start" class="icon-nav"></ion-icon>
           Explorar
         </ion-item>
-        <ion-item button routerLink="/my-recipes" routerDirection="root">
-          <ion-icon name="restaurant-outline" slot="start"></ion-icon>
+        <ion-item button routerLink="/my-recipes" routerDirection="root" class="elem-list" routerLinkActive="router-link-active">
+          <ion-icon [name]="getIconName('restaurant-outline', '/my-recipes')" slot="start" class="icon-nav"></ion-icon>
           Creadas
         </ion-item>
-        <ion-item button routerLink="/favorites" routerDirection="root">
-          <ion-icon name="bookmark-outline" slot="start"></ion-icon>
+        <ion-item button routerLink="/favorites" routerDirection="root" class="elem-list" routerLinkActive="router-link-active">
+          <ion-icon [name]="getIconName('bookmark-outline', '/favorites')" slot="start" class="icon-nav"></ion-icon>
           Favoritos
         </ion-item>
-        <ion-item button routerLink="/settings" routerDirection="root">
-          <ion-icon name="settings-outline" slot="start"></ion-icon>
+        <ion-item button routerLink="/settings" routerDirection="root" class="elem-list" routerLinkActive="router-link-active">
+          <ion-icon [name]="getIconName('settings-outline', '/settings')" slot="start" class="icon-nav"></ion-icon>
           Ajustes
         </ion-item>
       </ion-list>
     </ion-content>
   </ion-menu>
 
-  <!-- El router-outlet principal ahora está dentro de ion-tabs -->
   <div class="ion-page" id="main-content">
     <ion-tabs>
-      <!-- <ion-router-outlet></ion-router-outlet> -->
       <ion-tab-bar slot="bottom" class="ion-hide-lg-up">
-        <!-- Esta barra de pestañas solo se verá en pantallas pequeñas -->
         <ion-tab-button tab="home" href="/tabs/home">
-          <ion-icon name="home-outline"></ion-icon>
+          <ion-icon [name]="getTabIconName('home-outline', '/home')" class="tab-button"></ion-icon>
           Inicio
         </ion-tab-button>
         <ion-tab-button tab="search" href="/tabs/search">
-          <ion-icon name="search-outline"></ion-icon>
+          <ion-icon [name]="getTabIconName('search-outline', '/search')" class="tab-button" ></ion-icon>
           Explorar
         </ion-tab-button>
         <ion-tab-button tab="my-recipes" href="/tabs/my-recipes">
-          <ion-icon name="restaurant-outline"></ion-icon>
+          <ion-icon [name]="getTabIconName('restaurant-outline', '/my-recipes')" class="tab-button"></ion-icon>
           Creadas
         </ion-tab-button>
         <ion-tab-button tab="favorites" href="/tabs/favorites">
-          <ion-icon name="bookmark-outline"></ion-icon>
+          <ion-icon [name]="getTabIconName('bookmark-outline', '/favorites')" class="tab-button"></ion-icon>
           Favoritos
         </ion-tab-button>
         <ion-tab-button tab="settings" href="/tabs/settings">
-          <ion-icon name="settings-outline"></ion-icon>
+          <ion-icon [name]="getTabIconName('settings-outline', '/settings')" class="tab-button"></ion-icon>
           Ajustes
         </ion-tab-button>
       </ion-tab-bar>
