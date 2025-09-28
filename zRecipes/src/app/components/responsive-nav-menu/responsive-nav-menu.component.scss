@@ -1,3 +1,5 @@
+@import '../../../theme/variables.scss';
+
 .logo-toolbar {
     text-align: center;
 }
@@ -20,17 +22,17 @@
 
 ion-tab-button {
     --background: transparent;
-    --background-selected: #F48946;
+    --background-selected: $--primary-color;
     --background-selected-opacity: 0.2;
-    --color: #F48946;
-    --color-selected: #FFD0B3;
+    --color: $--primary-color;
+    --color-selected: $--secondary-color;
     font-size: 13px;
 
     /* Estado seleccionado */
     &.tab-selected {
-        --background-selected: #F48946;
-        --color-selected: #FFD0B3;
-        --border-selected-color: #FFD0B3;
+        --background-selected: $--primary-color;
+        --color-selected: $--secondary-color;
+        --border-selected-color: $--secondary-color;
     }
 }
 
