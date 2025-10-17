@@ -1,15 +1,14 @@
-@import '../../../theme/variables.scss';
 
 .page-pane {
     display: flex;
-    background-color: $--background-color;
+    background-color: var(--ion-background-color);
 }
 
 .navbarplaceholder {
     width: 30%;
     font-size: x-large;
     font-weight: 600;
-    background-color: $--navbar-background-color;
+    background-color: var(--ion-navbar-background-color);
 }
 
 .recipe-pane {
@@ -64,7 +63,7 @@
 .recipe-img-container {
     max-width: 300px;
     aspect-ratio: 1 / 1;
-    border-radius: $--img-border-radius;
+    border-radius: var(--img-border-radius);
     margin-top: 15px;
     margin-bottom: 30px;
     overflow: hidden;
@@ -78,8 +77,8 @@
 }
 
 .recipe-actions {
-    border-top: 1px solid $--secondary-color;
-    border-bottom: 1px solid $--secondary-color;
+    border-top: 1px solid var(--ion-color-secondary);
+    border-bottom: 1px solid var(--ion-color-secondary);
 }
 
 .recipe-origin {
@@ -101,7 +100,7 @@
 .highlight-text {
     margin-top: 0;
     margin-bottom: 0;
-    color: $--primary-color;
+    color: var(--ion-color-primary);
 }
 
 .action-favorite, .action-fork, .action-report {
@@ -111,7 +110,7 @@
 .action-icon {
     height: 30px;
     width: 30px;
-    color: $--secondary-color;
+    color: var(--ion-color-secondary);
 }
 
 .action-icon:hover {
@@ -120,14 +119,14 @@
 
 .recipe-ingredient-list {
     display: inline-block;
-    border-radius: $--container-border-radius;
-    --background: $--navbar-background-color;
+    border-radius: var(--container-border-radius);
+    --background: var(--ion-navbar-background-color);
 }
 
 .recipe-step-list {
     display: inline-block;
     flex-direction: column;
-    border-radius: $--container-border-radius;
+    border-radius: var(--container-border-radius);
     margin-bottom: 50px;
 }
 
@@ -141,7 +140,7 @@
 .step-img-container {
     max-width: 300px;
     aspect-ratio: 1 / 1;
-    border-radius: $--img-border-radius;
+    border-radius: var(--img-border-radius);
     overflow: hidden;
     display: flex;
     align-items: center;
@@ -155,3 +154,4 @@
     align-content: center;
     text-align: center;
 }
+
