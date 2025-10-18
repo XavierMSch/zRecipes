@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
+import { Recipe } from '../../interfaces/recipe.interface';
 
 @Component({
   selector: 'app-recipe-list',
@@ -6,10 +7,14 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./recipe-list.component.scss'],
   standalone: false,
 })
-export class RecipeListComponent implements OnInit {
+export class RecipeListComponent{
+
+  @Input() recipes: Recipe[] = [];
 
   constructor() { }
 
-  ngOnInit() { }
+  trackByRecipeId(index: number, recipe: Recipe): number {
+    return recipe.id;
+  }
 
 }

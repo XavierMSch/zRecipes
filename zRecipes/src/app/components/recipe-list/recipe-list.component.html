@@ -1,3 +1,7 @@
-<p>
-  recipe-list works!
-</p>
+<ion-list>
+  <app-recipe-card 
+    *ngFor="let recipe of recipes; trackBy: trackByRecipeId"
+    [recipe]="recipe"
+    class="recipe-card">
+  </app-recipe-card>
+</ion-list>

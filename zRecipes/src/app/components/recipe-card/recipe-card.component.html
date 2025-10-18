@@ -1,4 +1,4 @@
-<ion-card class="recipe-card">
+<ion-card class="recipe-card"  [routerLink]="['/recipe-info', recipe.id]" routerDirection="forward">
   <ion-grid class="recipe-grid">
     <ion-row class="recipe-card-content">
       <ion-col class="recipe-img-col" size="2">

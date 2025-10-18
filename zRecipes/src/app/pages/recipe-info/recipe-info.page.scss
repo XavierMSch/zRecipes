@@ -1,3 +1,6 @@
+ion-list, ion-item {
+    background-color: var(--ion-background-color);
+}
 
 .page-pane {
     display: flex;
@@ -120,7 +123,7 @@
 .recipe-ingredient-list {
     display: inline-block;
     border-radius: var(--container-border-radius);
-    --background: var(--ion-navbar-background-color);
+    background-color: var(--ion-background-color);
 }
 
 .recipe-step-list {
