@@ -1,4 +1,5 @@
 import { Component, OnInit, Input } from '@angular/core';
+import { Router, NavigationEnd } from '@angular/router';
 
 import { Recipe } from '../../interfaces/recipe.interface'
 
