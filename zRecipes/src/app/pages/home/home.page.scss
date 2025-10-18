@@ -1,15 +1,14 @@
-@import '../../../theme/variables.scss';
 
 .page-pane {
     display: flex;
-    background-color: $--background-color;
+    background-color: var(--ion-background-color);
 }
 
 .navbarplaceholder {
     width: 30%;
     font-size: x-large;
     font-weight: 600;
-    background-color: $--navbar-background-color;
+    background-color: var(--ion-navbar-background-color);
 }
 
 .home-pane {
@@ -18,7 +17,7 @@
     justify-content: center;
     align-items: center;
     align-content: center;
-    background-color: $--background-color;
+    background-color: var(--ion-background-color);
 }
 
 .greeting {
@@ -34,7 +33,7 @@
 }
 
 .recommended-title, .highlight-text {
-    color: $--primary-color;
+    color: var(--ion-color-primary);
 }
 
 .recommended-recipes-list {
@@ -43,7 +42,7 @@
     align-items: center;
     align-content: center;
     justify-content: center;
-    background-color: $--background-color;
+    background-color: var(--ion-background-color);
 }
 
 .recipe-card {
