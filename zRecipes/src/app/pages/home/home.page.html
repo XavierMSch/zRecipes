@@ -7,9 +7,7 @@
       </div>
       <div class="recommended-recipes">
         <h1 class="recommended-title">Recetas Destacadas</h1>
-        <ion-list class="recommended-recipes-list">
-          <app-recipe-card routerLink="/recipe-info" class="recipe-card" *ngFor="let recipe of recipes; trackBy: trackByRecipeId" [recipe]="recipe"></app-recipe-card>
-        </ion-list>
+        <app-recipe-list [recipes]="recommendedRecipes"></app-recipe-list>
       </div>
     </div>
   </div>

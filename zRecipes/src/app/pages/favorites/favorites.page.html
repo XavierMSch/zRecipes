@@ -2,12 +2,12 @@
   <div class="favorites-container">
     <h1>Favoritos</h1>
     <div class="recipes-list">
-      <ion-card *ngFor="let recipe of favoriteRecipes" class="recipe-card" routerLink="/recipe/{{recipe.id}}">
+      <ion-card *ngFor="let category of favoriteCategories; trackBy: trackByCategoryId" class="recipe-card" routerLink="/recipe/{{category.id}}">
         <div class="image-container">
-          <img [src]="recipe.image" alt="{{ recipe.title }}" class="recipe-image"/>
+          <img [src]="category.image" alt="{{ category.title }}" class="recipe-image"/>
         </div>
         <ion-card-header>
-          <ion-card-title>{{ recipe.title }}</ion-card-title>
+          <ion-card-title>{{ category.title }}</ion-card-title>
         </ion-card-header>
       </ion-card>
     </div>  
