@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Recipe } from '../interfaces/recipe.interface';
+import { Category } from '../interfaces/category.interface';
 
 @Injectable({
   providedIn: 'root'
@@ -18,41 +19,49 @@ export class RecipeService {
   private favoriteCategories = [
     {
       id: 1,
-      title: 'Postres',
+      name: 'Postres',
       image: 'https://www.themealdb.com/images/media/meals/wxyvqq1511723401.jpg',
+      recipes: []
     },
     {
       id: 2,
-      title: 'Desayunos',
+      name: 'Desayunos',
       image: 'https://www.themealdb.com/images/media/meals/0206h11699013358.jpg',
+      recipes: []
     },
     {
       id: 3,
-      title: 'Almuerzos',
+      name: 'Almuerzos',
       image: 'https://www.themealdb.com/images/media/meals/020z181619788503.jpg',
+      recipes: []
     },
     {
       id: 4,
-      title: 'Carnes',
+      name: 'Carnes',
       image: 'https://www.themealdb.com/images/media/meals/lhqev81565090111.jpg',
+      recipes: []
     },
     {
       id: 5,
-      title: 'Sopas',
+      name: 'Sopas',
       image: 'https://www.themealdb.com/images/media/meals/wuxrtu1483564410.jpg',
+      recipes: []
     },
     {
       id: 6,
-      title: 'Chocolates',
+      name: 'Chocolates',
       image: 'https://www.themealdb.com/images/media/meals/tqtywx1468317395.jpg',
+      recipes: []
     }
-  ]
+  ];
+
+  
   constructor() { }
 
   getRecipes(): Recipe[] {
     return this.recipes;
   }
-  getFavoriteCategories() {
+  getFavoriteCategories(): Category[] {
     return this.favoriteCategories;
   }
 }
