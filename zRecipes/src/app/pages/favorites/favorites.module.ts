@@ -12,7 +12,8 @@ import { ComponentsModule } from 'src/app/components/components/components-modul
     CommonModule,
     FormsModule,
     IonicModule,
-    FavoritesPageRoutingModule
+    FavoritesPageRoutingModule,
+    ComponentsModule
   ],
   declarations: [FavoritesPage]
 })

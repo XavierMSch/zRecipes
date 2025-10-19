@@ -6,16 +6,28 @@ import { RouterModule } from '@angular/router';
 
 import { RecipeCardComponent } from '../recipe-card/recipe-card.component';
 import { RecipeListComponent } from '../recipe-list/recipe-list.component';
+import { FavoriteCategoryCardComponent } from '../favorite-category-card/favorite-category-card.component';
+import { FavoriteCategoryListComponent } from '../favorite-category-list/favorite-category-list.component';
 
 
 
 @NgModule({
-  declarations: [RecipeCardComponent, RecipeListComponent],
+  declarations: [
+    RecipeCardComponent, 
+    RecipeListComponent, 
+    FavoriteCategoryCardComponent, 
+    FavoriteCategoryListComponent
+  ],
   imports: [
     CommonModule,
     IonicModule,
     RouterModule
   ],
-  exports: [RecipeCardComponent, RecipeListComponent]
+  exports: [
+    RecipeCardComponent, 
+    RecipeListComponent,
+    FavoriteCategoryCardComponent, 
+    FavoriteCategoryListComponent
+  ]
 })
 export class ComponentsModule { }

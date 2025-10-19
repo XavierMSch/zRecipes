@@ -1,0 +1,7 @@
+<ion-list>
+  <app-favorite-category-card 
+    *ngFor="let category of favoriteCategories; trackBy: trackByCategoryId"
+    [category]="category"
+    id="favorite-category-{{ category.id }}">
+  </app-favorite-category-card>
+</ion-list>
