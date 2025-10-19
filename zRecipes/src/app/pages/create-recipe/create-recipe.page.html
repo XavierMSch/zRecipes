@@ -1,13 +1,6 @@
-<ion-header [translucent]="true">
-  <ion-toolbar>
-    <ion-title>create-recipe</ion-title>
-  </ion-toolbar>
-</ion-header>
-
 <ion-content [fullscreen]="true">
-  <ion-header collapse="condense">
-    <ion-toolbar>
-      <ion-title size="large">create-recipe</ion-title>
-    </ion-toolbar>
-  </ion-header>
+  <div class="create-recipe-container">
+    <h1>Crear Receta</h1>
+    <app-recipe-form class="formulario" (recipeSubmitted)="onRecipeSubmitted($event)"></app-recipe-form>
+  </div>
 </ion-content>

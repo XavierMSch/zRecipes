@@ -73,4 +73,9 @@ export class RecipeService {
   getCreatedRecipes(): Recipe[] {
     return this.createdRecipes;
   }
+  addRecipe(recipe: Recipe) {
+    const newId = this.createdRecipes.length + 7;
+    const newRecipe = { ...recipe, id: newId };
+    this.createdRecipes.push(newRecipe);
+  }
 }

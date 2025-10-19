@@ -1,0 +1,46 @@
+<form>
+  <ion-item>
+      <ion-input fill="outline" placeholder="Imagen de la receta" [(ngModel)]="recipeImage" name="recipeImage"></ion-input>
+  </ion-item>
+  <ion-item>
+      <ion-input fill="outline" placeholder="Nombre de la receta" [(ngModel)]="recipeName" name="recipeName"></ion-input>
+  </ion-item>
+  <ion-item>
+      <ion-textarea fill="outline" placeholder="Descripción de la receta" [(ngModel)]="recipeDescription" name="recipeDescription"></ion-textarea>
+  </ion-item>  
+  <div>
+    <p>  Ingredientes </p>
+    <ion-item *ngFor="let ingredient of ingredients; let i = index">
+      <ion-input 
+        fill="outline"
+        [placeholder]="'Ingrediente ' + ingredient.id" 
+        [(ngModel)]="ingredients[i].name" 
+        [name]="'ingredient-' + ingredient.id">
+      </ion-input>
+    </ion-item>
+    <ion-button (click)="addIngredient()">Agregar Ingrediente</ion-button>
+  </div>
+  <div>
+    <p>  Pasos </p>
+    <div *ngFor="let step of steps; let i = index">
+      <ion-item>
+        <ion-input 
+          fill="outline"
+          [placeholder]="'Paso ' + step.id" 
+          [(ngModel)]="steps[i].description" 
+          [name]="'step-desc-' + step.id">
+        </ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-input 
+          fill="outline"
+          [placeholder]="'imagen-paso-' + step.id" 
+          [(ngModel)]="steps[i].image" 
+          [name]="'step-img-' + step.id">
+        </ion-input>
+      </ion-item>
+    </div>
+    <ion-button (click)="addStep()">Agregar Paso</ion-button>
+  </div>
+  <ion-button (click)="submitRecipe()" type="submit" expand="block">Crear Receta</ion-button>
+</form>
