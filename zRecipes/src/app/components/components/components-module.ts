@@ -7,7 +7,7 @@ import { RouterModule } from '@angular/router';
 import { RecipeCardComponent } from '../recipe-card/recipe-card.component';
 import { RecipeListComponent } from '../recipe-list/recipe-list.component';
 import { FavoriteCategoryCardComponent } from '../favorite-category-card/favorite-category-card.component';
-import { FavoriteCardListComponent } from '../favorite-card-list/favorite-card-list.component';
+import { FavoriteCategoryListComponent } from '../favorite-category-list/favorite-category-list.component';
 
 
 
@@ -16,7 +16,7 @@ import { FavoriteCardListComponent } from '../favorite-card-list/favorite-card-l
     RecipeCardComponent, 
     RecipeListComponent, 
     FavoriteCategoryCardComponent, 
-    FavoriteCardListComponent
+    FavoriteCategoryListComponent
   ],
   imports: [
     CommonModule,
@@ -27,7 +27,7 @@ import { FavoriteCardListComponent } from '../favorite-card-list/favorite-card-l
     RecipeCardComponent, 
     RecipeListComponent,
     FavoriteCategoryCardComponent, 
-    FavoriteCardListComponent
+    FavoriteCategoryListComponent
   ]
 })
 export class ComponentsModule { }

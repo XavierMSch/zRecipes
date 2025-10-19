@@ -1,19 +1,19 @@
 import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 import { IonicModule } from '@ionic/angular';
 
-import { FavoriteCardListComponent } from './favorite-card-list.component';
+import { FavoriteCategoryListComponent } from './favorite-card-list.component';
 
-describe('FavoriteCardListComponent', () => {
-  let component: FavoriteCardListComponent;
-  let fixture: ComponentFixture<FavoriteCardListComponent>;
+describe('FavoriteCategoryListComponent', () => {
+  let component: FavoriteCategoryListComponent;
+  let fixture: ComponentFixture<FavoriteCategoryListComponent>;
 
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
-      declarations: [ FavoriteCardListComponent ],
+      declarations: [ FavoriteCategoryListComponent ],
       imports: [IonicModule.forRoot()]
     }).compileComponents();
 
-    fixture = TestBed.createComponent(FavoriteCardListComponent);
+    fixture = TestBed.createComponent(FavoriteCategoryListComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   }));

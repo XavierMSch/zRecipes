@@ -3,12 +3,12 @@ import { Component, OnInit, Input } from '@angular/core';
 import { Category } from 'src/app/interfaces/category.interface';
 
 @Component({
-  selector: 'app-favorite-card-list',
-  templateUrl: './favorite-card-list.component.html',
-  styleUrls: ['./favorite-card-list.component.scss'],
+  selector: 'app-favorite-category-list',
+  templateUrl: './favorite-category-list.component.html',
+  styleUrls: ['./favorite-category-list.component.scss'],
   standalone: false
 })
-export class FavoriteCardListComponent  {
+export class FavoriteCategoryListComponent  {
   @Input() favoriteCategories: Category[] = [];
 
   constructor() { }
