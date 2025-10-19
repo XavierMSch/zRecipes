@@ -8,12 +8,15 @@ import { MyRecipesPageRoutingModule } from './my-recipes-routing.module';
 
 import { MyRecipesPage } from './my-recipes.page';
 
+import { ComponentsModule } from 'src/app/components/components/components-module';
+
 @NgModule({
   imports: [
     CommonModule,
     FormsModule,
     IonicModule,
-    MyRecipesPageRoutingModule
+    MyRecipesPageRoutingModule, 
+    ComponentsModule
   ],
   declarations: [MyRecipesPage]
 })

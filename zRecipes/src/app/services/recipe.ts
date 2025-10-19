@@ -16,6 +16,12 @@ export class RecipeService {
     { id: 6, name: 'Decadent Chocolate Lava Cakes', description: 'Treat yourself to these irresistible chocolate lava cakes. With a rich, warm, and gooey chocolate center, these individual desserts are surprisingly easy to make and perfect for any special occasion.', bannerImg: '../../../assets/images/decadent_chocolate_lava_cake.png', ingredients: [], steps: [], author: '', isFork: false, parentRecipe: 0, numLikes: 0, numSaved: 0}
   ];
 
+  private createdRecipes: Recipe[] = [
+    { id: 7, name: 'Homemade Pizza', description: 'Delicious homemade pizza with fresh ingredients and a crispy crust.', bannerImg: '../../../assets/images/homemade_pizza.png', ingredients: [], steps: [], author: '', isFork: false, parentRecipe: 0, numLikes: 0, numSaved: 0},
+    { id: 8, name: 'Vegetable Stir-Fry', description: 'A quick and healthy vegetable stir-fry with a savory sauce.', bannerImg: '../../../assets/images/vegetable_stir-fry.png', ingredients: [], steps: [], author: '', isFork: false, parentRecipe: 0, numLikes: 0, numSaved: 0}
+  ];
+  
+
   private favoriteCategories = [
     {
       id: 1,
@@ -63,5 +69,8 @@ export class RecipeService {
   }
   getFavoriteCategories(): Category[] {
     return this.favoriteCategories;
+  }
+  getCreatedRecipes(): Recipe[] {
+    return this.createdRecipes;
   }
 }
