@@ -1,13 +1,15 @@
-<ion-header [translucent]="true">
-  <ion-toolbar>
-    <ion-title>search</ion-title>
-  </ion-toolbar>
-</ion-header>
-
 <ion-content [fullscreen]="true">
-  <ion-header collapse="condense">
-    <ion-toolbar>
-      <ion-title size="large">search</ion-title>
-    </ion-toolbar>
-  </ion-header>
+  <div class="page-pane">
+    <div class="title-container">
+      <h1>Explorar</h1>
+    </div>
+    <div class="search-content">
+      <div class="searchbar-container">
+        <ion-searchbar class="searchbar" color=light placeholder="Buscar receta"></ion-searchbar>
+      </div>
+      <div class="results-container">
+        <app-recipe-list class="results-list" [recipes]="recipes"></app-recipe-list>
+      </div>
+    </div>
+  </div>
 </ion-content>
