@@ -1,4 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
+import { Router } from '@angular/router';
+import { RecipeService } from 'src/app/services/recipe';
 
 @Component({
   selector: 'app-create-recipe',
@@ -6,11 +8,16 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./create-recipe.page.scss'],
   standalone: false,
 })
-export class CreateRecipePage implements OnInit {
+export class CreateRecipePage {
 
-  constructor() { }
+  constructor(
+    private recipeService: RecipeService,
+    private router: Router
+  ) { }
 
-  ngOnInit() {
+  onRecipeSubmitted(recipe: any) {
+    this.recipeService.addRecipe(recipe);
+    console.log('Receta creada:', recipe);
+    this.router.navigate(['/my-recipes']);
   }
-
 }
