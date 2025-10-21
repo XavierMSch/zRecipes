@@ -18,7 +18,10 @@
         [name]="'ingredient-' + ingredient.id">
       </ion-input>
     </ion-item>
-    <ion-button (click)="addIngredient()">Agregar Ingrediente</ion-button>
+    <div>
+      <ion-button (click)="addIngredient()">Agregar Ingrediente</ion-button>
+      <ion-button (click)="removeIngredient()" color="danger">Eliminar Último Ingrediente</ion-button>
+    </div>
   </div>
   <div>
     <p>  Pasos </p>
@@ -40,7 +43,10 @@
         </ion-input>
       </ion-item>
     </div>
+    <div>
     <ion-button (click)="addStep()">Agregar Paso</ion-button>
+    <ion-button (click)="removeStep()" color="danger">Eliminar Último Paso</ion-button>
+    </div>
   </div>
   <ion-button (click)="submitRecipe()" type="submit" expand="block">Crear Receta</ion-button>
 </form>

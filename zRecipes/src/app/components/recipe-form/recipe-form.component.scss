@@ -4,3 +4,30 @@ form {
     flex-direction: column;
     gap: 15px;
 }
+
+ion-item {
+  --background: #1D1B20;
+  --color: #FFFFFF;
+  --border-color: #1d1b20;
+}
+
+ion-input, ion-textarea {
+    --background: #1D1B20;
+    --color: #FFFFFF;
+    --highlight-color: var(--ion-color-primary);
+}
+
+ion-input:focus, ion-textarea:focus {
+    color: var(--ion-color-primary);
+    outline: none;
+    box-shadow: 0 0 0 2px #F48946; /* Color personalizado (naranja, por ejemplo) */
+    border-radius: 8px;
+}
+
+.ion-valid.sc-ion-input-md-h {
+    --highlight-color: var(--ion-color-primary);
+}
+
+.ion-valid.sc-ion-textarea-md-h {
+    --highlight-color: var(--ion-color-primary);
+}

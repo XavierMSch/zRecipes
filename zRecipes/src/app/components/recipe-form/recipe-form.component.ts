@@ -21,9 +21,21 @@ export class RecipeFormComponent {
     this.ingredients.push({id: newId, name: ''});
   }
 
+  removeIngredient() {
+    if (this.ingredients.length > 1) {
+      this.ingredients.pop();
+    }
+  }
+
   addStep() {
     const newId = this.steps.length + 1;
     this.steps.push({id: newId, description: '', image: ''});
+  }
+
+  removeStep() {
+    if (this.steps.length > 1) {
+      this.steps.pop();
+    }
   }
 
   submitRecipe() {
