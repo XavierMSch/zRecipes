@@ -5,7 +5,7 @@
     </div>
     <div class="search-content">
       <div class="searchbar-container">
-        <ion-searchbar class="searchbar" color=light placeholder="Buscar receta"></ion-searchbar>
+        <ion-searchbar (ionInput)="handleSearch($event)" class="searchbar" color=light placeholder="Buscar..."></ion-searchbar>
       </div>
       <div class="results-container">
         <app-recipe-list class="results-list" [recipes]="recipes"></app-recipe-list>

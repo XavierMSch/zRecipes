@@ -28,5 +28,7 @@ h1 {
 .searchbar {
     text-align: left;
     --border-radius: 20px;
-    width: 60%;
+    width: 600px;
+    flex-grow: 0;
+    flex-shrink: 0;
 }

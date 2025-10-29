@@ -14,6 +14,14 @@ export class SearchPage implements OnInit {
 
   constructor(private recipeService: RecipeService) { }
 
+  handleSearch(event: any) {
+    const searchTerm = event.detail.value;
+    if (searchTerm === '') {
+      this.recipes = this.recipeService.getRecipes();
+    }
+    this.recipes = this.recipeService.searchRecipesByName(searchTerm);
+  }
+
   ngOnInit() {
     this.recipes = this.recipeService.getRecipes();
   }
