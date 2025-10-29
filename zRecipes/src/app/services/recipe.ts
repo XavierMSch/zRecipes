@@ -70,6 +70,11 @@ export class RecipeService {
   getFavoriteCategories(): Category[] {
     return this.favoriteCategories;
   }
+
+  searchRecipesByName(name: string): Recipe[] {
+    return this.recipes.filter(recipe => recipe.name.includes(name));
+  }
+  
   getCreatedRecipes(): Recipe[] {
     return this.createdRecipes;
   }
