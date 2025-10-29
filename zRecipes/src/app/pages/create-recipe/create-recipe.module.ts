@@ -8,10 +8,13 @@ import { CreateRecipePageRoutingModule } from './create-recipe-routing.module';
 
 import { CreateRecipePage } from './create-recipe.page';
 
+import { ComponentsModule } from 'src/app/components/components/components-module';
+
 @NgModule({
   imports: [
     CommonModule,
     FormsModule,
+    ComponentsModule,
     IonicModule,
     CreateRecipePageRoutingModule
   ],

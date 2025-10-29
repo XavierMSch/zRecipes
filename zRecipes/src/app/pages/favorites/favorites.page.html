@@ -2,14 +2,7 @@
   <div class="favorites-container">
     <h1>Favoritos</h1>
     <div class="recipes-list">
-      <ion-card *ngFor="let category of favoriteCategories; trackBy: trackByCategoryId" class="recipe-card" routerLink="/recipe/{{category.id}}">
-        <div class="image-container">
-          <img [src]="category.image" alt="{{ category.title }}" class="recipe-image"/>
-        </div>
-        <ion-card-header>
-          <ion-card-title>{{ category.title }}</ion-card-title>
-        </ion-card-header>
-      </ion-card>
+      <app-favorite-category-list [favoriteCategories]="favoriteCategories"></app-favorite-category-list>
     </div>  
   </div>
   <ion-fab horizontal="end" vertical="bottom " slot="fixed" class="add-fab">

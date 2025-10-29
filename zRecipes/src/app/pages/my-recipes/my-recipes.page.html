@@ -1,2 +1,15 @@
 <ion-content [fullscreen]="true">
+    <div class="my-recipes-container">
+        <div class="header">
+            <h1 class="title">Mis Recetas</h1> 
+        </div>
+        <div class="recipes-list-container">
+            <app-recipe-list class="recipe-list" [recipes]="createdRecipes"></app-recipe-list> 
+        </div>
+    </div>
+    <ion-fab horizontal="end" vertical="bottom " slot="fixed" class="create-recipe">
+    <ion-fab-button>
+      <ion-icon class="add-icon" name="add" [routerLink]="['/create-recipe']"></ion-icon>
+    </ion-fab-button>
+  </ion-fab>
 </ion-content>
