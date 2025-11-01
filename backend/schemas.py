@@ -1,10 +1,9 @@
-from pydantic import BaseModel, EmailStr
+from pydantic import BaseModel, EmailStr, ConfigDict
 from datetime import datetime
 
 # Schema base para que pydantic sea compatible con sqlalchemy
 class BaseSchema(BaseModel):
-    class ConfigDict:
-        from_attributes = True
+    model_config = ConfigDict(from_attributes=True)
 
 # --- Schemas para autenticación ---
 class UserLogin(BaseModel):
@@ -24,7 +23,7 @@ class IngredientItem(BaseModel):
     ingredient_name: str
 
 class StepItem(BaseModel):
-    step_numer: int
+    step_number: int
     step_description: str
     image_url: str | None = None
 
@@ -54,6 +53,7 @@ class UserInRecipe(BaseSchema):
 
 class Recipe(RecipeBase, BaseSchema):
     id: int
+    owner_id: int
     owner: UserInRecipe
 
 # --- Schemas de User ---
