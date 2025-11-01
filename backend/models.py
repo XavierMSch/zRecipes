@@ -1,15 +1,54 @@
-from sqlalchemy import Column, ForeignKey, Integer, String, Boolean
-from sqlalchemy.orm import relationship
-from .database import Base
+from sqlalchemy import ForeignKey, Integer, Identity, String, Boolean, Table, Column
+from sqlalchemy.dialects.postgresql import JSONB
+from sqlalchemy.orm import DeclarativeBase, Mapped, mapped_column, relationship
+
+class Base(DeclarativeBase):
+    pass
 
 class User(Base):
     __tablename__ = "users"
-    id = Column(Integer, autoincrement=True, primary_key=True, index=True)
-    rut = Column(String, unique=True, nullable=False)
-    hashed_password = Column(String, nullable=False)
-    email = Column(String, unique=True, nullable=False)
-    region = Column(String, nullable=False)
-    comuna = Column(String, nullable=False)
+    id: Mapped[int] = mapped_column(Identity(always=True), primary_key=True, index=True)
+    username: Mapped[str] = mapped_column(String(30), unique=True, nullable=False)
+    rut: Mapped[str] = mapped_column(String(12), unique=True, nullable=False)
+    hashed_password: Mapped[str] = mapped_column(String(255), nullable=False)
+    email: Mapped[str] = mapped_column(String(100), unique=True, nullable=False)
+    region: Mapped[str] = mapped_column(String(60), nullable=False)
+    comuna: Mapped[str] = mapped_column(String(100), nullable=False)
+    is_admin: Mapped[bool] = mapped_column(Boolean, nullable=False, default=False)    
 
-    recipes = relationship("Recipe", back_populates="owner")
-    lists = relationship("RecipeList", back_populates="owner")
+    recipes: Mapped[list["Recipe"]] = relationship(back_populates="owner")
+    recipe_lists: Mapped[list["RecipeList"]] = relationship(back_populates="owner")
+
+recipe_list_association = Table(
+    "recipe_list_association",
+    Base.metadata,
+    Column("recipe_id", ForeignKey("recipes.id"), primary_key=True),
+    Column("recipe_list_id", ForeignKey("recipe_lists.id"), primary_key=True),
+)
+
+class Recipe(Base):
+    __tablename__ = "recipes"
+    id: Mapped[int] = mapped_column(Identity(always=True), primary_key=True, index=True)
+    name: Mapped[str] = mapped_column(String(50), nullable=False)
+    ingredients: Mapped[list[dict[str, str]]] = mapped_column(JSONB, nullable=False, server_default='[]')
+    steps: Mapped[list[dict[str, str]]] = mapped_column(JSONB, nullable=False, server_default='[]')
+    likes: Mapped[int] = mapped_column(Integer, nullable=False, default=0)
+    owner_id: Mapped[int] = mapped_column(ForeignKey("users.id"))
+
+    owner: Mapped["User"] = relationship(back_populates="recipes")
+    recipe_lists: Mapped[list["RecipeList"]] = relationship(
+        secondary=recipe_list_association,
+        back_populates="recipes",
+    )
+
+class RecipeList(Base):
+    __tablename__ = "recipe_lists"
+    id: Mapped[int] = mapped_column(Identity(always=True), primary_key=True, index=True)
+    name: Mapped[str] = mapped_column(String(50), nullable=False)
+    owner_id: Mapped[int] = mapped_column(ForeignKey("users.id"))
+
+    owner: Mapped["User"] = relationship(back_populates="recipe_lists")
+    recipes: Mapped[list["Recipe"]] = relationship(
+        secondary=recipe_list_association,
+        back_populates="recipe_lists",
+    )
