@@ -42,8 +42,8 @@ export class RecipeListService {
     return this.http.post<Category>(`${API_URL}`, newRecipeList);
   }
 
-  updaterecipeList(recipeList: Category): Observable<Category> {
-    return this.http.put<Category>(`${API_URL}/${recipeList.id}`, recipeList); 
+  addRecipe(toRecipeListId: number, recipeId: number): Observable<void> {
+    return this.http.post<void>(`${API_URL}/${toRecipeListId}/recipes`, { recipeId });
   }
 
   deleteRecipeList(id: number): Observable<void> {

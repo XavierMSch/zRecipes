@@ -15,7 +15,7 @@ export class FavoritesPage{
   constructor(private recipeService: RecipeService) { }
 
   ngOnInit() {
-    this.favoriteCategories = this.recipeService.getFavoriteCategories();
+    /* this.favoriteCategories = this.recipeService.getFavoriteCategories(); */ 
   }
 
   trackByCategoryId(_index: number, category: any): number {

@@ -9,7 +9,7 @@ import { RecipeListComponent } from '../recipe-list/recipe-list.component';
 import { FavoriteCategoryCardComponent } from '../favorite-category-card/favorite-category-card.component';
 import { FavoriteCategoryListComponent } from '../favorite-category-list/favorite-category-list.component';
 import { RecipeFormComponent } from '../recipe-form/recipe-form.component';
-
+import { CategorySelector } from '../category-selector/category-selector.component';
 
 @NgModule({
   declarations: [
@@ -17,20 +17,22 @@ import { RecipeFormComponent } from '../recipe-form/recipe-form.component';
     RecipeListComponent, 
     FavoriteCategoryCardComponent, 
     FavoriteCategoryListComponent,
-    RecipeFormComponent
+    RecipeFormComponent,
+    CategorySelector
   ],
   imports: [
     CommonModule,
     IonicModule,
     RouterModule,
-    FormsModule // Agregar FormsModule aquí
+    FormsModule 
   ],
   exports: [
     RecipeCardComponent, 
     RecipeListComponent,
     FavoriteCategoryCardComponent, 
     FavoriteCategoryListComponent,
-    RecipeFormComponent
+    RecipeFormComponent,
+    CategorySelector
   ]
 })
 export class ComponentsModule { }

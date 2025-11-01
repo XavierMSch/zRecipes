@@ -1,4 +1,8 @@
 import { Component, OnInit } from '@angular/core';
+import { ModalController, ToastController } from '@ionic/angular';
+import { ActivatedRoute } from '@angular/router';
+import { RecipeListService } from 'src/app/services/recipe-list/recipe-list';
+import { CategorySelector } from 'src/app/components/category-selector/category-selector.component';
 
 @Component({
   selector: 'app-recipe-info',
@@ -45,7 +49,54 @@ export class RecipeInfoPage implements OnInit {
     'Hornea durante 20–25 minutos, hasta que esté dorada y firme. Deja enfriar 15 minutos antes de retirar con cuidado el aro del molde.',
     'Pasa la tarta a un plato y acompaña con crema, crème fraîche o helado.'
   ];
-  constructor() { }
+
+  currentRecipeId: number = 0;
+
+  constructor(
+    private modalCtrl: ModalController,
+    private RecipeListService: RecipeListService,
+    private toastCtrl: ToastController,
+    private route: ActivatedRoute
+  ) {}
+
+  ngOnInit() {
+    this.currentRecipeId = +this.route.snapshot.paramMap.get('id')!;
+  }
+
+  async openCategorySelector() {
+    const modal = await this.modalCtrl.create({
+      component: CategorySelector,
+    });
+
+    await modal.present();
+
+    const { data } = await modal.onDidDismiss();
+
+    if (data && data.selectedCategory.id) {
+      this.addRecipeToCategory(data.selectedCategory.id, this.currentRecipeId);
+    }
+  }
+
+  addRecipeToCategory(categoryId: number, recipeId: number) {
+    this.RecipeListService.addRecipe(categoryId, recipeId).subscribe({
+      next: async () => {
+        const toast = await this.toastCtrl.create({
+          message: 'Receta añadida a la categoría correctamente.',
+          duration: 2000,
+          color: 'success',
+        });
+        toast.present();
+      },
+      error: async (err) => {
+        const toast = await this.toastCtrl.create({
+          message: 'Error al añadir la receta a la categoría.',
+          duration: 2000,
+          color: 'danger',
+        });
+        toast.present();
+      }
+    });
+  }
 
   onMouseEnterReport() {
     this.currentIcons[3] = this.selectionIcons[3];
@@ -84,6 +135,7 @@ export class RecipeInfoPage implements OnInit {
   }
 
   onClickFavorite() {
+    this.openCategorySelector();
     this.favorite = !this.favorite;
     if (this.favorite) {
       this.currentIcons[0] = this.selectionIcons[0];
@@ -99,9 +151,6 @@ export class RecipeInfoPage implements OnInit {
     } else {
       this.currentIcons[2] = this.defaultIcons[2];
     }
-  }
-
-  ngOnInit() {
   }
 
 }

@@ -1,0 +1,16 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Seleccionar Categoría</ion-title>
+    <ion-buttons slot="end">
+      <ion-button (click)="closeModal()">Cancelar</ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-list>
+    <ion-item *ngFor="let cat of recipeLists$ | async" (click)="selectedCategory(cat.id)" button detail>
+      <ion-label>{{ cat.name }}</ion-label>
+    </ion-item>
+  </ion-list>
+</ion-content>

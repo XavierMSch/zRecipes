@@ -16,7 +16,7 @@ export class CreateRecipePage {
   ) { }
 
   onRecipeSubmitted(recipe: any) {
-    this.recipeService.addRecipe(recipe);
+    /* this.recipeService.addRecipe(recipe);  */
     console.log('Receta creada:', recipe);
     this.router.navigate(['/my-recipes']);
   }
