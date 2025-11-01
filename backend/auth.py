@@ -53,15 +53,15 @@ async def get_current_user(token: str = Depends(oauth2_scheme), db: AsyncSession
         # Decodificar el JWT
         payload = jwt.decode(token, SECRET_KEY, algorithms=[ALGORITHM])
 
-        email: str | None = payload.get("sub")
-        if email is None:
+        user_id: str | None = payload.get("sub")
+        if user_id is None:
             raise credentials_exception
         
-        token_data = schemas.TokenData(sub=email)
+        token_data = schemas.TokenData(sub=user_id)
     except JWTError:
         raise credentials_exception
     
-    user = await crud.get_user_by_email(db, email=token_data.sub)
+    user = await crud.get_user_by_id(db, id=token_data.sub)
     if user is None:
         raise credentials_exception
     
