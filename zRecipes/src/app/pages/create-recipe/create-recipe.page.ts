@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
-import { RecipeService } from 'src/app/services/recipe';
+import { RecipeService } from 'src/app/services/recipe/recipe';
 
 @Component({
   selector: 'app-create-recipe',

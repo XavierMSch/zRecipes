@@ -1,13 +1,73 @@
 import { Injectable } from '@angular/core';
-import { Recipe } from '../interfaces/recipe.interface';
-import { Category } from '../interfaces/category.interface';
+import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
+import { Observable } from 'rxjs';
+import { Recipe } from '../../interfaces/recipe.interface';
+import { AuthService } from '../auth/auth';
+
+const API_URL = 'apiurl/recipes'
 
 @Injectable({
   providedIn: 'root'
 })
 export class RecipeService {
   
-  private recipes: Recipe[] = [
+  constructor(
+    private http: HttpClient,
+    private auth: AuthService
+  ) {}
+
+  getRecipe(id: number): Observable<Recipe> {
+    return this.http.get<Recipe>(`${API_URL}/${id}`);
+  }
+
+  getRecipes(): Observable<Recipe[]> {
+    return this.http.get<Recipe[]>(`${API_URL}`); 
+  }
+
+  createRecipe(newRecipe: Omit<Recipe, 'id'>): Observable<Recipe> {
+    return this.http.post<Recipe>(`${API_URL}`, newRecipe);
+  }
+
+  updateRecipe(recipe: Recipe): Observable<Recipe> {
+    return this.http.put<Recipe>(`${API_URL}/${recipe.id}`, recipe); 
+  }
+
+  deleteRecipe(id: number): Observable<void> {
+    return this.http.delete<void>(`${API_URL}/${id}`);
+  }
+
+  getCreatedRecipes(): Observable<Recipe[]> {
+    const token = this.auth.getCurrentAuthToken();
+    const userId = this.auth.getCurrentUserId();
+
+    if (!token || !userId) {
+      console.warn('Usuario no autenticado. No se pueden cargar las recetas.');
+      return new Observable<Recipe[]>(); 
+    }
+
+    const headers = new HttpHeaders({
+      'Authorization': `Bearer ${token}` 
+    });
+
+    const params = new HttpParams().set('owner_id', userId.toString());
+
+    return this.http.get<Recipe[]>(`${API_URL}`, {headers: headers, params: params});
+  }
+
+  searchRecipesByName(terminoBusqueda: string | null): Observable<Recipe[]> {
+    let params = new HttpParams();
+    if (terminoBusqueda) {
+      params = params.set('q', terminoBusqueda);
+    }
+    return this.http.get<Recipe[]>(`${API_URL}`, {params: params});
+  }
+}
+
+
+
+
+
+const recipes: Recipe[] = [
     { id: 1, name: 'Apple Frangipone Tart', description: 'La Apple Frangipane Tart es un postre británico con base crujiente de galletas, frangipane de almendra y finas rodajas de manzana. Se hornea con almendras laminadas hasta dorar y se disfruta tibia con crema o helado.', bannerImg: '../../../assets/images/apple_frangipane_tart.png', ingredients: [], steps: [], author: '', isFork: false, parentRecipe: 0, numLikes: 0, numSaved: 0},
     { id: 2, name: 'Speedy Chicken Stir-Fry', description: 'This quick and flavorful stir-fry is perfect for a weeknight meal. Tender chicken pieces are cooked with an assortment of crisp vegetables in a savory soy-ginger sauce, all ready in under 30 minutes!', bannerImg: '../../../assets/images/speedy_chiken_stir-fry.png', ingredients: [], steps: [], author: '', isFork: false, parentRecipe: 0, numLikes: 0, numSaved: 0},
     { id: 3, name: 'Creamy Tomato Pasta', description: 'Indulge in this rich and comforting creamy tomato pasta. Al dente pasta is tossed in a velvety sauce made with ripe tomatoes, a touch of cream, and fresh herbs, guaranteed to satisfy your cravings.', bannerImg: '../../../assets/images/creamy_tomato_pasta.png', ingredients: [], steps: [], author: '', isFork: false, parentRecipe: 0, numLikes: 0, numSaved: 0},
@@ -16,13 +76,13 @@ export class RecipeService {
     { id: 6, name: 'Decadent Chocolate Lava Cakes', description: 'Treat yourself to these irresistible chocolate lava cakes. With a rich, warm, and gooey chocolate center, these individual desserts are surprisingly easy to make and perfect for any special occasion.', bannerImg: '../../../assets/images/decadent_chocolate_lava_cake.png', ingredients: [], steps: [], author: '', isFork: false, parentRecipe: 0, numLikes: 0, numSaved: 0}
   ];
 
-  private createdRecipes: Recipe[] = [
+  const createdRecipes: Recipe[] = [
     { id: 7, name: 'Homemade Pizza', description: 'Delicious homemade pizza with fresh ingredients and a crispy crust.', bannerImg: '../../../assets/images/homemade_pizza.png', ingredients: [], steps: [], author: '', isFork: false, parentRecipe: 0, numLikes: 0, numSaved: 0},
     { id: 8, name: 'Vegetable Stir-Fry', description: 'A quick and healthy vegetable stir-fry with a savory sauce.', bannerImg: '../../../assets/images/vegetable_stir-fry.png', ingredients: [], steps: [], author: '', isFork: false, parentRecipe: 0, numLikes: 0, numSaved: 0}
   ];
   
 
-  private favoriteCategories = [
+  const favoriteCategories = [
     {
       id: 1,
       name: 'Postres',
@@ -60,27 +120,3 @@ export class RecipeService {
       recipes: []
     }
   ];
-
-  
-  constructor() { }
-
-  getRecipes(): Recipe[] {
-    return this.recipes;
-  }
-  getFavoriteCategories(): Category[] {
-    return this.favoriteCategories;
-  }
-
-  searchRecipesByName(name: string): Recipe[] {
-    return this.recipes.filter(recipe => recipe.name.includes(name));
-  }
-  
-  getCreatedRecipes(): Recipe[] {
-    return this.createdRecipes;
-  }
-  addRecipe(recipe: Recipe) {
-    const newId = this.createdRecipes.length + 7;
-    const newRecipe = { ...recipe, id: newId };
-    this.createdRecipes.push(newRecipe);
-  }
-}
