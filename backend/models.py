@@ -1,8 +1,9 @@
-from sqlalchemy import ForeignKey, Integer, Identity, String, Boolean, Table, Column, DateTime, func
+from sqlalchemy import ForeignKey, Identity, String, Boolean, Table, Column, DateTime, func
 from sqlalchemy.dialects.postgresql import JSONB
 from sqlalchemy.orm import Mapped, mapped_column, relationship
 from datetime import datetime
 from database import Base
+from typing import Any
 
 user_likes_association = Table(
     "user_likes_association",
@@ -55,10 +56,10 @@ class Recipe(Base):
     __tablename__ = "recipes"
     id: Mapped[int] = mapped_column(Identity(always=True), primary_key=True, index=True)
     name: Mapped[str] = mapped_column(String(50), nullable=False)
-    description: Mapped[str] = mapped_column(String(1024), nullable=True)
+    description: Mapped[str] = mapped_column(String(1000), nullable=True)
     image_url: Mapped[str] = mapped_column(String(1024), nullable=True)
-    ingredients: Mapped[list[dict[str, str]]] = mapped_column(JSONB, nullable=False, server_default='[]')
-    steps: Mapped[list[dict[str, str]]] = mapped_column(JSONB, nullable=False, server_default='[]')
+    ingredients: Mapped[list[dict[str, Any]]] = mapped_column(JSONB, nullable=False, server_default='[]')
+    steps: Mapped[list[dict[str, Any]]] = mapped_column(JSONB, nullable=False, server_default='[]')
     
     owner_id: Mapped[int] = mapped_column(ForeignKey("users.id"))
     owner: Mapped["User"] = relationship(back_populates="recipes")
