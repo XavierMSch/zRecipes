@@ -30,6 +30,7 @@ class Recipe(Base):
     __tablename__ = "recipes"
     id: Mapped[int] = mapped_column(Identity(always=True), primary_key=True, index=True)
     name: Mapped[str] = mapped_column(String(50), nullable=False)
+    image_url: Mapped[str] = mapped_column(String(1024), nullable=True)
     ingredients: Mapped[list[dict[str, str]]] = mapped_column(JSONB, nullable=False, server_default='[]')
     steps: Mapped[list[dict[str, str]]] = mapped_column(JSONB, nullable=False, server_default='[]')
     likes: Mapped[int] = mapped_column(Integer, nullable=False, default=0)
