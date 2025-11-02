@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 
-import { RecipeService } from 'src/app/services/recipe';
+import { RecipeService } from 'src/app/services/recipe/recipe';
 import { Recipe } from 'src/app/interfaces/recipe.interface';  
 
 @Component({
@@ -15,7 +15,9 @@ export class MyRecipesPage implements OnInit {
   constructor(private recipeService: RecipeService) { }
 
   ngOnInit() {
-    this.createdRecipes = this.recipeService.getCreatedRecipes();
+    this.recipeService.getCreatedRecipes().subscribe((recipes: Recipe[]) => {
+      this.createdRecipes = recipes;
+    });
   }
   
   trackByRecipeId(index: number, recipe: Recipe): number {

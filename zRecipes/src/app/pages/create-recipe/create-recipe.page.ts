@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
-import { RecipeService } from 'src/app/services/recipe';
+import { RecipeService } from 'src/app/services/recipe/recipe';
 
 @Component({
   selector: 'app-create-recipe',
@@ -16,7 +16,7 @@ export class CreateRecipePage {
   ) { }
 
   onRecipeSubmitted(recipe: any) {
-    this.recipeService.addRecipe(recipe);
+    /* this.recipeService.addRecipe(recipe);  */
     console.log('Receta creada:', recipe);
     this.router.navigate(['/my-recipes']);
   }

@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 
 import { Recipe } from '../../interfaces/recipe.interface'
-import { RecipeService } from 'src/app/services/recipe';
+import { RecipeService } from 'src/app/services/recipe/recipe';
 
 @Component({
   selector: 'app-search',
@@ -17,13 +17,35 @@ export class SearchPage implements OnInit {
   handleSearch(event: any) {
     const searchTerm = event.detail.value;
     if (searchTerm === '') {
-      this.recipes = this.recipeService.getRecipes();
+      this.recipeService.getRecipes().subscribe({
+        next: (recipes) => {
+          this.recipes = recipes;
+        },
+        error: (err) => {
+          console.error('Error al cargar las listas:', err);
+        }
+      });
+    } else {
+        this.recipeService.searchRecipesByName(searchTerm).subscribe({
+        next: (results) => {
+          this.recipes = results;
+        },
+        error: (err) => {
+          console.error('Error de búsqueda.', err);
+        }
+      });
     }
-    this.recipes = this.recipeService.searchRecipesByName(searchTerm);
   }
 
   ngOnInit() {
-    this.recipes = this.recipeService.getRecipes();
+    this.recipeService.getRecipes().subscribe({
+        next: (recipes) => {
+          this.recipes = recipes;
+        },
+        error: (err) => {
+          console.error('Error al cargar las listas:', err);
+        }
+      });
   }
 
 }

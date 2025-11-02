@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 
 import { Recipe } from '../../interfaces/recipe.interface'
-import { RecipeService } from 'src/app/services/recipe';
+import { RecipeService } from 'src/app/services/recipe/recipe';
 
 @Component({
   selector: 'app-home',
@@ -15,7 +15,9 @@ export class HomePage implements OnInit {
   constructor(private recipeService: RecipeService) { }
 
   ngOnInit() {
-    this.recipes = this.recipeService.getRecipes();
+    this.recipeService.getRecipes().subscribe((recipes: Recipe[]) => {
+      this.recipes = recipes;
+    });
   }
   trackByRecipeId(index: number, recipe: Recipe): number {
     return recipe.id;

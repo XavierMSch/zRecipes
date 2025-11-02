@@ -1,6 +1,5 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
-
 import { RecipeInfoPage } from './recipe-info.page';
 
 const routes: Routes = [

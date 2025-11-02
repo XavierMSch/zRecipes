@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { RecipeService } from 'src/app/services/recipe';
+import { RecipeService } from 'src/app/services/recipe/recipe';
 
 @Component({
   selector: 'app-favorites',
@@ -15,7 +15,7 @@ export class FavoritesPage{
   constructor(private recipeService: RecipeService) { }
 
   ngOnInit() {
-    this.favoriteCategories = this.recipeService.getFavoriteCategories();
+    /* this.favoriteCategories = this.recipeService.getFavoriteCategories(); */ 
   }
 
   trackByCategoryId(_index: number, category: any): number {

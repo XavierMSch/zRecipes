@@ -1,4 +1,10 @@
 import { Component, OnInit } from '@angular/core';
+import { ModalController, ToastController } from '@ionic/angular';
+import { ActivatedRoute } from '@angular/router';
+import { RecipeListService } from 'src/app/services/recipe-list/recipe-list';
+import { RecipeService } from 'src/app/services/recipe/recipe';
+import { CategorySelector } from 'src/app/components/category-selector/category-selector.component';
+import { Recipe } from 'src/app/interfaces/recipe.interface';
 
 @Component({
   selector: 'app-recipe-info',
@@ -9,43 +15,68 @@ import { Component, OnInit } from '@angular/core';
 export class RecipeInfoPage implements OnInit {
   favorite: boolean = false;
   liked: boolean = false;
-  defaultIcons: string[] = [
-    'bookmark-outline',
-    '../../../assets/icon/chef-outline.png',
-    '../../../assets/icon/cookie-outline.png',
-    'flag-outline'
-  ];
-  selectionIcons: string[] = [
-    'bookmark',
-    '../../../assets/icon/chef.png',
-    '../../../assets/icon/cookie.png',
-    'flag'
-  ]
-  currentIcons: string[] = [
-    'bookmark-outline',
-    '../../../assets/icon/chef-outline.png',
-    '../../../assets/icon/cookie-outline.png',
-    'flag-outline'
-  ]
-  ingredients: string[] = [
-    '175 g de galletas digestive',
-    '75 g de mantequilla sin sal derretida',
-    '200 g de manzanas Bramley (peladas y en láminas finas)',
-    '75 g de mantequilla sin sal',
-    '75 g de azúcar caster',
-    '2 huevos',
-    '75 g de almendras molidas',
-    '1 cucharadita de extracto de almendra',
-    '50 g de almendras laminadas'
-  ];
-  steps: string[] = [
-    'Precalienta el horno a 200 °C (180 °C con ventilador) o gas 6. Tritura las galletas hasta obtener migas finas. Mézclalas con la mantequilla derretida y cubre la base y los lados de un molde. Refrigera mientras haces el relleno.',
-    'Bate la mantequilla con el azúcar hasta que esté suave y esponjosa. Agrega los huevos poco a poco, luego incorpora las almendras molidas y el extracto de almendra hasta obtener una crema homogénea.',
-    'Pela y corta las manzanas en láminas finas. Colócalas sobre la base de galleta. Cubre con la mezcla de frangipane, alisa la superficie y espolvorea con las almendras laminadas.',
-    'Hornea durante 20–25 minutos, hasta que esté dorada y firme. Deja enfriar 15 minutos antes de retirar con cuidado el aro del molde.',
-    'Pasa la tarta a un plato y acompaña con crema, crème fraîche o helado.'
-  ];
-  constructor() { }
+  currentRecipeId: number = 0;
+  recipe: Recipe | null = null;
+
+  constructor(
+    private modalCtrl: ModalController,
+    private RecipeListService: RecipeListService,
+    private recipeService: RecipeService,
+    private toastCtrl: ToastController,
+    private route: ActivatedRoute
+  ) {}
+
+  ngOnInit() {
+    this.currentRecipeId = +this.route.snapshot.paramMap.get('id')!;
+
+    
+  }
+
+  private loadRecipe(id: number) {
+      this.recipeService.getRecipe(id).subscribe({
+        next: (data) => {
+          this.recipe = data;
+        },
+        error: (err) => {
+          console.error(`Error al cargar receta. RecipeID: ${id}`, err);
+        }
+    })
+  }
+
+  async openCategorySelector() {
+    const modal = await this.modalCtrl.create({
+      component: CategorySelector,
+    });
+
+    await modal.present();
+
+    const { data } = await modal.onDidDismiss();
+
+    if (data && data.selectedCategory.id) {
+      this.addRecipeToCategory(data.selectedCategory.id, this.currentRecipeId);
+    }
+  }
+
+  addRecipeToCategory(categoryId: number, recipeId: number) {
+    this.RecipeListService.addRecipe(categoryId, recipeId).subscribe({
+      next: async () => {
+        const toast = await this.toastCtrl.create({
+          message: 'Receta añadida a la categoría correctamente.',
+          duration: 2000,
+          color: 'success',
+        });
+        toast.present();
+      },
+      error: async (err) => {
+        const toast = await this.toastCtrl.create({
+          message: 'Error al añadir la receta a la categoría.',
+          duration: 2000,
+          color: 'danger',
+        });
+        toast.present();
+      }
+    });
+  }
 
   onMouseEnterReport() {
     this.currentIcons[3] = this.selectionIcons[3];
@@ -84,6 +115,7 @@ export class RecipeInfoPage implements OnInit {
   }
 
   onClickFavorite() {
+    this.openCategorySelector();
     this.favorite = !this.favorite;
     if (this.favorite) {
       this.currentIcons[0] = this.selectionIcons[0];
@@ -101,7 +133,43 @@ export class RecipeInfoPage implements OnInit {
     }
   }
 
-  ngOnInit() {
-  }
-
+   defaultIcons: string[] = [
+    'bookmark-outline',
+    '../../../assets/icon/chef-outline.png',
+    '../../../assets/icon/cookie-outline.png',
+    'flag-outline'
+  ];
+   selectionIcons: string[] = [
+    'bookmark',
+    '../../../assets/icon/chef.png',
+    '../../../assets/icon/cookie.png',
+    'flag'
+  ];
+  currentIcons: string[] = [
+    'bookmark-outline',
+    '../../../assets/icon/chef-outline.png',
+    '../../../assets/icon/cookie-outline.png',
+    'flag-outline'
+  ];
 }
+
+
+   
+  const ingredients: string[] = [
+    '175 g de galletas digestive',
+    '75 g de mantequilla sin sal derretida',
+    '200 g de manzanas Bramley (peladas y en láminas finas)',
+    '75 g de mantequilla sin sal',
+    '75 g de azúcar caster',
+    '2 huevos',
+    '75 g de almendras molidas',
+    '1 cucharadita de extracto de almendra',
+    '50 g de almendras laminadas'
+  ];
+  const steps: string[] = [
+    'Precalienta el horno a 200 °C (180 °C con ventilador) o gas 6. Tritura las galletas hasta obtener migas finas. Mézclalas con la mantequilla derretida y cubre la base y los lados de un molde. Refrigera mientras haces el relleno.',
+    'Bate la mantequilla con el azúcar hasta que esté suave y esponjosa. Agrega los huevos poco a poco, luego incorpora las almendras molidas y el extracto de almendra hasta obtener una crema homogénea.',
+    'Pela y corta las manzanas en láminas finas. Colócalas sobre la base de galleta. Cubre con la mezcla de frangipane, alisa la superficie y espolvorea con las almendras laminadas.',
+    'Hornea durante 20–25 minutos, hasta que esté dorada y firme. Deja enfriar 15 minutos antes de retirar con cuidado el aro del molde.',
+    'Pasa la tarta a un plato y acompaña con crema, crème fraîche o helado.'
+  ];
