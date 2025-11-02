@@ -51,6 +51,10 @@ const routes: Routes = [
     loadChildren: () => import('./pages/create-recipe/create-recipe.module').then(m => m.CreateRecipePageModule),
     canActivate: [authGuard]
   },
+  {
+    path: '**',
+    redirectTo: 'home'
+  }
 ];
 
 @NgModule({
