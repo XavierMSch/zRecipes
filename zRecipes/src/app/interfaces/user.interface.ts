@@ -1,9 +1,9 @@
-export interface user {
-    username: string,
-    rut: string,
-    email: string,
-    region: string,
-    comuna: string,
-    password: string,
-    isAdmin: boolean
+export interface User {
+    id: number;
+    username: string;
+    email: string;
+    rut?: string;
+    region: string;
+    comuna: string;
+    is_admin: boolean;
 }

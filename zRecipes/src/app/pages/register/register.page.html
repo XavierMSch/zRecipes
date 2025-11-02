@@ -6,23 +6,67 @@
           <div class="logo-container">
             <ion-img src="../../../assets/icon/logo.png" alt="Logo de z-Recipes"></ion-img>
           </div>
-          <div class="form-container">
+          <form (ngSubmit)="onSubmit()" class="form-container">
             <ion-item lines="none" class="ion-margin-top">
-              <ion-input type="text" autocoplete="email" fill="outline" label="Correo Electrónico"
-                label-placement="stacked" class="ion-margin-top" placeholder="usuario@ejemplo.com"></ion-input>
+              <ion-input 
+                type="email" 
+                autocomplete="email" 
+                fill="outline" 
+                label="Correo Electrónico"
+                label-placement="stacked" 
+                class="ion-margin-top" 
+                placeholder="usuario@ejemplo.com"
+                [(ngModel)]="email"
+                name="email"
+                required>
+              </ion-input>
             </ion-item>
+            
             <ion-item lines="none" class="ion-margin-top">
-              <ion-input type="text" autocapitalize="off" autocorrect="off" autocomplete="username" required="true"
-                label-placement="stacked" class="ion-margin-top" fill="outline" placeholder="Ej: juangomez"
-                label="Nombre de usuario"></ion-input>
+              <ion-input 
+                type="text" 
+                autocapitalize="off" 
+                autocorrect="off" 
+                autocomplete="username" 
+                required 
+                label-placement="stacked" 
+                class="ion-margin-top" 
+                fill="outline" 
+                placeholder="Ej: juangomez"
+                label="Nombre de usuario"
+                [(ngModel)]="username"
+                name="username">
+              </ion-input>
             </ion-item>
+            
             <ion-item lines="none" class="ion-margin-top">
-              <ion-input type="text" autocapitalize="off" autocorrect="off" required="true" label-placement="stacked"
-                class="ion-margin-top" fill="outline" placeholder="12345678-9" label="RUT"></ion-input>
+              <ion-input 
+                type="text" 
+                autocapitalize="off" 
+                autocorrect="off" 
+                required 
+                label-placement="stacked"
+                class="ion-margin-top" 
+                fill="outline" 
+                placeholder="12345678-9" 
+                label="RUT"
+                [(ngModel)]="rut"
+                name="rut">
+              </ion-input>
             </ion-item>
+            
             <ion-item lines="none" class="ion-margin-top">
-              <ion-select class="ion-margin-top" required="true" aria-label="Región" interface="popover" fill="outline"
-                label-placement="stacked" label="Región" placeholder="Seleccione">
+              <ion-select 
+                class="ion-margin-top" 
+                required 
+                aria-label="Región" 
+                interface="popover" 
+                fill="outline"
+                label-placement="stacked" 
+                label="Región" 
+                placeholder="Seleccione"
+                [(ngModel)]="region"
+                name="region">
                 <ion-select-option value="aricaParinacota">Arica y Parinacota</ion-select-option>
                 <ion-select-option value="tarapaca">Tarapacá</ion-select-option>
                 <ion-select-option value="antofagasta">Antofagasta</ion-select-option>
@@ -41,31 +85,75 @@
                 <ion-select-option value="magallanes">Magallanes y de la Antártica Chilena</ion-select-option>
               </ion-select>
             </ion-item>
-            <ion-item class="ion-margin-top" lines="none" class="ion-margin-top">
-              <ion-input class="ion-margin-top" type="text" autocapitalize="words" autocorrect="on" autocomplete="off"
-                required="true" label-placement="stacked" fill="outline" placeholder="Ej: Los Andes"
-                label="Comuna"></ion-input>
+            
+            <ion-item class="ion-margin-top" lines="none">
+              <ion-input 
+                class="ion-margin-top" 
+                type="text" 
+                autocapitalize="words" 
+                autocorrect="on" 
+                autocomplete="off"
+                required 
+                label-placement="stacked" 
+                fill="outline" 
+                placeholder="Ej: Los Andes"
+                label="Comuna"
+                [(ngModel)]="comuna"
+                name="comuna">
+              </ion-input>
             </ion-item>
-            <ion-item class="ion-margin-top" lines="none" class="ion-margin-top">
-              <ion-input type="password" autocoplete="new-password" fill="outline" label="Contraseña"
-                label-placement="stacked" class="ion-margin-top" placeholder="********"><ion-input-password-toggle
-                  slot="end"></ion-input-password-toggle></ion-input>
+            
+            <ion-item class="ion-margin-top" lines="none">
+              <ion-input 
+                type="password" 
+                autocomplete="new-password" 
+                fill="outline" 
+                label="Contraseña"
+                label-placement="stacked" 
+                class="ion-margin-top" 
+                placeholder="********"
+                [(ngModel)]="password"
+                name="password"
+                required>
+                <ion-input-password-toggle slot="end"></ion-input-password-toggle>
+              </ion-input>
             </ion-item>
-            <ion-item class="ion-margin-top" lines="none" class="ion-margin-top">
-              <ion-input type="password" autocoplete="new-password" fill="outline" label="Confirmar Contraseña"
-                label-placement="stacked" class="ion-margin-top" placeholder="********"><ion-input-password-toggle
-                  slot="end"></ion-input-password-toggle></ion-input>
+            
+            <ion-item class="ion-margin-top" lines="none">
+              <ion-input 
+                type="password" 
+                autocomplete="new-password" 
+                fill="outline" 
+                label="Confirmar Contraseña"
+                label-placement="stacked" 
+                class="ion-margin-top" 
+                placeholder="********"
+                [(ngModel)]="confirmPassword"
+                name="confirmPassword"
+                required>
+                <ion-input-password-toggle slot="end"></ion-input-password-toggle>
+              </ion-input>
             </ion-item>
-            <ion-item class="ion-margin-top" lines="none" class="ion-margin-top">
-              <ion-checkbox labelPlacement="start">Acepto los <a>términos y
-                  condiciones</a></ion-checkbox>
+            
+            <ion-item class="ion-margin-top" lines="none">
+              <ion-checkbox 
+                labelPlacement="end"
+                [(ngModel)]="acceptTerms"
+                name="acceptTerms">
+                Acepto los <a>términos y condiciones</a>
+              </ion-checkbox>
             </ion-item>
+            
             <div class="btn-submit-container" lines="none">
-              <ion-button class="btn-submit" routerLink="/home" type="submit">
-                Entrar
+              <ion-button class="btn-submit" type="submit" expand="block">
+                Registrarse
               </ion-button>
             </div>
-          </div>
+            
+            <div class="already-account">
+              <p>¿Ya tienes cuenta? <a routerLink="/login">Inicia sesión</a></p>
+            </div>
+          </form>
         </div>
       </ion-col>
     </ion-row>

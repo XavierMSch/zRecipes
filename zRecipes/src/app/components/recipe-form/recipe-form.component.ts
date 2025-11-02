@@ -44,12 +44,26 @@ export class RecipeFormComponent {
       return;
     }
 
+    // Adaptar el formato para que coincida con la interfaz Recipe
     const recipe = {
       name: this.recipeName,
-      image: this.recipeImage,
+      img_url: this.recipeImage, // Cambiar 'image' por 'img_url'
       description: this.recipeDescription,
-      ingredients: this.ingredients.filter(ing => ing.name.trim() !== ''),
-      steps: this.steps.filter(step => step.description.trim() !== '')
+      ingredients: this.ingredients
+        .filter(ing => ing.name.trim() !== '')
+        .map(ing => ({
+          name: ing.name,  // El servicio adaptará esto a 'ingredient_name'
+          quantity: ing.quantity
+        })),
+      steps: this.steps
+        .filter(step => step.description.trim() !== '')
+        .map(step => ({
+          stepDesc: step.description, // El servicio adaptará esto
+          stepImg: step.image
+        })),
+      author: '', // Se establecerá desde el backend
+      numLikes: 0,
+      numSaved: 0
     };
     
     this.recipeSubmitted.emit(recipe);

@@ -6,27 +6,45 @@
                     <div class="logo-container">
                         <ion-img src="../../../assets/icon/logo.png" alt="Logo de z-Recipes"></ion-img>
                     </div>
-                    <div class="form-container">
+                    <form (ngSubmit)="onSubmit()" class="form-container">
                         <ion-item lines="none" class="ion-margin-top">
-                            <ion-input type="text" autocoplete="email" fill="outline" label="Correo Electrónico"
-                                label-placement="stacked" class="ion-margin-top"
-                                placeholder="usuario@ejemplo.com"></ion-input>
+                            <ion-input 
+                                type="email" 
+                                autocomplete="email" 
+                                fill="outline" 
+                                label="Correo Electrónico"
+                                label-placement="stacked" 
+                                class="ion-margin-top"
+                                placeholder="usuario@ejemplo.com"
+                                [(ngModel)]="email"
+                                name="email"
+                                required>
+                            </ion-input>
                         </ion-item>
                         <ion-item lines="none" class="ion-margin-top">
-                            <ion-input type="password" autocoplete="current-password" fill="outline" label="Contraseña"
-                                label-placement="stacked" class="ion-margin-top"
-                                placeholder="********"><ion-input-password-toggle
-                                    slot="end"></ion-input-password-toggle></ion-input>
+                            <ion-input 
+                                type="password" 
+                                autocomplete="current-password" 
+                                fill="outline" 
+                                label="Contraseña"
+                                label-placement="stacked" 
+                                class="ion-margin-top"
+                                placeholder="********"
+                                [(ngModel)]="password"
+                                name="password"
+                                required>
+                                <ion-input-password-toggle slot="end"></ion-input-password-toggle>
+                            </ion-input>
                         </ion-item>
                         <div class="btn-submit-container" lines="none">
-                            <ion-button class="btn-submit" routerLink="/home" type="submit">
+                            <ion-button class="btn-submit" type="submit" expand="block">
                                 Entrar
                             </ion-button>
                         </div>
                         <div class="not-account">
                             <p>¿No tienes cuenta? <a routerLink="/register">Regístrate</a></p>
                         </div>
-                    </div>
+                    </form>
                 </div>
             </ion-col>
         </ion-row>

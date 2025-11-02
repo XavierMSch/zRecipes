@@ -4,7 +4,7 @@ import { Observable } from 'rxjs';
 import { Recipe } from '../../interfaces/recipe.interface';
 import { AuthService } from '../auth/auth';
 
-const API_URL = 'apiurl/recipes'
+const API_URL = 'http://localhost:8000/recipes/'
 
 @Injectable({
   providedIn: 'root'
@@ -16,6 +16,31 @@ export class RecipeService {
     private auth: AuthService
   ) {}
 
+  private getAuthHeaders(): HttpHeaders {
+    const token = this.auth.getCurrentAuthToken();
+    return new HttpHeaders({
+      'Authorization': `Bearer ${token}`,
+      'Content-Type': 'application/json'
+    });
+  }
+
+  private adaptRecipeForBackend(recipe: Omit<Recipe, 'id'>): any {
+    return {
+      name: recipe.name,
+      description: recipe.description,
+      image_url: recipe.image_url,
+      ingredients: recipe.ingredients.map(ing => ({
+        quantity: ing.quantity,
+        ingredient_name: ing.name
+      })),
+      steps: recipe.steps.map((step, index) => ({
+        step_number: index + 1,
+        step_description: step.stepDesc,
+        image_url: step.stepImg
+      }))
+    };
+  }
+
   getRecipe(id: number): Observable<Recipe> {
     return this.http.get<Recipe>(`${API_URL}/${id}`);
   }
@@ -25,15 +50,19 @@ export class RecipeService {
   }
 
   createRecipe(newRecipe: Omit<Recipe, 'id'>): Observable<Recipe> {
-    return this.http.post<Recipe>(`${API_URL}`, newRecipe);
+    const headers = this.getAuthHeaders();
+    const adaptedRecipe = this.adaptRecipeForBackend(newRecipe);
+    return this.http.post<Recipe>(`${API_URL}`, adaptedRecipe, { headers });
   }
 
   updateRecipe(recipe: Recipe): Observable<Recipe> {
-    return this.http.put<Recipe>(`${API_URL}/${recipe.id}`, recipe); 
+    const headers = this.getAuthHeaders();
+    return this.http.put<Recipe>(`${API_URL}/${recipe.id}`, recipe, { headers });
   }
 
   deleteRecipe(id: number): Observable<void> {
-    return this.http.delete<void>(`${API_URL}/${id}`);
+    const headers = this.getAuthHeaders();
+    return this.http.delete<void>(`${API_URL}/${id}`, { headers });
   }
 
   getCreatedRecipes(): Observable<Recipe[]> {
