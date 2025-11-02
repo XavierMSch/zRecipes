@@ -55,6 +55,7 @@ class Recipe(RecipeBase, BaseSchema):
     id: int
     owner_id: int
     owner: UserInRecipe
+    is_liked_by_current_user: bool = False 
 
 class RecipeWithoutOwner(RecipeBase, BaseSchema):
     id: int

@@ -58,7 +58,8 @@ async def read_popular_recipes(
 @router.get("/{recipe_id}", response_model=schemas.Recipe)
 async def read_recipe(
     recipe_id: int,
-    db: AsyncSession = Depends(database.get_db)
+    db: AsyncSession = Depends(database.get_db),
+    current_user: models.User = Depends(security.get_current_user)
 ):
     """
     Endpoint para retornar una receta por su id.
@@ -66,5 +67,11 @@ async def read_recipe(
     db_recipe = await crud.get_recipe_by_id(db, recipe_id=recipe_id)
     if db_recipe is None:
         raise HTTPException(status_code=status.HTTP_404_NOT_FOUND, detail="Receta no encontrada")
-    return db_recipe
+    
+    recipe_dict = schemas.Recipe.model_validate(db_recipe).model_dump()
+
+    if current_user:
+        recipe_dict['is_liked_by_current_user'] = current_user in db_recipe.liked_by_users
+
+    return recipe_dict
 

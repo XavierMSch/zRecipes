@@ -87,7 +87,11 @@ async def get_recipe_by_id(db: AsyncSession, recipe_id: int) -> models.Recipe | 
     """
     Retorna una receta por su id o None si no la encuentra.
     """
-    query = select(models.Recipe).options(selectinload(models.Recipe.owner)).filter(models.Recipe.id == recipe_id)
+    query = (
+    select(models.Recipe)
+    .options(selectinload(models.Recipe.owner), selectinload(models.Recipe.liked_by_users))
+    .filter(models.Recipe.id == recipe_id)
+    )
     result = await db.execute(query)
     return result.scalar_one_or_none()
 
