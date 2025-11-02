@@ -45,8 +45,16 @@ export class RecipeService {
     return this.http.get<Recipe>(`${API_URL}${id}`);
   }
 
-  getRecipes(): Observable<Recipe[]> {
-    return this.http.get<Recipe[]>(`${API_URL}`); 
+  getRecipes(skip: number = 0, limit: number = 20, searchQuery?: string): Observable<Recipe[]> {
+    let params = new HttpParams()
+      .set('skip', skip.toString())
+      .set('limit', limit.toString());
+    
+    if (searchQuery && searchQuery.trim() !== '') {
+      params = params.set('q', searchQuery.trim());
+    }
+    
+    return this.http.get<Recipe[]>(`${API_URL}`, { params });
   }
 
   createRecipe(newRecipe: Omit<Recipe, 'id'>): Observable<Recipe> {
@@ -83,14 +91,6 @@ export class RecipeService {
     const params = new HttpParams().set('owner_id', userId.toString());
 
     return this.http.get<Recipe[]>(`${API_URL}my-recipes/`, {headers: headers, params: params});
-  }
-
-  searchRecipesByName(terminoBusqueda: string | null): Observable<Recipe[]> {
-    let params = new HttpParams();
-    if (terminoBusqueda) {
-      params = params.set('q', terminoBusqueda);
-    }
-    return this.http.get<Recipe[]>(`${API_URL}`, {params: params});
   }
 }
 

@@ -26,7 +26,7 @@ export class SearchPage implements OnInit {
         }
       });
     } else {
-        this.recipeService.searchRecipesByName(searchTerm).subscribe({
+        this.recipeService.getRecipes(0,20,searchTerm).subscribe({
         next: (results) => {
           this.recipes = results;
         },
