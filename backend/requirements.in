@@ -1,5 +1,5 @@
 fastapi[standard]
 sqlalchemy
 asyncpg
-passlib[bcrypt]
+bcrypt
 python-jose
