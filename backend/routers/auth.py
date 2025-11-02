@@ -2,7 +2,7 @@ from fastapi import APIRouter, Depends, HTTPException, status
 from fastapi.security import OAuth2PasswordRequestForm
 from sqlalchemy.ext.asyncio import AsyncSession
 from datetime import timedelta
-from .. import schemas, database, crud, security
+from .. import schemas, database, crud, security, models
 
 router = APIRouter(
     tags=["Autenticación"]
@@ -46,3 +46,10 @@ async def register_user(user: schemas.UserCreate, db: AsyncSession = Depends(dat
         raise HTTPException(status_code=status.HTTP_400_BAD_REQUEST, detail="Nombre de usuario ya registrado.")
     
     return crud.create_user(db=db, user=user)
+
+@router.get("/users/me", response_model=schemas.User)
+async def read_users_me(current_user: models.User = Depends(security.get_current_user)):
+    """
+    Endpoint protegido que obtiene el usuario actual logueado.
+    """
+    return current_user
