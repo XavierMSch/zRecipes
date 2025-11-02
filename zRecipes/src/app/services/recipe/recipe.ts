@@ -92,14 +92,6 @@ export class RecipeService {
 
     return this.http.get<Recipe[]>(`${API_URL}`, {headers: headers, params: params});
   }
-
-  searchRecipesByName(terminoBusqueda: string | null): Observable<Recipe[]> {
-    let params = new HttpParams();
-    if (terminoBusqueda) {
-      params = params.set('q', terminoBusqueda);
-    }
-    return this.http.get<Recipe[]>(`${API_URL}`, {params: params});
-  }
 }
 
 
