@@ -44,3 +44,15 @@ async def read_recipe(
     if db_recipe is None:
         raise HTTPException(status_code=status.HTTP_404_NOT_FOUND, detail="Receta no encontrada")
     return db_recipe
+
+@router.get("/my-recipes/", response_model=list[schemas.RecipeWithoutOwner])
+async def read_my_recipes(
+    skip: int = 0,
+    limit: int = 20,
+    db: AsyncSession = Depends(database.get_db),
+    current_user: models.User = Depends(security.get_current_user)
+):
+    """
+    Endpoint para retornar las recetas del usuario logueado.
+    """
+    return await crud.get_recipes_by_owner(db=db, owner_id=current_user.id, skip=skip, limit=limit)

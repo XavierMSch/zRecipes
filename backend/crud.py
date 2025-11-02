@@ -104,6 +104,19 @@ async def search_recipes_by_name(db: AsyncSession, search_term: str, skip: int, 
     result = await db.execute(query)
     return list(result.scalars().all())
 
+async def get_recipes_by_owner(db: AsyncSession, owner_id: int, skip: int = 0, limit: int = 20) -> list[models.Recipe]:
+    """
+    Retorna todas las recetas de un usuario.
+    """
+    query = (
+        select(models.Recipe)
+        .where(models.Recipe.owner_id == owner_id)
+        .offset(skip)
+        .limit(limit)
+    )
+    result = await db.execute(query)
+    return list(result.scalars().all())
+
 # --- CRUD de Interactions ---
 async def like_recipe(db: AsyncSession, recipe: models.Recipe, user: models.User) -> models.Recipe:
     """
