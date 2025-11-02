@@ -157,7 +157,7 @@ async def create_report(db: AsyncSession, report_data: schemas.ReportCreate, use
     """
     Crea un reporte de una receta por parte de un usuario.
     """
-    recipe = get_recipe_by_id(db, report_data.recipe_id)
+    recipe = await get_recipe_by_id(db, report_data.recipe_id)
     if not recipe:
         return None
 
