@@ -82,7 +82,7 @@ export class RecipeService {
 
     const params = new HttpParams().set('owner_id', userId.toString());
 
-    return this.http.get<Recipe[]>(`${API_URL}`, {headers: headers, params: params});
+    return this.http.get<Recipe[]>(`${API_URL}my-recipes/`, {headers: headers, params: params});
   }
 
   searchRecipesByName(terminoBusqueda: string | null): Observable<Recipe[]> {
