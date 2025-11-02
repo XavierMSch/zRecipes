@@ -161,3 +161,31 @@ async def get_recipe_list_by_id(db: AsyncSession, list_id: int, user_id: int) ->
     ).options(selectinload(models.RecipeList.recipes))
     result = await db.execute(query)
     return result.scalar_one_or_none()
+
+async def add_recipe_to_list(db: AsyncSession, list_id: int, recipe_id: int, user_id: int) -> models.RecipeList | None:
+    """
+    Agrega una receta a una lista de recetas.
+    """
+    db_recipe_list = await get_recipe_list_by_id(db, list_id, user_id)
+    db_recipe = await get_recipe_by_id(db, recipe_id)
+
+    if db_recipe and db_recipe_list and db_recipe not in db_recipe_list.recipes:
+        db_recipe_list.recipes.append(db_recipe)
+        await db.commit()
+        await db.refresh(db_recipe_list)
+    
+    return db_recipe_list
+
+async def remove_recipe_from_list(db: AsyncSession, list_id: int, recipe_id: int, user_id: int) -> models.RecipeList | None:
+    """
+    Elimina una receta de una lista de recetas.
+    """
+    db_recipe_list = await get_recipe_list_by_id(db, list_id, user_id)
+    db_recipe = await get_recipe_by_id(db, recipe_id)
+
+    if db_recipe and db_recipe_list and db_recipe in db_recipe_list.recipes:
+        db_recipe_list.recipes.remove(db_recipe)
+        await db.commit()
+        await db.refresh(db_recipe_list)
+    
+    return db_recipe_list
