@@ -47,21 +47,21 @@ export class RecipeFormComponent {
     // Adaptar el formato para que coincida con la interfaz Recipe
     const recipe = {
       name: this.recipeName,
-      img_url: this.recipeImage, // Cambiar 'image' por 'img_url'
+      image_url: this.recipeImage, 
       description: this.recipeDescription,
       ingredients: this.ingredients
         .filter(ing => ing.name.trim() !== '')
         .map(ing => ({
-          name: ing.name,  // El servicio adaptará esto a 'ingredient_name'
+          ingredient_name: ing.name,  
           quantity: ing.quantity
         })),
       steps: this.steps
         .filter(step => step.description.trim() !== '')
         .map(step => ({
-          stepDesc: step.description, // El servicio adaptará esto
-          stepImg: step.image
+          step_description: step.description, 
+          image_url: step.image
         })),
-      author: '', // Se establecerá desde el backend
+      author: '', 
       numLikes: 0,
       numSaved: 0
     };

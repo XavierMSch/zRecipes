@@ -27,22 +27,22 @@ export class RecipeService {
   private adaptRecipeForBackend(recipe: Omit<Recipe, 'id'>): any {
     return {
       name: recipe.name,
-      description: recipe.description,
-      image_url: recipe.image_url,
+      description: recipe.description || null,
+      image_url: recipe.image_url || null,
       ingredients: recipe.ingredients.map(ing => ({
         quantity: ing.quantity,
-        ingredient_name: ing.name
+        ingredient_name: ing.ingredient_name
       })),
       steps: recipe.steps.map((step, index) => ({
         step_number: index + 1,
-        step_description: step.stepDesc,
-        image_url: step.stepImg
+        step_description: step.step_description,
+        image_url: step.image_url || null
       }))
     };
   }
 
   getRecipe(id: number): Observable<Recipe> {
-    return this.http.get<Recipe>(`${API_URL}/${id}`);
+    return this.http.get<Recipe>(`${API_URL}${id}`);
   }
 
   getRecipes(): Observable<Recipe[]> {
@@ -52,6 +52,8 @@ export class RecipeService {
   createRecipe(newRecipe: Omit<Recipe, 'id'>): Observable<Recipe> {
     const headers = this.getAuthHeaders();
     const adaptedRecipe = this.adaptRecipeForBackend(newRecipe);
+    console.log('Datos enviados al backend:', JSON.stringify(adaptedRecipe, null, 2));
+    console.log('Receta original:', JSON.stringify(newRecipe, null, 2));
     return this.http.post<Recipe>(`${API_URL}`, adaptedRecipe, { headers });
   }
 

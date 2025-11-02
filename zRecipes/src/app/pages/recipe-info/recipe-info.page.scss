@@ -4,6 +4,9 @@ ion-list, ion-item {
 
 .page-pane {
     display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
     background-color: var(--ion-background-color);
 }
 
@@ -15,8 +18,8 @@ ion-list, ion-item {
 }
 
 .recipe-pane {
-    margin-left: 30px;
-    margin-right: 30px;
+    width: 70%;  
+    flex-direction: column;
     justify-content: center;
     align-items: center;
     align-content: center;
