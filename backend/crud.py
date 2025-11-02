@@ -1,5 +1,5 @@
 from sqlalchemy.ext.asyncio import AsyncSession
-from sqlalchemy.future import select
+from sqlalchemy import select
 from . import models
 
 async def get_user_by_id(db: AsyncSession, id: int) -> models.User | None:
