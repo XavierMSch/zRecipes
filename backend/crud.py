@@ -11,7 +11,12 @@ async def get_user_by_id(db: AsyncSession, id: int) -> models.User | None:
     """
     query = select(models.User).filter(models.User.id == id)
     result = await db.execute(query)
-    return result.scalar_one_or_none()
+    user = result.scalar_one_or_none()
+
+    if user:
+        await db.refresh(user, attribute_names=["recipes", "recipe_lists"])
+    
+    return user
 
 async def get_user_by_email(db: AsyncSession, email: str) -> models.User | None:
     """
@@ -52,7 +57,7 @@ async def create_user(db: AsyncSession, user: schemas.UserCreate) -> models.User
     )
     db.add(db_user)
     await db.commit()
-    await db.refresh(db_user)
+    await db.refresh(db_user, attribute_names=["recipes", "recipe_lists"])
     return db_user
 
 # --- CRUD de Recipe ---
@@ -67,7 +72,7 @@ async def create_user_recipe(db: AsyncSession, recipe: schemas.RecipeCreate, use
     )
     db.add(db_recipe)
     await db.commit()
-    await db.refresh(db_recipe)
+    await db.refresh(db_recipe, attribute_names=["owner"])
     return db_recipe
 
 async def get_recipes(db: AsyncSession, skip: int, limit: int) -> list[models.Recipe]:
@@ -78,10 +83,48 @@ async def get_recipes(db: AsyncSession, skip: int, limit: int) -> list[models.Re
     result = await db.execute(query)
     return list(result.scalars().all())
 
-async def get_recipe(db: AsyncSession, recipe_id: int) -> models.Recipe | None:
+async def get_recipe_by_id(db: AsyncSession, recipe_id: int) -> models.Recipe | None:
     """
     Retorna una receta por su id o None si no la encuentra.
     """
     query = select(models.Recipe).options(selectinload(models.Recipe.owner)).filter(models.Recipe.id == recipe_id)
     result = await db.execute(query)
     return result.scalar_one_or_none()
+
+# --- CRUD de Interactions ---
+async def like_recipe(db: AsyncSession, recipe: models.Recipe, user: models.User) -> models.Recipe:
+    """
+    Añade un like a una receta por parte de un usuario.
+    """
+    if user not in recipe.liked_by_users:
+        recipe.liked_by_users.append(user)
+        await db.commit()
+        await db.refresh(recipe)
+    return recipe
+
+async def unlike_recipe(db: AsyncSession, recipe: models.Recipe, user: models.User) -> models.Recipe:
+    """
+    Remueve un like de una receta por parte de un usuario.
+    """
+    if user in recipe.liked_by_users:
+        recipe.liked_by_users.remove(user)
+        await db.commit()
+        await db.refresh(recipe)
+    return recipe
+
+async def create_report(db: AsyncSession, report_data: schemas.ReportCreate, user_id: int) -> models.Report | None:
+    """
+    Crea un reporte de una receta por parte de un usuario.
+    """
+    recipe = get_recipe_by_id(db, report_data.recipe_id)
+    if not recipe:
+        return None
+
+    db_report = models.Report(
+        recipe_id=report_data.recipe_id,
+        reporter_id=user_id
+    )
+    db.add(db_report)
+    await db.commit()
+    await db.refresh(db_report)
+    return db_report
