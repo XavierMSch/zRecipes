@@ -1,4 +1,5 @@
-from database import engine, Base
+from .database import engine, Base
+from . import models
 import asyncio
 
 async def init_models():
