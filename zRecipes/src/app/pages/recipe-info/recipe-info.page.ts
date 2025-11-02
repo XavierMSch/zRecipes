@@ -42,6 +42,7 @@ export class RecipeInfoPage implements OnInit {
         }
     })
   }
+  
 
   async openCategorySelector() {
     const modal = await this.modalCtrl.create({

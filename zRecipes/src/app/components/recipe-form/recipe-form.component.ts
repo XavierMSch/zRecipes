@@ -44,7 +44,6 @@ export class RecipeFormComponent {
       return;
     }
 
-    // Adaptar el formato para que coincida con la interfaz Recipe
     const recipe = {
       name: this.recipeName,
       image_url: this.recipeImage, 
