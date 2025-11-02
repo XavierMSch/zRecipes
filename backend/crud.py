@@ -128,3 +128,36 @@ async def create_report(db: AsyncSession, report_data: schemas.ReportCreate, use
     await db.commit()
     await db.refresh(db_report)
     return db_report
+
+# --- CRUD de RecipeList ---
+async def create_user_recipe_list(db: AsyncSession, list_data: schemas.RecipeListCreate, user_id: int) -> models.RecipeList:
+    """
+    Crea una lista de recetas para un usuario.
+    """
+    db_list = models.RecipeList(
+        **list_data.model_dump(),
+        owner_id=user_id
+    )
+    db.add(db_list)
+    await db.commit()
+    await db.refresh(db_list, attribute_names=["owner"])
+    return db_list
+
+async def get_user_recipe_lists(db: AsyncSession, user_id: int) -> list[models.RecipeList]:
+    """
+    Retorna todas las listas de recetas de un usuario.
+    """
+    query = select(models.RecipeList).filter(models.RecipeList.owner_id == user_id).options(selectinload(models.RecipeList.recipes))
+    result = await db.execute(query)
+    return list(result.scalars().all())
+
+async def get_recipe_list_by_id(db: AsyncSession, list_id: int, user_id: int) -> models.RecipeList | None:
+    """
+    Retorna una lista de recetas por su id y el id del usuario propietario.
+    """
+    query = select(models.RecipeList).filter(
+        models.RecipeList.id == list_id,
+        models.RecipeList.owner_id == user_id
+    ).options(selectinload(models.RecipeList.recipes))
+    result = await db.execute(query)
+    return result.scalar_one_or_none()
