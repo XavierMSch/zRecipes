@@ -45,8 +45,16 @@ export class RecipeService {
     return this.http.get<Recipe>(`${API_URL}${id}`);
   }
 
-  getRecipes(): Observable<Recipe[]> {
-    return this.http.get<Recipe[]>(`${API_URL}`); 
+  getRecipes(skip: number = 0, limit: number = 20, searchQuery?: string): Observable<Recipe[]> {
+    let params = new HttpParams()
+      .set('skip', skip.toString())
+      .set('limit', limit.toString());
+    
+    if (searchQuery && searchQuery.trim() !== '') {
+      params = params.set('q', searchQuery.trim());
+    }
+    
+    return this.http.get<Recipe[]>(`${API_URL}`, { params });
   }
 
   createRecipe(newRecipe: Omit<Recipe, 'id'>): Observable<Recipe> {
