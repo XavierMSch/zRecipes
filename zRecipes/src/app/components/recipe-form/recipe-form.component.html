@@ -5,8 +5,17 @@
   <ion-item>
       <ion-input fill="outline" placeholder="Nombre de la receta" [(ngModel)]="recipeName" name="recipeName"></ion-input>
   </ion-item>
-  <ion-item>
-      <ion-textarea fill="outline" placeholder="Descripción de la receta" [(ngModel)]="recipeDescription" name="recipeDescription"></ion-textarea>
+  <ion-item class="descripcion-container">
+    <div class="descripcion-receta">
+        <ion-textarea 
+          fill="outline" 
+          placeholder="Descripción de la receta" 
+          [(ngModel)]="recipeDescription" 
+          name="recipeDescription"
+          maxlength="1000">
+        </ion-textarea>
+      <p class="contador-caracteres">{{ recipeDescription.length }}/1000
+      </div>
   </ion-item>  
   <div>
     <p>  Ingredientes </p>
@@ -19,7 +28,7 @@
       </ion-input>
       <ion-input 
         fill="outline"
-        [placeholder]="'Cantidad ' + ingredient.id" 
+        [placeholder]="'Cantidad'" 
         [(ngModel)]="ingredients[i].quantity" 
         [name]="'quantity-' + ingredient.id">
       </ion-input>

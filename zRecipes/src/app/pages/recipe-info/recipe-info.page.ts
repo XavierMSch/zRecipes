@@ -28,20 +28,21 @@ export class RecipeInfoPage implements OnInit {
 
   ngOnInit() {
     this.currentRecipeId = +this.route.snapshot.paramMap.get('id')!;
-
-    
+    this.loadRecipe(this.currentRecipeId);
   }
 
   private loadRecipe(id: number) {
       this.recipeService.getRecipe(id).subscribe({
         next: (data) => {
           this.recipe = data;
+          console.log('Receta cargada:', this.recipe);
         },
         error: (err) => {
           console.error(`Error al cargar receta. RecipeID: ${id}`, err);
         }
     })
   }
+  
 
   async openCategorySelector() {
     const modal = await this.modalCtrl.create({
