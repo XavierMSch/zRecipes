@@ -37,7 +37,7 @@ async def read_recipe(
     """
     Endpoint para retornar una receta por su id.
     """
-    db_recipe = await crud.get_recipe(db, recipe_id=recipe_id)
+    db_recipe = await crud.get_recipe_by_id(db, recipe_id=recipe_id)
     if db_recipe is None:
         raise HTTPException(status_code=status.HTTP_404_NOT_FOUND, detail="Receta no encontrada")
     return db_recipe
