@@ -2,7 +2,7 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { IonicModule } from '@ionic/angular';
 import { RouterModule } from '@angular/router';
-import { FormsModule } from '@angular/forms'; 
+import { FormsModule } from '@angular/forms';
 
 import { RecipeCardComponent } from '../recipe-card/recipe-card.component';
 import { RecipeListComponent } from '../recipe-list/recipe-list.component';
@@ -10,6 +10,7 @@ import { FavoriteCategoryCardComponent } from '../favorite-category-card/favorit
 import { FavoriteCategoryListComponent } from '../favorite-category-list/favorite-category-list.component';
 import { RecipeFormComponent } from '../recipe-form/recipe-form.component';
 import { CategorySelector } from '../category-selector/category-selector.component';
+import { CreateCategoryModal } from '../create-category-modal/create-category-modal.component';
 
 @NgModule({
   declarations: [
@@ -18,7 +19,8 @@ import { CategorySelector } from '../category-selector/category-selector.compone
     FavoriteCategoryCardComponent, 
     FavoriteCategoryListComponent,
     RecipeFormComponent,
-    CategorySelector
+    CategorySelector,
+    CreateCategoryModal
   ],
   imports: [
     CommonModule,
@@ -32,7 +34,8 @@ import { CategorySelector } from '../category-selector/category-selector.compone
     FavoriteCategoryCardComponent, 
     FavoriteCategoryListComponent,
     RecipeFormComponent,
-    CategorySelector
+    CategorySelector,
+    CreateCategoryModal
   ]
 })
 export class ComponentsModule { }

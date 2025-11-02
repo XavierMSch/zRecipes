@@ -38,8 +38,23 @@ export class RecipeListService {
     return this.http.get<Category[]>(`${API_URL}`, {headers: headers, params: params});
   }
 
-  createRecipeList(newRecipeList: Omit<Category, 'id'>): Observable<Category> {
-    return this.http.post<Category>(`${API_URL}`, newRecipeList);
+  createRecipeList(newRecipeList: { name: string }): Observable<Category> {
+    const token = this.auth.getCurrentAuthToken();
+    
+    if (!token) {
+      console.warn('Usuario no autenticado. No se puede crear la lista.');
+      return new Observable<Category>();
+    }
+
+    const headers = new HttpHeaders({
+      'Authorization': `Bearer ${token}`,
+      'Content-Type': 'application/json'
+    });
+
+    console.log('Enviando datos:', newRecipeList);
+    console.log('Token:', token);
+
+    return this.http.post<Category>(`${API_URL}`, newRecipeList, { headers });
   }
 
   addRecipe(toRecipeListId: number, recipeId: number): Observable<void> {
