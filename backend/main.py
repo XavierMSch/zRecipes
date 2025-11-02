@@ -1,7 +1,7 @@
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 
-from .routers import auth, recipes
+from .routers import auth, recipes, interactions, recipe_lists
 
 app = FastAPI(
     title="API de zRecipes",
@@ -24,5 +24,5 @@ app.add_middleware(
 
 app.include_router(auth.router)
 app.include_router(recipes.router)
-
-
+app.include_router(interactions.router)
+app.include_router(recipe_lists.router)
