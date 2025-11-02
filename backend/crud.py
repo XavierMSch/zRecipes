@@ -1,5 +1,5 @@
 from sqlalchemy.ext.asyncio import AsyncSession
-from sqlalchemy import select
+from sqlalchemy import select, func
 from sqlalchemy.orm import selectinload
 from . import models, schemas, security
 
@@ -111,6 +111,21 @@ async def get_recipes_by_owner(db: AsyncSession, owner_id: int, skip: int = 0, l
     query = (
         select(models.Recipe)
         .where(models.Recipe.owner_id == owner_id)
+        .offset(skip)
+        .limit(limit)
+    )
+    result = await db.execute(query)
+    return list(result.scalars().all())
+
+async def get_popular_recipes(db: AsyncSession, skip: int, limit: int) -> list[models.Recipe]:
+    """
+    Retorna las recetas más populares (con más likes).
+    """
+    query = (
+        select(models.Recipe)
+        .outerjoin(models.user_likes_association)
+        .group_by(models.Recipe.id)
+        .order_by(func.count(models.user_likes_association.c.user_id).desc())
         .offset(skip)
         .limit(limit)
     )
