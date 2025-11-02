@@ -17,6 +17,7 @@ ion-input, ion-textarea {
     --highlight-color: var(--ion-color-primary);
 }
 
+
 ion-input:focus, ion-textarea:focus {
     color: var(--ion-color-primary);
     outline: none;
@@ -30,4 +31,16 @@ ion-input:focus, ion-textarea:focus {
 
 .ion-valid.sc-ion-textarea-md-h {
     --highlight-color: var(--ion-color-primary);
+}
+
+.descripcion-receta {
+    display: flex;
+    width: 100%;
+    flex-direction: column;
+}
+
+.contador-caracteres {
+    align-self: flex-end;
+    font-size: 15px;
+    color: var(--ion-color-medium);
 }

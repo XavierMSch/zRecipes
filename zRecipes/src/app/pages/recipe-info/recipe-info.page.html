@@ -39,7 +39,7 @@
         <h2>Ingredientes</h2>
         <ion-list class="recipe-ingredient-list" [inset]="true">
           <ion-item class="recipe-ingredient" *ngFor="let ingredient of recipe?.ingredients">
-            <p>{{ ingredient.ingredient_name }} {{ ingredient.quantity }}</p>
+            <p class="ingredient-container">{{ ingredient.quantity }}  {{ ingredient.ingredient_name }} </p>
           </ion-item>
         </ion-list>
       </div>
@@ -60,7 +60,7 @@
               </ion-row>
               <ion-row>
                 <ion-col>
-                  <p>{{ step.step_description }}</p>
+                  <p class="step-description">{{ step.step_description }}</p>
                 </ion-col>
               </ion-row>
             </ion-grid>

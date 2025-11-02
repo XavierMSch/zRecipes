@@ -43,7 +43,6 @@ export class RecipeFormComponent {
       alert('Nombre y descripción son obligatorios.');
       return;
     }
-
     const recipe = {
       name: this.recipeName,
       image_url: this.recipeImage, 

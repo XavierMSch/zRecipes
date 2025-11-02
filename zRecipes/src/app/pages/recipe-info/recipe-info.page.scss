@@ -97,6 +97,7 @@ ion-list, ion-item {
 .recipe-author {
     margin-top: 0;
     margin-bottom: 5px;
+    font-size: large;
 }
 
 .recipe-version {
@@ -125,13 +126,19 @@ ion-list, ion-item {
 
 .recipe-ingredient-list {
     display: inline-block;
+    width: 100%;
     border-radius: var(--container-border-radius);
     background-color: var(--ion-background-color);
+}
+
+.ingredient-container {
+    font-size: large;
 }
 
 .recipe-step-list {
     display: inline-block;
     flex-direction: column;
+    width: 100%;
     border-radius: var(--container-border-radius);
     margin-bottom: 50px;
 }
@@ -141,6 +148,10 @@ ion-list, ion-item {
     flex-direction: column;
     justify-content: center;
     align-items: center;
+}
+
+.step-description {
+    font-size: 18px;
 }
 
 .step-img-container {
