@@ -22,11 +22,14 @@ async def create_recipe(
 async def read_recipes(
     skip: int = 0,
     limit: int = 20,
+    q: str | None = None,
     db: AsyncSession = Depends(database.get_db)
 ):
     """
     Endpoint para retornar una lista de recetas.
     """
+    if q:
+        return await crud.search_recipes_by_name(db=db, search_term=q, skip=skip, limit=limit)
     return await crud.get_recipes(db=db, skip=skip, limit=limit)
 
 @router.get("/{recipe_id}", response_model=schemas.Recipe)
@@ -41,3 +44,15 @@ async def read_recipe(
     if db_recipe is None:
         raise HTTPException(status_code=status.HTTP_404_NOT_FOUND, detail="Receta no encontrada")
     return db_recipe
+
+@router.get("/my-recipes/", response_model=list[schemas.RecipeWithoutOwner])
+async def read_my_recipes(
+    skip: int = 0,
+    limit: int = 20,
+    db: AsyncSession = Depends(database.get_db),
+    current_user: models.User = Depends(security.get_current_user)
+):
+    """
+    Endpoint para retornar las recetas del usuario logueado.
+    """
+    return await crud.get_recipes_by_owner(db=db, owner_id=current_user.id, skip=skip, limit=limit)
