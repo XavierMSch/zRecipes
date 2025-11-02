@@ -181,7 +181,7 @@ async def create_user_recipe_list(db: AsyncSession, list_data: schemas.RecipeLis
     )
     db.add(db_list)
     await db.commit()
-    await db.refresh(db_list, attribute_names=["owner"])
+    await db.refresh(db_list, attribute_names=["recipes", "owner"])
     return db_list
 
 async def get_user_recipe_lists(db: AsyncSession, user_id: int) -> list[models.RecipeList]:
