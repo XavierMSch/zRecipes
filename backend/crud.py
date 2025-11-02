@@ -91,6 +91,19 @@ async def get_recipe_by_id(db: AsyncSession, recipe_id: int) -> models.Recipe | 
     result = await db.execute(query)
     return result.scalar_one_or_none()
 
+async def search_recipes_by_name(db: AsyncSession, search_term: str, skip: int, limit: int) -> list[models.Recipe]:
+    """
+    Busca recetas por nombre a partir del término de búsqueda.
+    """
+    query = (
+        select(models.Recipe)
+        .where(models.Recipe.name.ilike(f"%{search_term}%"))
+        .offset(skip)
+        .limit(limit)
+    )
+    result = await db.execute(query)
+    return list(result.scalars().all())
+
 # --- CRUD de Interactions ---
 async def like_recipe(db: AsyncSession, recipe: models.Recipe, user: models.User) -> models.Recipe:
     """

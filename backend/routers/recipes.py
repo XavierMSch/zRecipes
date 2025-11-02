@@ -22,11 +22,14 @@ async def create_recipe(
 async def read_recipes(
     skip: int = 0,
     limit: int = 20,
+    q: str | None = None,
     db: AsyncSession = Depends(database.get_db)
 ):
     """
     Endpoint para retornar una lista de recetas.
     """
+    if q:
+        return await crud.search_recipes_by_name(db=db, search_term=q, skip=skip, limit=limit)
     return await crud.get_recipes(db=db, skip=skip, limit=limit)
 
 @router.get("/{recipe_id}", response_model=schemas.Recipe)
