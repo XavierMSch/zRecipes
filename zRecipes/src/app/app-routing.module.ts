@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { PreloadAllModules, RouterModule, Routes } from '@angular/router';
+import { authGuard } from './guards/auth-guard';
 
 const routes: Routes = [
   {
@@ -9,23 +10,28 @@ const routes: Routes = [
   },
   {
     path: 'home',
-    loadChildren: () => import('./pages/home/home.module').then(m => m.HomePageModule)
+    loadChildren: () => import('./pages/home/home.module').then(m => m.HomePageModule),
+    canActivate: [authGuard]
   },
   {
     path: 'search',
-    loadChildren: () => import('./pages/search/search.module').then(m => m.SearchPageModule)
+    loadChildren: () => import('./pages/search/search.module').then(m => m.SearchPageModule),
+    canActivate: [authGuard]
   },
   {
     path: 'my-recipes',
-    loadChildren: () => import('./pages/my-recipes/my-recipes.module').then(m => m.MyRecipesPageModule)
+    loadChildren: () => import('./pages/my-recipes/my-recipes.module').then(m => m.MyRecipesPageModule),
+    canActivate: [authGuard]
   },
   {
     path: 'favorites',
-    loadChildren: () => import('./pages/favorites/favorites.module').then(m => m.FavoritesPageModule)
+    loadChildren: () => import('./pages/favorites/favorites.module').then(m => m.FavoritesPageModule),
+    canActivate: [authGuard]
   },
   {
     path: 'settings',
-    loadChildren: () => import('./pages/settings/settings.module').then(m => m.SettingsPageModule)
+    loadChildren: () => import('./pages/settings/settings.module').then(m => m.SettingsPageModule),
+    canActivate: [authGuard]
   },
   {
     path: 'login',
@@ -37,16 +43,18 @@ const routes: Routes = [
   },
   {
     path: 'recipe-info/:id',
-    loadChildren: () => import('./pages/recipe-info/recipe-info.module').then(m => m.RecipeInfoPageModule)
+    loadChildren: () => import('./pages/recipe-info/recipe-info.module').then(m => m.RecipeInfoPageModule),
+    canActivate: [authGuard]
   },
   {
     path: 'create-recipe',
-    loadChildren: () => import('./pages/create-recipe/create-recipe.module').then(m => m.CreateRecipePageModule)
+    loadChildren: () => import('./pages/create-recipe/create-recipe.module').then(m => m.CreateRecipePageModule),
+    canActivate: [authGuard]
   },
   {
-    path: 'landing',
-    loadChildren: () => import('./pages/landing/landing.module').then(m => m.LandingPageModule)
-  },
+    path: '**',
+    redirectTo: 'home'
+  }
 ];
 
 @NgModule({

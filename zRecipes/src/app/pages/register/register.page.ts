@@ -29,7 +29,6 @@ export class RegisterPage implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    // Verificar si ya está logueado
     this.authService.isLoggedIn$.subscribe(isLoggedIn => {
       if (isLoggedIn) {
         this.router.navigate(['/home']);
@@ -38,22 +37,19 @@ export class RegisterPage implements OnInit {
   }
 
   async onSubmit() {
-    // Validaciones
     const validation = this.validateForm();
     if (!validation.valid) {
       await this.showAlert('Error de validación', validation.message);
       return;
     }
 
-    // Mostrar loading
     const loading = await this.loadingController.create({
       message: 'Creando cuenta...',
     });
     await loading.present();
 
-    // Preparar datos del usuario
     const userData: UserRegister = {
-      email: this.email.trim(),
+      email: this.email.trim().toLowerCase(),
       username: this.username.trim(),
       rut: this.rut.trim(),
       region: this.region,
@@ -61,33 +57,21 @@ export class RegisterPage implements OnInit {
       password: this.password
     };
 
-    // Intentar registro
     this.userService.registerUser(userData).subscribe({
       next: async (response) => {
         await loading.dismiss();
         
-        // Mostrar mensaje de éxito
         await this.showAlert(
           'Registro exitoso',
           'Tu cuenta ha sido creada. Ahora puedes iniciar sesión.'
         );
 
-        // Redirigir al login
         this.router.navigate(['/login']);
       },
       error: async (error) => {
         await loading.dismiss();
         console.error('Error en registro:', error);
         console.log('Error status:', error.status);
-        
-        if (error.status === 201) {
-          await this.showAlert(
-            'Registro exitoso',
-            'Tu cuenta ha sido creada. Ahora puedes iniciar sesión.'
-          );
-          this.router.navigate(['/login']);
-          return;
-        }
 
         let errorMessage = 'Error al crear la cuenta';
 
@@ -103,35 +87,29 @@ export class RegisterPage implements OnInit {
   }
 
   private validateForm(): { valid: boolean; message: string } {
-    // Validar campos vacíos
     if (!this.email || !this.username || !this.rut || !this.region || 
         !this.comuna || !this.password || !this.confirmPassword) {
       return { valid: false, message: 'Por favor completa todos los campos' };
     }
 
-    // Validar email
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
     if (!emailRegex.test(this.email)) {
       return { valid: false, message: 'Por favor ingresa un email válido' };
     }
 
-    // Validar RUT (formato básico)
     const rutRegex = /^\d{7,8}-[\dkK]$/;
     if (!rutRegex.test(this.rut)) {
       return { valid: false, message: 'RUT inválido. Formato: 12345678-9' };
     }
 
-    // Validar contraseña
     if (this.password.length < 6) {
       return { valid: false, message: 'La contraseña debe tener al menos 6 caracteres' };
     }
 
-    // Validar confirmación de contraseña
     if (this.password !== this.confirmPassword) {
       return { valid: false, message: 'Las contraseñas no coinciden' };
     }
 
-    // Validar términos y condiciones
     if (!this.acceptTerms) {
       return { valid: false, message: 'Debes aceptar los términos y condiciones' };
     }
