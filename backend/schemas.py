@@ -56,6 +56,10 @@ class Recipe(RecipeBase, BaseSchema):
     owner_id: int
     owner: UserInRecipe
 
+class RecipeWithoutOwner(RecipeBase, BaseSchema):
+    id: int
+    owner_id: int
+
 # --- Schemas de User ---
 class UserBase(BaseModel):
     username: str

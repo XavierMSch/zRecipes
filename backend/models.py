@@ -2,7 +2,7 @@ from sqlalchemy import ForeignKey, Identity, String, Boolean, Table, Column, Dat
 from sqlalchemy.dialects.postgresql import JSONB
 from sqlalchemy.orm import Mapped, mapped_column, relationship
 from datetime import datetime
-from database import Base
+from .database import Base
 from typing import Any
 
 user_likes_association = Table(

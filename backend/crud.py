@@ -1,6 +1,9 @@
 from sqlalchemy.ext.asyncio import AsyncSession
 from sqlalchemy import select
+from sqlalchemy.orm import selectinload
 from . import models, schemas, security
+
+# --- CRUD de User ---
 
 async def get_user_by_id(db: AsyncSession, id: int) -> models.User | None:
     """
@@ -51,3 +54,34 @@ async def create_user(db: AsyncSession, user: schemas.UserCreate) -> models.User
     await db.commit()
     await db.refresh(db_user)
     return db_user
+
+# --- CRUD de Recipe ---
+
+async def create_user_recipe(db: AsyncSession, recipe: schemas.RecipeCreate, user_id: int) -> models.Recipe:
+    """
+    Crea una receta de un usuario.
+    """
+    db_recipe = models.Recipe(
+        **recipe.model_dump(),
+        owner_id=user_id
+    )
+    db.add(db_recipe)
+    await db.commit()
+    await db.refresh(db_recipe)
+    return db_recipe
+
+async def get_recipes(db: AsyncSession, skip: int, limit: int) -> list[models.Recipe]:
+    """
+    Retorna una lista de recetas.
+    """
+    query = select(models.Recipe).offset(skip).limit(limit)
+    result = await db.execute(query)
+    return list(result.scalars().all())
+
+async def get_recipe(db: AsyncSession, recipe_id: int) -> models.Recipe | None:
+    """
+    Retorna una receta por su id o None si no la encuentra.
+    """
+    query = select(models.Recipe).options(selectinload(models.Recipe.owner)).filter(models.Recipe.id == recipe_id)
+    result = await db.execute(query)
+    return result.scalar_one_or_none()

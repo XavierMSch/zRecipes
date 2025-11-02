@@ -4,7 +4,7 @@ from jose import jwt, JWTError
 from fastapi import Depends, HTTPException, status
 from fastapi.security import OAuth2PasswordBearer
 from sqlalchemy.ext.asyncio import AsyncSession
-import models, database, schemas, crud
+from . import models, database, schemas, crud
 
 # Contexto para el helper de contraseñas
 pwd_context = CryptContext(schemes=["bcrypt"], deprecated="auto")
