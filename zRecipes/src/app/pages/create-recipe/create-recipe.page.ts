@@ -16,8 +16,14 @@ export class CreateRecipePage {
   ) { }
 
   onRecipeSubmitted(recipe: any) {
-    /* this.recipeService.addRecipe(recipe);  */
-    console.log('Receta creada:', recipe);
+    this.recipeService.createRecipe(recipe).subscribe({
+      next: (data) => {
+        console.log('Receta creada con éxito:', data);
+      },
+      error: (err) => {
+        console.error('Error al crear la receta:', err);
+      }
+    });
     this.router.navigate(['/my-recipes']);
   }
 }

@@ -17,6 +17,12 @@
         [(ngModel)]="ingredients[i].name" 
         [name]="'ingredient-' + ingredient.id">
       </ion-input>
+      <ion-input 
+        fill="outline"
+        [placeholder]="'Cantidad ' + ingredient.id" 
+        [(ngModel)]="ingredients[i].quantity" 
+        [name]="'quantity-' + ingredient.id">
+      </ion-input>
     </ion-item>
     <div>
       <ion-button (click)="addIngredient()">Agregar Ingrediente</ion-button>

@@ -13,12 +13,12 @@ export class RecipeFormComponent {
   recipeImage: string = '';
   recipeName: string = '';
   recipeDescription: string = '';
-  ingredients: Array<{id: number, name: string}> = [{id: 1, name: ''}];
+  ingredients: Array<{id: number, name: string, quantity: string}> = [{id: 1, name: '', quantity: ''}];
   steps: Array<{id: number, description: string, image: string}> = [{id: 1, description: '', image: ''}];
 
   addIngredient() {
     const newId = this.ingredients.length + 1;
-    this.ingredients.push({id: newId, name: ''});
+    this.ingredients.push({id: newId, name: '', quantity: ''  });
   }
 
   removeIngredient() {

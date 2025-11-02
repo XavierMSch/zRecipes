@@ -23,6 +23,8 @@ export class MyRecipesPage implements OnInit {
   trackByRecipeId(index: number, recipe: Recipe): number {
     return recipe.id;
   }
+  
 
+  
 
 }
