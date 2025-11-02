@@ -4,7 +4,7 @@ import { Observable } from 'rxjs';
 import { Category } from '../../interfaces/category.interface';
 import { AuthService } from '../auth/auth';
 
-const API_URL = 'apiurl/recipe-lists'
+const API_URL = 'http://localhost:8000/recipe-lists/'
 
 @Injectable({
   providedIn: 'root'

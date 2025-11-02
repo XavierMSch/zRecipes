@@ -17,6 +17,7 @@ export class MyRecipesPage implements OnInit {
   ngOnInit() {
     this.recipeService.getCreatedRecipes().subscribe((recipes: Recipe[]) => {
       this.createdRecipes = recipes;
+      console.log('Recetas creadas:', this.createdRecipes);
     });
   }
   
