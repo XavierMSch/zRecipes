@@ -1,13 +1,10 @@
-<ion-header [translucent]="true">
-  <ion-toolbar>
-    <ion-title>favorites-list</ion-title>
-  </ion-toolbar>
-</ion-header>
-
 <ion-content [fullscreen]="true">
-  <ion-header collapse="condense">
-    <ion-toolbar>
-      <ion-title size="large">favorites-list</ion-title>
-    </ion-toolbar>
-  </ion-header>
+  <div class="favorites-list-pane">
+    <div>
+      <h1 class="title"> {{ currentListName }} </h1>
+    </div>
+    <div class="recommended-recipes">
+      <app-recipe-list class="recommended-recipes-list" [recipes]="recipes"></app-recipe-list>
+    </div>
+  </div>
 </ion-content>

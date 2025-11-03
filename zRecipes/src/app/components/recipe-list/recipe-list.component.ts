@@ -1,5 +1,5 @@
 import { Component, OnInit, Input } from '@angular/core';
-import { Recipe } from '../../interfaces/recipe.interface';
+import { RecipeDisplay } from 'src/app/interfaces/recipe.interface';
 
 @Component({
   selector: 'app-recipe-list',
@@ -9,11 +9,11 @@ import { Recipe } from '../../interfaces/recipe.interface';
 })
 export class RecipeListComponent{
 
-  @Input() recipes: Recipe[] = [];
+  @Input() recipes: RecipeDisplay[] = [];
 
   constructor() { }
 
-  trackByRecipeId(index: number, recipe: Recipe): number {
+  trackByRecipeId(index: number, recipe: RecipeDisplay): number {
     return recipe.id;
   }
 

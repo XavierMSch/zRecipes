@@ -17,7 +17,18 @@ export class RecipeListService {
   ) {}
 
   getRecipeList(id: number): Observable<Category> {
-    return this.http.get<Category>(`${API_URL}/${id}`);
+    const token = this.auth.getCurrentAuthToken();
+
+    if (!token) {
+      console.warn('Usuario no autenticado. No se puede cargar la lista.');
+      return new Observable<Category>();
+    }
+
+    const headers = new HttpHeaders({
+      'Authorization': `Bearer ${token}`
+    });
+
+    return this.http.get<Category>(`${API_URL}${id}`, { headers: headers });
   }
 
   getRecipeLists(): Observable<Category[]> {
