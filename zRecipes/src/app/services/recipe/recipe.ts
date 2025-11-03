@@ -43,7 +43,7 @@ export class RecipeService {
 
   getRecipe(id: number): Observable<Recipe> {
     const headers = this.getAuthHeaders();
-    return this.http.get<Recipe>(`${API_URL}${id}`, { headers });
+    return this.http.get<Recipe>(`${API_URL}${id}`, { headers: headers});
   }
 
   getRecipes(skip: number = 0, limit: number = 20, searchQuery?: string): Observable<Recipe[]> {
@@ -102,6 +102,11 @@ export class RecipeService {
   unlikeRecipe(id: number): Observable<Recipe> {
     const headers = this.getAuthHeaders();
     return this.http.post<Recipe>(`http://localhost:8000/unlike/${id}`, {}, { headers: headers });
+  }
+
+  reportRecipe(id: number): Observable<Recipe> {
+    const headers = this.getAuthHeaders();
+    return this.http.post<Recipe>(`http://localhost:8000/report/${id}`, {}, { headers: headers });
   }
 }
 
