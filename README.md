@@ -8,17 +8,51 @@
 
 ## Índice
 1. [Resumen del Proyecto](#resumen-del-proyecto)
-2. [Instrucciones de Instalación](#instrucciones-de-instalación)
-3. [Roles del Sistema](#roles-del-sistema)
-4. [Requerimientos](#requerimientos)
-5. [Arquitectura de la Información](#arquitectura-de-la-información)
-6. [Diseño de Prototipos](#prototipo-de-diseño)
-7. [Experiencia de Usuario](#experiencia-de-usuario)
-8. [Tecnologías](#tecnologías)
+2. [Instrucciones Ejecución](#instrucciones-ejecución)
+3. [Pruebas Solicitudes HTTP](#pruebas-solicitudes-http)
+4. [Roles del Sistema](#roles-del-sistema)
+5. [Requerimientos](#requerimientos)
+6. [Arquitectura de la Información](#arquitectura-de-la-información)
+7. [Diseño de Prototipos](#prototipo-de-diseño)
+8. [Experiencia de Usuario](#experiencia-de-usuario)
+9. [Tecnologías](#tecnologías)
 
 
 ## Resumen del Proyecto
 zRecipes es una aplicación diseñada para que los usuarios puedan crear, guardar y compartir recetas en un solo lugar, y además permite crear variaciones de otras recetas para expresar la creatividad en la cocina. El proyecto se desarrolló dentro del curso INF3245 - Ingeniería Web y Móvil de la Pontificia Universidad Católica de Valparaíso. La aplicación se desarrolla utilizando el framework Ionic con Angular para el front-end.
+
+## Instrucciones Ejecución
+
+1. En una terminal, crear y activar un entorno virtual de python.
+
+***Windows***
+python -m venv .venv
+.venv\Scripts\activate.bat
+pip install -r \backend\requirements.txt
+
+***Linux/MacOS***
+python3 -m venv .venv
+source .venv/bin/activate
+pip install -r backend/requirements.txt
+
+2. Levantar servidor de FastAPI
+
+***Windows***
+fastapi dev .\backend\main.py
+
+***Linux/MacOS***
+fastapi dev backend/main.py
+
+Si encuentra un error de dependencias, ejecute active el entorno virtual nuevamente y vuelva a levantar el servidor de FastAPI.
+
+3. En otra terminal, moverse al directorio de la aplicación Ionic y correrla.
+
+cd zRecipes
+ionic serve
+
+## Pruebas Solicitudes HTTP
+
+En el directorio zRecipesTest se encuentran las imágenes de las solicitudes HTTP con Bruno.
 
 ## Roles del Sistema
 - **Administrador**: Puede eliminar recetas publicadas y vetar usuarios.
