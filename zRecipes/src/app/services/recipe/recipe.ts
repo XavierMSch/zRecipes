@@ -67,12 +67,12 @@ export class RecipeService {
 
   updateRecipe(recipe: Recipe): Observable<Recipe> {
     const headers = this.getAuthHeaders();
-    return this.http.put<Recipe>(`${API_URL}/${recipe.id}`, recipe, { headers });
+    return this.http.put<Recipe>(`${API_URL}${recipe.id}`, recipe, { headers });
   }
 
   deleteRecipe(id: number): Observable<void> {
     const headers = this.getAuthHeaders();
-    return this.http.delete<void>(`${API_URL}/${id}`, { headers });
+    return this.http.delete<void>(`${API_URL}${id}`, { headers });
   }
 
   getCreatedRecipes(): Observable<Recipe[]> {
@@ -91,6 +91,16 @@ export class RecipeService {
     const params = new HttpParams().set('owner_id', userId.toString());
 
     return this.http.get<Recipe[]>(`${API_URL}my-recipes/`, {headers: headers, params: params});
+  }
+
+  likeRecipe(id: number): Observable<Recipe> {
+    const headers = this.getAuthHeaders();
+    return this.http.post<Recipe>(`http://localhost:8000/like/${id}`, {}, { headers: headers });
+  }
+
+  unlikeRecipe(id: number): Observable<Recipe> {
+    const headers = this.getAuthHeaders();
+    return this.http.post<Recipe>(`http://localhost:8000/unlike/${id}`, {}, { headers: headers });
   }
 }
 
