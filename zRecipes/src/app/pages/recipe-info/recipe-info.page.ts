@@ -52,9 +52,10 @@ export class RecipeInfoPage implements OnInit {
     await modal.present();
 
     const { data } = await modal.onDidDismiss();
+    console.log('Categoría seleccionada:', data);
 
-    if (data && data.selectedCategory.id) {
-      this.addRecipeToCategory(data.selectedCategory.id, this.currentRecipeId);
+    if (data && data.selectedCategoryId) {
+      this.addRecipeToCategory(data.selectedCategoryId, this.currentRecipeId);
     }
   }
 

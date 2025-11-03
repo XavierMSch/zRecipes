@@ -213,7 +213,7 @@ async def add_recipe_to_list(db: AsyncSession, list_id: int, recipe_id: int, use
     if db_recipe and db_recipe_list and db_recipe not in db_recipe_list.recipes:
         db_recipe_list.recipes.append(db_recipe)
         await db.commit()
-        await db.refresh(db_recipe_list)
+        await db.refresh(db_recipe_list, attribute_names=["id", "name", "owner_id", "recipes"])
     
     return db_recipe_list
 
@@ -227,6 +227,6 @@ async def remove_recipe_from_list(db: AsyncSession, list_id: int, recipe_id: int
     if db_recipe and db_recipe_list and db_recipe in db_recipe_list.recipes:
         db_recipe_list.recipes.remove(db_recipe)
         await db.commit()
-        await db.refresh(db_recipe_list)
+        await db.refresh(db_recipe_list, attribute_names=["id", "name", "owner_id", "recipes"])
     
     return db_recipe_list
