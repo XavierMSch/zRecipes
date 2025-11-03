@@ -72,14 +72,19 @@ async def create_user_recipe(db: AsyncSession, recipe: schemas.RecipeCreate, use
     )
     db.add(db_recipe)
     await db.commit()
-    await db.refresh(db_recipe, attribute_names=["owner"])
+    await db.refresh(db_recipe, attribute_names=["owner", "liked_by_users"])
     return db_recipe
 
 async def get_recipes(db: AsyncSession, skip: int, limit: int) -> list[models.Recipe]:
     """
     Retorna una lista de recetas.
     """
-    query = select(models.Recipe).offset(skip).limit(limit)
+    query = (
+        select(models.Recipe)
+        .options(selectinload(models.Recipe.owner), selectinload(models.Recipe.liked_by_users))
+        .offset(skip)
+        .limit(limit)
+    )
     result = await db.execute(query)
     return list(result.scalars().all())
 
@@ -101,6 +106,7 @@ async def search_recipes_by_name(db: AsyncSession, search_term: str, skip: int, 
     """
     query = (
         select(models.Recipe)
+        .options(selectinload(models.Recipe.owner), selectinload(models.Recipe.liked_by_users))
         .where(models.Recipe.name.ilike(f"%{search_term}%"))
         .offset(skip)
         .limit(limit)
@@ -114,6 +120,7 @@ async def get_recipes_by_owner(db: AsyncSession, owner_id: int, skip: int = 0, l
     """
     query = (
         select(models.Recipe)
+        .options(selectinload(models.Recipe.owner), selectinload(models.Recipe.liked_by_users))
         .where(models.Recipe.owner_id == owner_id)
         .offset(skip)
         .limit(limit)
@@ -127,6 +134,7 @@ async def get_popular_recipes(db: AsyncSession, skip: int, limit: int) -> list[m
     """
     query = (
         select(models.Recipe)
+        .options(selectinload(models.Recipe.owner), selectinload(models.Recipe.liked_by_users))
         .outerjoin(models.user_likes_association)
         .group_by(models.Recipe.id)
         .order_by(func.count(models.user_likes_association.c.user_id).desc())
@@ -144,7 +152,7 @@ async def like_recipe(db: AsyncSession, recipe: models.Recipe, user: models.User
     if user not in recipe.liked_by_users:
         recipe.liked_by_users.append(user)
         await db.commit()
-        await db.refresh(recipe)
+        await db.refresh(recipe, attribute_names=["id", "name", "description", "image_url", "ingredients", "steps", "owner_id", "owner", "liked_by_users"])
     return recipe
 
 async def unlike_recipe(db: AsyncSession, recipe: models.Recipe, user: models.User) -> models.Recipe:
@@ -154,7 +162,7 @@ async def unlike_recipe(db: AsyncSession, recipe: models.Recipe, user: models.Us
     if user in recipe.liked_by_users:
         recipe.liked_by_users.remove(user)
         await db.commit()
-        await db.refresh(recipe)
+        await db.refresh(recipe, attribute_names=["id", "name", "description", "image_url", "ingredients", "steps", "owner_id", "owner", "liked_by_users"])
     return recipe
 
 async def create_report(db: AsyncSession, report_data: schemas.ReportCreate, user_id: int) -> models.Report | None:
@@ -171,7 +179,7 @@ async def create_report(db: AsyncSession, report_data: schemas.ReportCreate, use
     )
     db.add(db_report)
     await db.commit()
-    await db.refresh(db_report)
+    await db.refresh(db_report, attribute_names=["id", "created_at", "reporter", "recipe"])
     return db_report
 
 # --- CRUD de RecipeList ---
