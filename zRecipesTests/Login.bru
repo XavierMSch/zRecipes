@@ -1,0 +1,25 @@
+meta {
+  name: Login
+  type: http
+  seq: 2
+}
+
+post {
+  url: http://localhost:8000/token
+  body: formUrlEncoded
+  auth: inherit
+}
+
+body:json {
+  {}
+}
+
+body:form-urlencoded {
+  username: test@example.com
+  password: testpass123
+}
+
+settings {
+  encodeUrl: true
+  timeout: 0
+}
