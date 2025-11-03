@@ -27,7 +27,7 @@ async def login_token(form_data: OAuth2PasswordRequestForm = Depends(), db: Asyn
     
     return {"access_token": access_token, "token_type": "bearer"}
 
-@router.post("/users/", response_model=schemas.User, status_code=status.HTTP_201_CREATED)
+@router.post("/users/", response_model=schemas.UserCreateResponse, status_code=status.HTTP_201_CREATED)
 async def register_user(user: schemas.UserCreate, db: AsyncSession = Depends(database.get_db)):
     """
     Endpoint de registro de usuario.

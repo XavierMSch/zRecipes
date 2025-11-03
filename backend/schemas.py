@@ -96,6 +96,11 @@ class User(UserBase, BaseSchema):
     recipes: list[RecipeInUser] = []
     recipe_lists: list[RecipeListInUser] = []
 
+class UserCreateResponse(UserBase, BaseSchema):
+    id: int
+    is_admin: bool
+    rut: str
+
 # --- Schemas de RecipeList ---
 class RecipeListBase(BaseModel):
     name: str
