@@ -6,7 +6,7 @@
           <h1 class="recipe-info-name">{{ recipe?.name }}</h1>
           <div class=".action-report-container">
             <ion-icon class="action-icon action-report" [name]="currentIcons[3]" (mouseover)="onMouseEnterReport()"
-                      (mouseleave)="onMouseLeaveReport()"></ion-icon>
+                      (mouseleave)="onMouseLeaveReport()" (click)="onClickReport()"></ion-icon>
           </div>
         </div>
         <div class="recipe-img-container">

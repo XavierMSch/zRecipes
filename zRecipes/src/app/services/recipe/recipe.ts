@@ -102,6 +102,11 @@ export class RecipeService {
     const headers = this.getAuthHeaders();
     return this.http.post<Recipe>(`http://localhost:8000/unlike/${id}`, {}, { headers: headers });
   }
+
+  reportRecipe(id: number): Observable<Recipe> {
+    const headers = this.getAuthHeaders();
+    return this.http.post<Recipe>(`http://localhost:8000/report/${id}`, {}, { headers: headers });
+  }
 }
 
 
