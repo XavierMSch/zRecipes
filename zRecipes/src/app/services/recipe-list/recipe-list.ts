@@ -39,26 +39,22 @@ export class RecipeListService {
   }
 
   createRecipeList(newRecipeList: { name: string }): Observable<Category> {
-    const token = this.auth.getCurrentAuthToken();
-    
-    if (!token) {
-      console.warn('Usuario no autenticado. No se puede crear la lista.');
-      return new Observable<Category>();
-    }
-
-    const headers = new HttpHeaders({
-      'Authorization': `Bearer ${token}`,
-      'Content-Type': 'application/json'
-    });
-
-    console.log('Enviando datos:', newRecipeList);
-    console.log('Token:', token);
-
-    return this.http.post<Category>(`${API_URL}`, newRecipeList, { headers });
+    return this.http.post<Category>(`${API_URL}`, newRecipeList);
   }
 
   addRecipe(toRecipeListId: number, recipeId: number): Observable<void> {
-    return this.http.post<void>(`${API_URL}/${toRecipeListId}/recipes`, { recipeId });
+    const token = this.auth.getCurrentAuthToken();
+
+    if (!token) {
+      console.warn('Usuario no autenticado. No se puede agregar la receta.');
+      return new Observable<void>();
+    }
+
+    const headers = new HttpHeaders({
+      'Authorization': `Bearer ${token}`
+    });
+
+    return this.http.post<void>(`${API_URL}${toRecipeListId}/add-recipe/${recipeId}`, {}, { headers: headers });
   }
 
   deleteRecipeList(id: number): Observable<void> {

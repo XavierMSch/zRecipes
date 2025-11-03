@@ -52,6 +52,11 @@ const routes: Routes = [
     canActivate: [authGuard]
   },
   {
+    path: 'favorites-list/:categoryId',
+    loadChildren: () => import('./pages/favorites-list/favorites-list.module').then( m => m.FavoritesListPageModule),
+    canActivate: [authGuard]
+  },
+  {
     path: '**',
     redirectTo: 'home'
   }
