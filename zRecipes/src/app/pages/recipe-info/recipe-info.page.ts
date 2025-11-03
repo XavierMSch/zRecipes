@@ -109,9 +109,28 @@ export class RecipeInfoPage implements OnInit {
 
   onClickReport() {
     if (this.recipe) {
-      this.recipeService.reportRecipe(this.recipe.id);
-    }
+    this.recipeService.reportRecipe(this.recipe.id).subscribe({
+      next: async () => {
+        const toast = await this.toastCtrl.create({
+          message: 'Receta reportada correctamente',
+          duration: 2000,
+          color: 'success',
+        });
+        toast.present();
+        this.currentIcons[3] = this.defaultIcons[3];
+      },
+      error: async (err) => {
+        console.error('Error reporte:', err);
+        const toast = await this.toastCtrl.create({
+          message: 'Error al reportar receta',
+          duration: 2000,
+          color: 'danger',
+        });
+        toast.present();
+      }
+    });
   }
+}
 
   onClickFavorite() {
     this.openCategorySelector();
