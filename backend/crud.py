@@ -57,7 +57,7 @@ async def create_user(db: AsyncSession, user: schemas.UserCreate) -> models.User
     )
     db.add(db_user)
     await db.commit()
-    await db.refresh(db_user, attribute_names=["recipes", "recipe_lists"])
+    await db.refresh(db_user, attribute_names=["id", "username", "email", "region", "comuna", "is_admin", "rut"])
     return db_user
 
 # --- CRUD de Recipe ---
