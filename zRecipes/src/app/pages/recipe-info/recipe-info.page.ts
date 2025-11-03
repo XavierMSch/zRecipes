@@ -107,6 +107,12 @@ export class RecipeInfoPage implements OnInit {
     }
   }
 
+  onClickReport() {
+    if (this.recipe) {
+      this.recipeService.reportRecipe(this.recipe.id);
+    }
+  }
+
   onClickFavorite() {
     this.openCategorySelector();
     this.favorite = !this.favorite;
@@ -120,7 +126,6 @@ export class RecipeInfoPage implements OnInit {
   onClickLike() {
     if (this.recipe) {
       if (this.recipe.is_liked_by_current_user) {
-        // Si ya está liked, hacer unlike
         this.recipeService.unlikeRecipe(this.recipe.id).subscribe({
           next: (updatedRecipe) => {
             this.recipe = updatedRecipe;
