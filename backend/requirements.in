@@ -3,3 +3,4 @@ sqlalchemy
 asyncpg
 bcrypt
 python-jose
+uvloop; sys_platform != 'win32'
