@@ -42,7 +42,8 @@ export class RecipeService {
   }
 
   getRecipe(id: number): Observable<Recipe> {
-    return this.http.get<Recipe>(`${API_URL}${id}`);
+    const headers = this.getAuthHeaders();
+    return this.http.get<Recipe>(`${API_URL}${id}`, { headers });
   }
 
   getRecipes(skip: number = 0, limit: number = 20, searchQuery?: string): Observable<Recipe[]> {
