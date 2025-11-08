@@ -2,12 +2,20 @@ ion-list, ion-item {
     background-color: var(--ion-background-color);
 }
 
+h1{
+    font-size: 32px;
+    font-weight: bold;
+    margin-bottom: 20px;
+    color: var(--ion-color-secondary); 
+}
+
 .page-pane {
     display: flex;
     justify-content: center;
     align-items: center;
     width: 100%;
     background-color: var(--ion-background-color);
+    padding-top: 20px;
 }
 
 .navbarplaceholder {
@@ -34,36 +42,31 @@ ion-list, ion-item {
 
 .recipe-info-header {
     width: 100%;
-    display: flex;
+    display: grid;
+    grid-template-columns: 1fr auto 1fr;
+    align-items: center;
     text-align: center;
-    align-content: center;
-    justify-content: center;
-    flex-wrap: nowrap;
-    position: relative;
 }
 
 .recipe-info-name {
     text-align: center;
     text-wrap: nowrap;
-    z-index: 10;
-}
-
-.recipe-info-header .recipe-info-name {
-  text-align: center; 
-  flex-grow: 1; 
-  padding: 0 40px;
+    grid-column: 2;
 }
 
 .recipe-info-header .action-report-container {
-  position: absolute;
-  right: 0;
-  top: 50%;
-  transform: translateY(-50%); 
-  z-index: 10;
+  grid-column: 3;
+  justify-self: end;
+  display: flex;
+  align-items: center;
 }
 
-.action-report {
-    margin-top: 20px;
+.action-report-container {
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-wrap: wrap;
 }
 
 .recipe-img-container {
