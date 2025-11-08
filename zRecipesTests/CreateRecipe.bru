@@ -6,10 +6,45 @@ meta {
 
 post {
   url: http://localhost:8000/recipes
-  body: none
-  auth: inherit
+  body: json
+  auth: bearer
+}
+
+auth:bearer {
+  token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIyMCIsImV4cCI6MTc2MjIyNDE5OX0.F1wjaVviUDNGdQ0JDv4crPi4A1LCWpHIpHzExiRYEsU
+}
+
+body:json {
+  {
+      "name": "Pizza Margherita",
+      "description": "Pizza italiana clásica",
+      "image_url": "https://upload.wikimedia.org/wikipedia/commons/f/f6/Eataly_Las_Vegas_-_Feb_2019_-_Sarah_Stierch_12.jpg",
+      "ingredients": [
+        {
+          "quantity": "500g",
+          "ingredient_name": "Harina"
+        },
+        {
+          "quantity": "200ml",
+          "ingredient_name": "Salsa de tomate"
+        }
+      ],
+      "steps": [
+        {
+          "step_number": 1,
+          "step_description": "Preparar la masa",
+          "image_url": null
+        },
+        {
+          "step_number": 2,
+          "step_description": "Hornear por 15 minutos",
+          "image_url": null
+        }
+      ]
+    } 
 }
 
 settings {
   encodeUrl: true
+  timeout: 0
 }

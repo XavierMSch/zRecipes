@@ -6,10 +6,21 @@ meta {
 
 post {
   url: http://localhost:8000/report
-  body: none
-  auth: inherit
+  body: json
+  auth: bearer
+}
+
+auth:bearer {
+  token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIyMCIsImV4cCI6MTc2MjIyNDE5OX0.F1wjaVviUDNGdQ0JDv4crPi4A1LCWpHIpHzExiRYEsU
+}
+
+body:json {
+  {
+    "recipe_id": 9
+  }
 }
 
 settings {
   encodeUrl: true
+  timeout: 0
 }
