@@ -7,9 +7,14 @@ meta {
 get {
   url: http://localhost:8000/recipes
   body: none
-  auth: inherit
+  auth: bearer
+}
+
+auth:bearer {
+  token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIyMCIsImV4cCI6MTc2MjIyNDE5OX0.F1wjaVviUDNGdQ0JDv4crPi4A1LCWpHIpHzExiRYEsU
 }
 
 settings {
   encodeUrl: true
+  timeout: 0
 }
