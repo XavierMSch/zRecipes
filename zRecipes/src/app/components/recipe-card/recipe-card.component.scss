@@ -85,6 +85,20 @@
     text-overflow: ellipsis;
 }
 
+.delete-button-col {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  
+  ion-button {
+    margin: 0;
+    
+    ion-icon {
+      font-size: 24px;
+    }
+  }
+}
+
 @media (max-width: 800px) {
     .recipe-card {
         width: 90%;
