@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { Router, NavigationEnd } from '@angular/router';
 
 import { Recipe, RecipeDisplay } from '../../interfaces/recipe.interface'
@@ -11,9 +11,16 @@ import { Recipe, RecipeDisplay } from '../../interfaces/recipe.interface'
 })
 export class RecipeCardComponent implements OnInit {
   @Input() recipe!: RecipeDisplay;
+  @Input() showDeleteButton: boolean = false;
+  @Output() deleteRecipe = new EventEmitter<number>();
 
   constructor() { }
 
   ngOnInit() { }
 
+  onDelete(event: Event) {
+    event.stopPropagation();
+    event.preventDefault();
+    this.deleteRecipe.emit(this.recipe.id);
+  }
 }

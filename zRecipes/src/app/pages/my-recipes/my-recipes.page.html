@@ -4,7 +4,12 @@
             <h1 class="title">Mis Recetas</h1> 
         </div>
         <div class="recipes-list-container">
-            <app-recipe-list class="recipe-list" [recipes]="createdRecipes"></app-recipe-list> 
+            <app-recipe-list 
+              class="recipe-list" 
+              [recipes]="createdRecipes"
+              [showDeleteButton]="true"
+              (onDeleteRecipe)="handleDeleteRecipe($event)">
+            </app-recipe-list> 
         </div>
     </div>
     <ion-fab horizontal="end" vertical="bottom " slot="fixed" class="create-recipe">

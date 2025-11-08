@@ -4,13 +4,18 @@
       <ion-col class="recipe-img-col" size="2">
         <ion-img class="recipe-img" [src]="recipe.image_url" [alt]="recipe.name"></ion-img>
       </ion-col>
-      <ion-col class="recipe-summary-col" size="10">
+      <ion-col class="recipe-summary-col" [size]="showDeleteButton ? '8' : '10'">
         <ion-card-header class="recipe-name-container">
           <ion-card-title class="recipe-name">{{ recipe.name }}</ion-card-title>
         </ion-card-header>
         <ion-card-content class="recipe-description">
           {{ recipe.description }}
         </ion-card-content>
+      </ion-col>
+      <ion-col *ngIf="showDeleteButton" size="2" class="delete-button-col">
+        <ion-button color="danger" fill="clear" (click)="onDelete($event)">
+          <ion-icon slot="icon-only" name="trash-outline"></ion-icon>
+        </ion-button>
       </ion-col>
     </ion-row>
   </ion-grid>

@@ -2,6 +2,8 @@
   <app-recipe-card 
     *ngFor="let recipe of recipes; trackBy: trackByRecipeId"
     [recipe]="recipe"
+    [showDeleteButton]="showDeleteButton"
+    (deleteRecipe)="handleDelete($event)"
     class="recipe-card">
   </app-recipe-card>
 </ion-list>
