@@ -23,7 +23,11 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    gap: 8px;
+    cursor: default;
+}
+
+.logo-container span {
+    margin-left: 10px;
 }
 
 .side-menu-logo {
@@ -39,8 +43,8 @@
 }
 
 .elem-list {
-    --background: var(--ion-color-secondary); 
-    --color: black;
+    --background: var(--ion-background-color);
+    --color: var(--ion-color-primary);
     font-size: 18px;
     font-weight: bold;
     border-radius: 12px;
@@ -49,10 +53,29 @@
 }
 .elem-list.router-link-active {
     --background: var(--ion-color-primary); 
+    --color: black;
 }
-.icon-nav {
+
+ion-list {
+    padding: 20px;
+}
+
+ion-icon {
     font-size: 25px;
+    color: var(--ion-color-primary);
+}
+
+.elem-list.router-link-active ion-icon {
     color: black;
+}
+
+ion-header {
+    padding: 15px 20px;
+    background: var(--ion-background-color);
+}
+
+ion-toolbar {
+    --background: var(--ion-background-color);
 }
 
 ion-tab-button {
