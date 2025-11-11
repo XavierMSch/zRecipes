@@ -18,6 +18,23 @@ async def create_recipe(
     """
     return await crud.create_user_recipe(db=db, recipe=recipe, user_id=current_user.id)
 
+@router.delete("/{recipe_id}", status_code=status.HTTP_204_NO_CONTENT)
+async def delete_recipe(
+    recipe_id: int,
+    db: AsyncSession = Depends(database.get_db),
+    current_user: models.User = Depends(security.get_current_user)
+):
+    """
+    Endpoint para eliminar una receta del usuario logueado.
+    """
+    db_recipe = await crud.get_recipe_by_id(db, recipe_id=recipe_id)
+    if db_recipe is None:
+        raise HTTPException(status_code=status.HTTP_404_NOT_FOUND, detail="Receta no encontrada")
+    if db_recipe.owner_id != current_user.id:
+        raise HTTPException(status_code=status.HTTP_403_FORBIDDEN, detail="Sin permiso para eliminar esta receta")
+    await crud.delete_recipe(db, recipe_id=recipe_id)
+    return
+
 @router.get("/", response_model=list[schemas.RecipeWithoutOwner])
 async def read_recipes(
     skip: int = 0,

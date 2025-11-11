@@ -75,6 +75,19 @@ async def create_user_recipe(db: AsyncSession, recipe: schemas.RecipeCreate, use
     await db.refresh(db_recipe, attribute_names=["owner", "liked_by_users"])
     return db_recipe
 
+async def delete_recipe(db: AsyncSession, recipe_id: int) -> bool:
+    """
+    Elimina una receta por su id.
+    Retorna True si la receta fue eliminada, False si no se encontró.
+    """
+    db_recipe = await get_recipe_by_id(db, recipe_id)
+    if db_recipe:
+        await db.delete(db_recipe)
+        await db.commit()
+        return True
+    return False
+
+
 async def get_recipes(db: AsyncSession, skip: int, limit: int) -> list[models.Recipe]:
     """
     Retorna una lista de recetas.
