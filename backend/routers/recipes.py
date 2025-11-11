@@ -30,7 +30,7 @@ async def delete_recipe(
     db_recipe = await crud.get_recipe_by_id(db, recipe_id=recipe_id)
     if db_recipe is None:
         raise HTTPException(status_code=status.HTTP_404_NOT_FOUND, detail="Receta no encontrada")
-    if db_recipe.owner_id != current_user.id:
+    if not security.is_owner_or_admin(db_recipe.owner_id, current_user):
         raise HTTPException(status_code=status.HTTP_403_FORBIDDEN, detail="Sin permiso para eliminar esta receta")
     await crud.delete_recipe(db, recipe_id=recipe_id)
     return
