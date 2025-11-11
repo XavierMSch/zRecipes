@@ -255,3 +255,17 @@ async def remove_recipe_from_list(db: AsyncSession, list_id: int, recipe_id: int
         await db.refresh(db_recipe_list, attribute_names=["id", "name", "owner_id", "recipes"])
     
     return db_recipe_list
+
+# --- CRUD de Report ---
+async def get_reports(db: AsyncSession, skip: int, limit: int) -> list[models.Report]:
+    """
+    Retorna una lista de reportes.
+    """
+    query = (
+        select(models.Report)
+        .options(selectinload(models.Report.reporter), selectinload(models.Report.recipe))
+        .offset(skip)
+        .limit(limit)
+    )
+    result = await db.execute(query)
+    return list(result.scalars().all())
