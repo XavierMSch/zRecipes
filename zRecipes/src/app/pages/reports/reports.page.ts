@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { HttpClient } from '@angular/common/http';
+import { AdminService } from 'src/app/services/admin/admin';
+import { Report } from 'src/app/interfaces/report.interface';
 
 @Component({
   selector: 'app-reports',
@@ -8,9 +11,18 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ReportsPage implements OnInit {
 
-  constructor() { }
+  reports: Report[] = [];
+
+  constructor(private AdminService: AdminService) { }
 
   ngOnInit() {
+    this.getReports();
+  }
+
+  getReports() {
+    this.AdminService.getReports().subscribe((reports) => {
+      this.reports = reports;
+    });
   }
 
 }

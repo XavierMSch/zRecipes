@@ -6,6 +6,8 @@ import { FormsModule } from '@angular/forms';
 
 import { RecipeCardComponent } from '../recipe-card/recipe-card.component';
 import { RecipeListComponent } from '../recipe-list/recipe-list.component';
+import { ReportCardComponent } from '../report-card/report-card.component';
+import { ReportListComponent } from '../report-list/report-list.component';
 import { FavoriteCategoryCardComponent } from '../favorite-category-card/favorite-category-card.component';
 import { FavoriteCategoryListComponent } from '../favorite-category-list/favorite-category-list.component';
 import { RecipeFormComponent } from '../recipe-form/recipe-form.component';
@@ -20,7 +22,9 @@ import { CreateCategoryModal } from '../create-category-modal/create-category-mo
     FavoriteCategoryListComponent,
     RecipeFormComponent,
     CategorySelector,
-    CreateCategoryModal
+    CreateCategoryModal,
+    ReportCardComponent,
+    ReportListComponent
   ],
   imports: [
     CommonModule,
@@ -35,7 +39,9 @@ import { CreateCategoryModal } from '../create-category-modal/create-category-mo
     FavoriteCategoryListComponent,
     RecipeFormComponent,
     CategorySelector,
-    CreateCategoryModal
+    CreateCategoryModal,
+    ReportCardComponent,
+    ReportListComponent
   ]
 })
 export class ComponentsModule { }

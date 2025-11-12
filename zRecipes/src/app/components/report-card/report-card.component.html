@@ -1,0 +1,17 @@
+<ion-card class="report-card"  [routerLink]="['/report-info', report.id]" routerDirection="forward">
+  <ion-grid class="report-grid">
+    <ion-row class="report-card-content">
+      <ion-col class="report-img-col" size="2">
+        <ion-img class="report-img" [src]="report.recipe.image_url" [alt]="report.recipe.name"></ion-img>
+      </ion-col>
+      <ion-col class="report-summary-col">
+        <ion-card-header class="report-name-container">
+          <ion-card-title class="report-name">{{ report.recipe.name }}</ion-card-title>
+        </ion-card-header>
+        <ion-card-content class="report-description">
+          {{ report.reporter.username }}
+        </ion-card-content>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+</ion-card>

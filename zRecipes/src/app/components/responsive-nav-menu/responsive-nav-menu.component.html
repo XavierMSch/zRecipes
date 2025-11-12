@@ -37,6 +37,12 @@
           <ion-icon [name]="getIconName('settings-outline', '/settings')" slot="start" class="icon-nav"></ion-icon>
           Ajustes
         </ion-item>
+        <ion-item button routerLink="/reports" routerDirection="root" class="elem-list"
+          routerLinkActive="router-link-active"
+          *ngIf="AdminMode">
+          <ion-icon [name]="getIconName('document-outline', '/reports')" slot="start" class="icon-nav"></ion-icon>
+          Reportes
+        </ion-item>
       </ion-list>
     </ion-content>
   </ion-menu>

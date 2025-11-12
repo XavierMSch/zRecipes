@@ -10,17 +10,32 @@ import { Router } from '@angular/router';
 })
 export class SettingsPage implements OnInit {
 
+  isAdmin: boolean = true;
+  adminMode: boolean = false;
+
   constructor(
     private auth: AuthService,
     private router: Router
   ) { }
 
   ngOnInit() {
+    this.adminMode = localStorage.getItem('isAdmin') === 'true';
+    // this.isAdmin = this.auth.getIsAdmin();
   }
 
   handleLogout() {
     this.auth.logout()
     this.router.navigate(["/login"])
+  }
+
+  handleAdminMode() {
+    if (this.adminMode) {
+      this.adminMode = false;
+      localStorage.setItem('isAdmin', 'false');
+      this.router.navigate(["/tabs/home"])
+      return;
+    }
+    localStorage.setItem('isAdmin', 'true');
   }
 
 }

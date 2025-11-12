@@ -39,4 +39,12 @@ export class UserService {
     });
     return this.http.get<UserResponse>(`${API_URL}/users/me`, { headers });
   }
+
+  getIsAdmin(token: string): Observable<{ is_admin: boolean }> {
+    const headers = new HttpHeaders({
+      'Authorization': `Bearer ${token}`
+    });
+    return this.http.get<{ is_admin: boolean }>(`${API_URL}/users/me/is_admin`, { headers });
+  }
+
 }

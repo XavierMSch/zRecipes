@@ -82,4 +82,13 @@ export class AuthService {
   getCurrentAuthToken(): string | null{
     return this.authSubject.value.authToken;
   }
+  
+  getIsAdmin(): boolean {
+    const token = this.getCurrentAuthToken();
+    if (!token) {
+      return false;
+    }
+    const payload = JSON.parse(atob(token.split('.')[1]));
+    return payload.is_admin === true;
+  }
 }

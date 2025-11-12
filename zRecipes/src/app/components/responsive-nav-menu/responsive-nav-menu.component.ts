@@ -8,7 +8,7 @@ import { Router, NavigationEnd } from '@angular/router';
   standalone: false,
 })
 export class ResponsiveNavMenuComponent implements OnInit {
-
+  AdminMode: boolean = false;
   currentRoute: string = '';
 
   constructor(private router: Router) {
@@ -45,5 +45,13 @@ export class ResponsiveNavMenuComponent implements OnInit {
            this.currentRoute.startsWith(route);
   }
 
-  ngOnInit() { }
+  ngOnInit() { 
+    const adminStatus = localStorage.getItem('isAdmin');
+    if (adminStatus == 'true') {
+      this.AdminMode = true;
+    }
+    else if (adminStatus == 'false') {
+      this.AdminMode = false;
+    }
+  }
 }

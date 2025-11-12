@@ -57,9 +57,14 @@ const routes: Routes = [
     canActivate: [authGuard]
   },
   {
+    path: 'reports',
+    loadChildren: () => import('./pages/reports/reports.module').then( m => m.ReportsPageModule)
+  },
+  {
     path: '**',
     redirectTo: 'home'
   }
+
 ];
 
 @NgModule({

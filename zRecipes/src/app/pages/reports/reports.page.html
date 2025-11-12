@@ -1,11 +1,10 @@
 <ion-content [fullscreen]="true">
-  <div class="home-pane">
+  <div class="reports-container">
     <div class="greeting">
       <h1>Reportes</h1>
     </div>
-    <div class="recommended-recipes">
-      <h1 class="recommended-title">Recetas Destacadas</h1>
-      <app-recipe-list class="recommended-recipes-list" ></app-recipe-list>
+    <div class="reported-list-container">
+      <app-report-list class="reported-recipes-list" [reports]="reports"></app-report-list>
     </div>
   </div>
 </ion-content>
