@@ -1,3 +1,10 @@
+h1{
+    font-size: 32px;
+    font-weight: bold;
+    margin-bottom: 20px;
+    color: var(--ion-color-primary); 
+}
+
 .my-recipes-container{
     display: flex;
     flex-direction: column;
@@ -5,12 +12,6 @@
     padding-top: 20px;
 }
 
-h1{
-    font-size: 32px;
-    font-weight: bold;
-    margin-bottom: 20px;
-    color: var(--ion-color-primary); 
-}
 
 .recipes-list-container{
     display: flex;
