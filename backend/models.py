@@ -9,7 +9,7 @@ user_likes_association = Table(
     "user_likes_association",
     Base.metadata,
     Column("user_id", ForeignKey("users.id"), primary_key=True),
-    Column("recipe_id", ForeignKey("recipes.id"), primary_key=True),
+    Column("recipe_id", ForeignKey("recipes.id", ondelete="CASCADE"), primary_key=True),
 )
 
 class User(Base):
@@ -37,7 +37,7 @@ class User(Base):
 recipe_list_association = Table(
     "recipe_list_association",
     Base.metadata,
-    Column("recipe_id", ForeignKey("recipes.id"), primary_key=True),
+    Column("recipe_id", ForeignKey("recipes.id", ondelete="CASCADE"), primary_key=True),
     Column("recipe_list_id", ForeignKey("recipe_lists.id"), primary_key=True),
 )
 
@@ -49,7 +49,7 @@ class Report(Base):
     reporter_id: Mapped[int] = mapped_column(ForeignKey("users.id"))
     reporter: Mapped["User"] = relationship(back_populates="reports")
 
-    recipe_id: Mapped[int] = mapped_column(ForeignKey("recipes.id"))
+    recipe_id: Mapped[int] = mapped_column(ForeignKey("recipes.id", ondelete="CASCADE"))
     recipe: Mapped["Recipe"] = relationship(back_populates="reports")
 
 class Recipe(Base):
@@ -61,7 +61,7 @@ class Recipe(Base):
     ingredients: Mapped[list[dict[str, Any]]] = mapped_column(JSONB, nullable=False, server_default='[]')
     steps: Mapped[list[dict[str, Any]]] = mapped_column(JSONB, nullable=False, server_default='[]')
     
-    owner_id: Mapped[int] = mapped_column(ForeignKey("users.id"))
+    owner_id: Mapped[int | None] = mapped_column(ForeignKey("users.id", ondelete="SET NULL"), nullable=True)
     owner: Mapped["User"] = relationship(back_populates="recipes")
 
     recipe_lists: Mapped[list["RecipeList"]] = relationship(
@@ -74,7 +74,7 @@ class Recipe(Base):
         back_populates="liked_recipes",
     )
     
-    reports: Mapped[list["Report"]] = relationship(back_populates="recipe")
+    reports: Mapped[list["Report"]] = relationship(back_populates="recipe", cascade="all, delete-orphan")
 
 class RecipeList(Base):
     __tablename__ = "recipe_lists"
