@@ -58,3 +58,27 @@ async def read_users_me(current_user: models.User = Depends(security.get_current
     Endpoint protegido que obtiene el usuario actual logueado.
     """
     return current_user
+
+@router.put("/change-password", status_code=status.HTTP_200_OK)
+async def change_password(
+    password_data: schemas.PasswordChange,
+    db: AsyncSession = Depends(database.get_db),
+    current_user: models.User = Depends(security.get_current_user)
+):
+    """
+    Endpoint para cambiar la contraseña del usuario logueado.
+    """
+    success = await crud.change_user_password(
+        db,
+        user=current_user,
+        current_password=password_data.old_password,
+        new_password=password_data.new_password
+    )
+    
+    if not success:
+        raise HTTPException(
+            status_code=status.HTTP_400_BAD_REQUEST,
+            detail="La contraseña actual es incorrecta"
+        )
+    
+    return {"message": "Contraseña actualizada correctamente"}

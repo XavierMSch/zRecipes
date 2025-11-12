@@ -86,3 +86,9 @@ async def get_current_admin_user(current_user: models.User = Depends(get_current
             detail="El usuario no tiene permisos de administrador"
         )
     return current_user
+
+def is_owner_or_admin(resource_owner_id: int, current_user: models.User) -> bool:
+    """
+    Verifica si el usuario actual es el dueño del recurso o es admin.
+    """
+    return current_user.id == resource_owner_id or current_user.is_admin

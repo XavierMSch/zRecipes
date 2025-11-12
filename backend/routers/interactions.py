@@ -50,3 +50,15 @@ async def report_recipe(
     if not report:
         raise HTTPException(status_code=status.HTTP_404_NOT_FOUND, detail="La receta a reportar no existe")
     return report
+
+@router.get("/reports/", response_model=list[schemas.Report])
+async def get_reports(
+    skip: int = 0,
+    limit: int = 20,
+    db: AsyncSession = Depends(database.get_db),
+    current_admin: models.User = Depends(security.get_current_admin_user)
+):
+    """
+    Endpoint para obtener todos los reportes. Solo para administradores.
+    """
+    return await crud.get_reports(db, skip=skip, limit=limit)
