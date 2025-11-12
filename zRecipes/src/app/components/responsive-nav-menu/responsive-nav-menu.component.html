@@ -54,21 +54,35 @@
   <div class="ion-page" id="main-content">
     <ion-tabs>
       <ion-tab-bar slot="bottom" class="ion-hide-lg-up">
-        <ion-tab-button tab="home" href="/tabs/home">
+        <ion-tab-button tab="home" href="/tabs/home"
+        *ngIf="!AdminMode"
+        >
           <ion-icon [name]="getTabIconName('home-outline', '/home')" class="tab-button"></ion-icon>
           Inicio
         </ion-tab-button>
-        <ion-tab-button tab="search" href="/tabs/search">
+        <ion-tab-button tab="search" href="/tabs/search"
+        *ngIf="!AdminMode"
+        >
           <ion-icon [name]="getTabIconName('search-outline', '/search')" class="tab-button"></ion-icon>
           Explorar
         </ion-tab-button>
-        <ion-tab-button tab="my-recipes" href="/tabs/my-recipes">
+        <ion-tab-button tab="my-recipes" href="/tabs/my-recipes"
+        *ngIf="!AdminMode"
+        >
           <ion-icon [name]="getTabIconName('restaurant-outline', '/my-recipes')" class="tab-button"></ion-icon>
           Creadas
         </ion-tab-button>
-        <ion-tab-button tab="favorites" href="/tabs/favorites">
+        <ion-tab-button tab="favorites" href="/tabs/favorites"
+        *ngIf="!AdminMode"
+        >
           <ion-icon [name]="getTabIconName('bookmark-outline', '/favorites')" class="tab-button"></ion-icon>
           Favoritos
+        </ion-tab-button>
+        <ion-tab-button tab="reports" href="/tabs/reports"
+        *ngIf="AdminMode"
+        >
+          <ion-icon [name]="getTabIconName('document-outline', '/reports')" class="tab-button"></ion-icon>
+          Reportes
         </ion-tab-button>
         <ion-tab-button tab="settings" href="/tabs/settings">
           <ion-icon [name]="getTabIconName('settings-outline', '/settings')" class="tab-button"></ion-icon>
