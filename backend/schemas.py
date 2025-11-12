@@ -1,4 +1,4 @@
-from pydantic import BaseModel, EmailStr, ConfigDict
+from pydantic import BaseModel, EmailStr, ConfigDict, Field
 from datetime import datetime
 
 # Schema base para que pydantic sea compatible con sqlalchemy
@@ -16,6 +16,10 @@ class Token(BaseModel):
 
 class TokenData(BaseModel):
     sub: str | None = None # subject: user_id
+
+class PasswordChange(BaseModel):
+    old_password: str
+    new_password: str = Field(..., min_length=8)
 
 # --- Schemas internos para Recipe ---
 class IngredientItem(BaseModel):

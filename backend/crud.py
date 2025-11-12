@@ -60,6 +60,25 @@ async def create_user(db: AsyncSession, user: schemas.UserCreate) -> models.User
     await db.refresh(db_user, attribute_names=["id", "username", "email", "region", "comuna", "is_admin", "rut"])
     return db_user
 
+async def change_user_password(
+        db: AsyncSession,
+        user: models.User,
+        current_password: str,
+        new_password: str
+) -> bool:
+    """
+    Cambia la contraseña de un usuario.
+    Retorna True si se cambió la contraseña, False si la antigua no coincide.
+    """
+    if not security.verify_password(current_password, user.hashed_password):
+        return False
+
+    new_hashed_password = security.get_password_hash(new_password)
+    user.hashed_password = new_hashed_password
+    await db.commit()
+    await db.refresh(user, attribute_names=["id", "username", "email", "region", "comuna", "is_admin", "rut"])
+    return True
+
 # --- CRUD de Recipe ---
 
 async def create_user_recipe(db: AsyncSession, recipe: schemas.RecipeCreate, user_id: int) -> models.Recipe:
@@ -74,6 +93,19 @@ async def create_user_recipe(db: AsyncSession, recipe: schemas.RecipeCreate, use
     await db.commit()
     await db.refresh(db_recipe, attribute_names=["owner", "liked_by_users"])
     return db_recipe
+
+async def delete_recipe(db: AsyncSession, recipe_id: int) -> bool:
+    """
+    Elimina una receta por su id.
+    Retorna True si la receta fue eliminada, False si no se encontró.
+    """
+    db_recipe = await get_recipe_by_id(db, recipe_id)
+    if db_recipe:
+        await db.delete(db_recipe)
+        await db.commit()
+        return True
+    return False
+
 
 async def get_recipes(db: AsyncSession, skip: int, limit: int) -> list[models.Recipe]:
     """
@@ -242,3 +274,17 @@ async def remove_recipe_from_list(db: AsyncSession, list_id: int, recipe_id: int
         await db.refresh(db_recipe_list, attribute_names=["id", "name", "owner_id", "recipes"])
     
     return db_recipe_list
+
+# --- CRUD de Report ---
+async def get_reports(db: AsyncSession, skip: int, limit: int) -> list[models.Report]:
+    """
+    Retorna una lista de reportes.
+    """
+    query = (
+        select(models.Report)
+        .options(selectinload(models.Report.reporter), selectinload(models.Report.recipe))
+        .offset(skip)
+        .limit(limit)
+    )
+    result = await db.execute(query)
+    return list(result.scalars().all())
