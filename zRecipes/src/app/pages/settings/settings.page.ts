@@ -32,10 +32,12 @@ export class SettingsPage implements OnInit {
     if (this.adminMode) {
       this.adminMode = false;
       localStorage.setItem('isAdmin', 'false');
-      this.router.navigate(["/tabs/home"])
+      window.location.href = "/tabs/home";
+
       return;
     }
     localStorage.setItem('isAdmin', 'true');
+    window.location.href = "/reports";
   }
 
 }
