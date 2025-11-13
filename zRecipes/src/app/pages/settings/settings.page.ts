@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { AuthService } from 'src/app/services/auth/auth';
+import { UserService } from 'src/app/services/user/user.service';
 import { Router } from '@angular/router';
 
 @Component({
@@ -10,17 +11,18 @@ import { Router } from '@angular/router';
 })
 export class SettingsPage implements OnInit {
 
-  isAdmin: boolean = true;
+  isAdmin: boolean = false;
   adminMode: boolean = false;
 
   constructor(
     private auth: AuthService,
-    private router: Router
+    private router: Router,
+    private user: UserService
   ) { }
 
   ngOnInit() {
+    this.loadAdminStatus(); 
     this.adminMode = localStorage.getItem('isAdmin') === 'true';
-    // this.isAdmin = this.auth.getIsAdmin();
   }
 
   handleLogout() {
@@ -40,4 +42,19 @@ export class SettingsPage implements OnInit {
     window.location.href = "/reports";
   }
 
+  loadAdminStatus() {
+    const token = this.auth.getCurrentAuthToken();
+
+    if (token) {
+      this.user.getIsAdmin(token).subscribe({
+        next: (isAdmin: boolean) => {
+          this.isAdmin = isAdmin;
+        },
+        error: (error) => {
+          this.adminMode = false;
+          console.error('Error al obtener estado de administrador:', error);
+        }
+      });
+    }
+  }
 }

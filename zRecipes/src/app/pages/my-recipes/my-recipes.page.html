@@ -14,7 +14,7 @@
     </div>
     <ion-fab horizontal="end" vertical="bottom " slot="fixed" class="create-recipe">
     <ion-fab-button>
-      <ion-icon class="add-icon" name="add" [routerLink]="['/create-recipe']"></ion-icon>
+      <ion-icon class="add-icon" name="add" (click)="onAddRecipe()"></ion-icon>
     </ion-fab-button>
   </ion-fab>
 </ion-content>

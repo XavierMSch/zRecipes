@@ -1,9 +1,7 @@
 import { Component, OnInit, Input } from '@angular/core';
-import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
-import { Observable } from 'rxjs';
+import { ModalController } from '@ionic/angular';
 import { Report } from '../../interfaces/report.interface';
-import { AuthService } from '../../services/auth/auth';
-import { AdminService } from '../../services/admin/admin';
+import { ReportDetailComponent } from '../report-detail/report-detail.component';
 
 @Component({
   selector: 'app-report-list',
@@ -14,14 +12,23 @@ import { AdminService } from '../../services/admin/admin';
 export class ReportListComponent  implements OnInit {
   @Input() reports: Report[] = [];
 
-  constructor() { }
+  constructor(
+    private modalCtrl: ModalController
+  ) { }
 
   ngOnInit() {
     
   } 
 
-  getReports() {
-    
+  async onReportClick(report: Report) {
+    const modal = await this.modalCtrl.create({
+      component: ReportDetailComponent,
+      componentProps: {
+        report: report
+      }
+      
+    });
+    await modal.present();
   }
 
 }

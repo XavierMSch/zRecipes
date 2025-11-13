@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
+import { map } from 'rxjs/operators';
 
 const API_URL = 'http://localhost:8000';
 
@@ -40,11 +41,10 @@ export class UserService {
     return this.http.get<UserResponse>(`${API_URL}/users/me`, { headers });
   }
 
-  getIsAdmin(token: string): Observable<{ is_admin: boolean }> {
-    const headers = new HttpHeaders({
-      'Authorization': `Bearer ${token}`
-    });
-    return this.http.get<{ is_admin: boolean }>(`${API_URL}/users/me/is_admin`, { headers });
+  getIsAdmin(token: string): Observable<boolean> {
+    return this.getCurrentUser(token).pipe(
+      map(user => user.is_admin)
+    );
   }
 
 }

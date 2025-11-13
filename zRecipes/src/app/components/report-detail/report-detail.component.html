@@ -1,0 +1,15 @@
+<div class="report-detail-container">
+  <div>
+    <h1>Detalles de reporte </h1>
+  </div>
+  <div class="report-info">
+    <p><strong>ID del reporte:</strong> {{ report.id }}</p>
+    <p><strong>Fecha del reporte:</strong> {{ report.created_at | date:'medium' }}</p>
+    <p><strong>Reportado por:</strong> {{ report.reporter.id }}, {{ report.reporter.username }}</p>
+    <p><strong>Receta reportada:</strong> {{ report.recipe.id }}, {{ report.recipe.name }}</p>
+    <img [src]="report.recipe.image_url" alt="Imagen de la receta reportada" class="imagen">
+  </div>
+  <div class="button">
+    <ion-button (click)="goToRecipe(report.recipe.id)">Ir a receta reportada</ion-button>
+  </div>
+</div>
