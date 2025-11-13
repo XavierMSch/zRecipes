@@ -13,7 +13,19 @@ export class FavoriteCategoryCardComponent implements OnInit {
 
   constructor() { }
 
-  ngOnInit() {
-  }
+  ngOnInit() 
+  { this.revisionImagen(); }
 
+
+  
+  revisionImagen(): void {
+    if (this.category.image && this.category.image.trim() !== '') {
+      return ;
+    } else if (this.category.recipes.length === 0) {
+      this.category.image = 'assets/icon/logo.png';
+    }
+    else if (this.category.recipes.length > 0) {
+      this.category.image = this.category.recipes[0].image_url;
+    }
+  }
 }

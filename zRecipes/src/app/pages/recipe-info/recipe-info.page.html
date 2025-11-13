@@ -51,9 +51,10 @@
                   <h3>Paso {{ i + 1}}</h3>
                 </ion-col>
               </ion-row>
-              <ion-row class="step-div">
+              <ion-row class="step-div"
+              *ngIf="step.image_url">
                 <ion-col class="step-img-container">
-                  <img class="step-img" src="{{ step.image_url }}" alt="Imagen de paso de preparación">
+                  <img class="step-img"  src="{{ step.image_url }}" alt="Imagen de paso de preparación">
                 </ion-col>
               </ion-row>
               <ion-row>
