@@ -22,7 +22,7 @@ export class HomePage implements OnInit {
   ) { }
 
   ngOnInit() {
-    this.recipeService.getRecipes().subscribe((recipes: Recipe[]) => {
+    this.recipeService.getPopularRecipes().subscribe((recipes: Recipe[]) => {
       this.recipes = recipes;
     });
 
