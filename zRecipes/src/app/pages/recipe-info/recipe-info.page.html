@@ -32,7 +32,7 @@
           </ion-row>
         </ion-grid>
       </div>
-      <p>{{ recipe?.description }}</p>
+      <p class="recipe-description">{{ recipe?.description }}</p>
       <div>
         <h2>Ingredientes</h2>
         <ion-list class="recipe-ingredient-list" [inset]="true">
@@ -51,9 +51,10 @@
                   <h3>Paso {{ i + 1}}</h3>
                 </ion-col>
               </ion-row>
-              <ion-row class="step-div">
+              <ion-row class="step-div"
+              *ngIf="step.image_url">
                 <ion-col class="step-img-container">
-                  <img class="step-img" src="{{ step.image_url }}" alt="Imagen de paso de preparación">
+                  <img class="step-img"  src="{{ step.image_url }}" alt="Imagen de paso de preparación">
                 </ion-col>
               </ion-row>
               <ion-row>

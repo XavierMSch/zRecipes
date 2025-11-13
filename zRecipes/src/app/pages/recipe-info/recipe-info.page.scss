@@ -9,6 +9,19 @@ h1{
     color: var(--ion-color-primary); 
 }
 
+h2{
+    font-size: 26px;
+    margin-bottom: 18px;
+    color: var(--ion-color-primary); 
+}
+
+h3{
+    font-size: 24px;
+    font-weight: bold;
+    margin-bottom: 15px;
+    color: var(--ion-color-secondary); 
+}
+
 .page-pane {
     display: flex;
     justify-content: center;
@@ -130,8 +143,18 @@ h1{
 .recipe-ingredient-list {
     display: inline-block;
     width: 100%;
+    margin-bottom: 16px;
     border-radius: var(--container-border-radius);
     background-color: var(--ion-background-color);
+}
+
+.list-md.list-inset {
+    -webkit-margin-start: 16px;
+    margin-inline-start: 16px;
+    -webkit-margin-end: 16px;
+    margin-inline-end: 16px;
+    margin-top: 0px;
+    margin-bottom: 16px;
 }
 
 .ingredient-container {
@@ -144,6 +167,11 @@ h1{
     width: 100%;
     border-radius: var(--container-border-radius);
     margin-bottom: 50px;
+}
+
+.recipe-description {
+    font-size: 18px;
+    margin-bottom: 30px;
 }
 
 .recipe-step {

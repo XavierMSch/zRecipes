@@ -75,6 +75,25 @@ export class AuthService {
     this.authSubject.next({ userId: null, authToken: null });
   }
 
+  changePassword(currentPassword: string, newPassword: string): Observable<void> {
+    const token = this.getCurrentAuthToken();
+    const userId = this.getCurrentUserId();
+    if (!token || !userId) {
+      return new Observable<void>(observer => {
+        observer.error('Usuario no autenticado');
+      });
+    }
+    const headers = new HttpHeaders({
+      'Authorization': `Bearer ${token}`,
+      'Content-Type': 'application/json'
+    });
+    const body = {
+      old_password: currentPassword,
+      new_password: newPassword
+    };
+    return this.http.put<void>(`${API_URL}/change-password`, body, { headers });
+  }
+
   getCurrentUserId(): number | null {
     return this.authSubject.value.userId;
   }    

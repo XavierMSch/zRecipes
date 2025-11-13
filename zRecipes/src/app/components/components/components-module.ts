@@ -8,6 +8,7 @@ import { RecipeCardComponent } from '../recipe-card/recipe-card.component';
 import { RecipeListComponent } from '../recipe-list/recipe-list.component';
 import { ReportCardComponent } from '../report-card/report-card.component';
 import { ReportListComponent } from '../report-list/report-list.component';
+import { ChangePasswordModalComponent } from '../change-password-modal/change-password-modal.component';
 import { ReportDetailComponent } from '../report-detail/report-detail.component';
 import { FavoriteCategoryCardComponent } from '../favorite-category-card/favorite-category-card.component';
 import { FavoriteCategoryListComponent } from '../favorite-category-list/favorite-category-list.component';
@@ -26,7 +27,8 @@ import { CreateCategoryModal } from '../create-category-modal/create-category-mo
     CreateCategoryModal,
     ReportCardComponent,
     ReportListComponent,
-    ReportDetailComponent
+    ReportDetailComponent,
+    ChangePasswordModalComponent
   ],
   imports: [
     CommonModule,
@@ -44,7 +46,8 @@ import { CreateCategoryModal } from '../create-category-modal/create-category-mo
     CreateCategoryModal,
     ReportCardComponent,
     ReportListComponent,
-    ReportDetailComponent
+    ReportDetailComponent,
+    ChangePasswordModalComponent  
   ]
 })
 export class ComponentsModule { }

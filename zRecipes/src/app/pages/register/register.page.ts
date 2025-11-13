@@ -102,7 +102,7 @@ export class RegisterPage implements OnInit {
       return { valid: false, message: 'RUT inválido. Formato: 12345678-9' };
     }
 
-    if (this.password.length < 6) {
+    if (this.password.length < 8) {
       return { valid: false, message: 'La contraseña debe tener al menos 6 caracteres' };
     }
 

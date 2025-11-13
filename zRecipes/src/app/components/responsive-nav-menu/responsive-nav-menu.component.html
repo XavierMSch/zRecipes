@@ -30,7 +30,7 @@
           <ion-icon [name]="getIconName('restaurant-outline', '/my-recipes')" slot="start" class="icon-nav"></ion-icon>
           Creadas
         </ion-item>
-        <ion-item button routerLink="/favorites" routerDirection="root" class="elem-list"
+        <ion-item button href="/favorites" routerDirection="root" class="elem-list"
           routerLinkActive="router-link-active"
           *ngIf="!AdminMode">
           <ion-icon [name]="getIconName('bookmark-outline', '/favorites')" slot="start" class="icon-nav"></ion-icon>
