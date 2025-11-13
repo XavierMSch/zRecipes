@@ -13,24 +13,34 @@
     <ion-content>
       <ion-list lines="none" class="nav-list">
         <ion-item button routerLink="/home" routerDirection="root" class="elem-list"
-          routerLinkActive="router-link-active">
-          <ion-icon [name]="getIconName('home-outline', '/home')" slot="start" class="icon-nav"></ion-icon>
+          routerLinkActive="router-link-active"
+          *ngIf="!AdminMode">
+          <ion-icon [name]="getIconName('home-outline', '/home')" slot="start" class="icon-nav" ></ion-icon>
           Inicio
         </ion-item>
         <ion-item button routerLink="/search" routerDirection="root" class="elem-list"
-          routerLinkActive="router-link-active">
+          routerLinkActive="router-link-active"
+          *ngIf="!AdminMode">
           <ion-icon [name]="getIconName('search-outline', '/search')" slot="start" class="icon-nav"></ion-icon>
           Explorar
         </ion-item>
         <ion-item button routerLink="/my-recipes" routerDirection="root" class="elem-list"
-          routerLinkActive="router-link-active">
+          routerLinkActive="router-link-active"
+          *ngIf="!AdminMode">
           <ion-icon [name]="getIconName('restaurant-outline', '/my-recipes')" slot="start" class="icon-nav"></ion-icon>
           Creadas
         </ion-item>
         <ion-item button routerLink="/favorites" routerDirection="root" class="elem-list"
-          routerLinkActive="router-link-active">
+          routerLinkActive="router-link-active"
+          *ngIf="!AdminMode">
           <ion-icon [name]="getIconName('bookmark-outline', '/favorites')" slot="start" class="icon-nav"></ion-icon>
           Favoritos
+        </ion-item>
+        <ion-item button routerLink="/reports" routerDirection="root" class="elem-list"
+          routerLinkActive="router-link-active"
+          *ngIf="AdminMode">
+          <ion-icon [name]="getIconName('document-outline', '/reports')" slot="start" class="icon-nav"></ion-icon>
+          Reportes
         </ion-item>
         <ion-item button routerLink="/settings" routerDirection="root" class="elem-list"
           routerLinkActive="router-link-active">
@@ -44,21 +54,35 @@
   <div class="ion-page" id="main-content">
     <ion-tabs>
       <ion-tab-bar slot="bottom" class="ion-hide-lg-up">
-        <ion-tab-button tab="home" href="/tabs/home">
+        <ion-tab-button tab="home" href="/tabs/home"
+        *ngIf="!AdminMode"
+        >
           <ion-icon [name]="getTabIconName('home-outline', '/home')" class="tab-button"></ion-icon>
           Inicio
         </ion-tab-button>
-        <ion-tab-button tab="search" href="/tabs/search">
+        <ion-tab-button tab="search" href="/tabs/search"
+        *ngIf="!AdminMode"
+        >
           <ion-icon [name]="getTabIconName('search-outline', '/search')" class="tab-button"></ion-icon>
           Explorar
         </ion-tab-button>
-        <ion-tab-button tab="my-recipes" href="/tabs/my-recipes">
+        <ion-tab-button tab="my-recipes" href="/tabs/my-recipes"
+        *ngIf="!AdminMode"
+        >
           <ion-icon [name]="getTabIconName('restaurant-outline', '/my-recipes')" class="tab-button"></ion-icon>
           Creadas
         </ion-tab-button>
-        <ion-tab-button tab="favorites" href="/tabs/favorites">
+        <ion-tab-button tab="favorites" href="/tabs/favorites"
+        *ngIf="!AdminMode"
+        >
           <ion-icon [name]="getTabIconName('bookmark-outline', '/favorites')" class="tab-button"></ion-icon>
           Favoritos
+        </ion-tab-button>
+        <ion-tab-button tab="reports" href="/tabs/reports"
+        *ngIf="AdminMode"
+        >
+          <ion-icon [name]="getTabIconName('document-outline', '/reports')" class="tab-button"></ion-icon>
+          Reportes
         </ion-tab-button>
         <ion-tab-button tab="settings" href="/tabs/settings">
           <ion-icon [name]="getTabIconName('settings-outline', '/settings')" class="tab-button"></ion-icon>

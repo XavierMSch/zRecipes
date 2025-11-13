@@ -82,4 +82,5 @@ export class AuthService {
   getCurrentAuthToken(): string | null{
     return this.authSubject.value.authToken;
   }
+  
 }

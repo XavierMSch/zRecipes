@@ -24,6 +24,7 @@ export class CreateRecipePage {
         console.error('Error al crear la receta:', err);
       }
     });
-    this.router.navigate(['/my-recipes']);
+    
+    window.location.href = '/my-recipes';
   }
 }

@@ -54,6 +54,10 @@ export class MyRecipesPage implements OnInit {
     await alert.present();
   }
 
+  async onAddRecipe() {
+    window.location.href = '/create-recipe';
+  }
+
   private deleteRecipe(recipeId: number) {
     this.recipeService.deleteRecipe(recipeId).subscribe({
       next: async () => {

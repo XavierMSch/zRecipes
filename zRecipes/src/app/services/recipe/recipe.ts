@@ -108,6 +108,8 @@ export class RecipeService {
     const headers = this.getAuthHeaders();
     return this.http.post<Recipe>(`http://localhost:8000/report/`, { recipe_id: id }, { headers: headers });
   }
+
+  
 }
 
 

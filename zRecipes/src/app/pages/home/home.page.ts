@@ -26,12 +26,11 @@ export class HomePage implements OnInit {
       this.recipes = recipes;
     });
 
-    // Obtener el nombre del usuario actual
     const token = this.authService.getCurrentAuthToken();
     if (token) {
       this.userService.getCurrentUser(token).subscribe({
         next: (user: UserResponse) => {
-          this.username = user.username;
+          this.username = user.username; 
         },
         error: (error) => {
           console.error('Error al obtener usuario:', error);

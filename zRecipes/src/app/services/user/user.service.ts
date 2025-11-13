@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
+import { map } from 'rxjs/operators';
 
 const API_URL = 'http://localhost:8000';
 
@@ -39,4 +40,11 @@ export class UserService {
     });
     return this.http.get<UserResponse>(`${API_URL}/users/me`, { headers });
   }
+
+  getIsAdmin(token: string): Observable<boolean> {
+    return this.getCurrentUser(token).pipe(
+      map(user => user.is_admin)
+    );
+  }
+
 }

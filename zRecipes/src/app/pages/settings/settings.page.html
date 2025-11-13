@@ -21,9 +21,13 @@
           <ion-icon name="help-circle-outline" slot="start"></ion-icon>
           Ayuda
         </ion-button>
-        <ion-button expand="block" fill="outline" color="primary">
+        <ion-button expand="block" fill="outline" color="primary" *ngIf="isAdmin && !adminMode" (click)="handleAdminMode()">
           <ion-icon name="code-outline" slot="start"></ion-icon>
           Modo Administrador
+        </ion-button>
+        <ion-button expand="block" fill="outline" color="tertiary" *ngIf="isAdmin && adminMode" (click)="handleAdminMode()">
+          <ion-icon name="code-slash-outline" slot="start"></ion-icon>
+          Salir Modo Administrador
         </ion-button>
         <ion-button expand="block" fill="outline" color="medium" (click)="handleLogout()">
           <ion-icon name="log-out-outline" slot="start"></ion-icon>

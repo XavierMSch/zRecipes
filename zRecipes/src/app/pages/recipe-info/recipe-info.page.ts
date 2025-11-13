@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { ModalController, ToastController } from '@ionic/angular';
-import { ActivatedRoute } from '@angular/router';
+import { ModalController, ToastController, AlertController } from '@ionic/angular';
+import { ActivatedRoute, Router } from '@angular/router';
 import { RecipeListService } from 'src/app/services/recipe-list/recipe-list';
 import { RecipeService } from 'src/app/services/recipe/recipe';
 import { CategorySelector } from 'src/app/components/category-selector/category-selector.component';
@@ -16,18 +16,22 @@ export class RecipeInfoPage implements OnInit {
   favorite: boolean = false;
   currentRecipeId: number = 0;
   recipe: Recipe | null = null;
+  ownerMode: boolean = false;
 
   constructor(
     private modalCtrl: ModalController,
     private RecipeListService: RecipeListService,
     private recipeService: RecipeService,
     private toastCtrl: ToastController,
-    private route: ActivatedRoute
+    private alertCtrl: AlertController,
+    private route: ActivatedRoute,
+    private router: Router
   ) {}
 
   ngOnInit() {
     this.currentRecipeId = +this.route.snapshot.paramMap.get('id')!;
     this.loadRecipe(this.currentRecipeId);
+    this.ownerMode = localStorage.getItem('isAdmin') === 'true';
   }
 
   private loadRecipe(id: number) {
@@ -97,6 +101,14 @@ export class RecipeInfoPage implements OnInit {
     }
   }
 
+  onMouseEnterDelete() {
+    this.currentIcons[4] = this.selectionIcons[4];
+  }
+
+  onMouseLeaveDelete() {
+      this.currentIcons[4] = this.defaultIcons[4];
+  }
+
   onMouseEnterLike() {
     this.currentIcons[2] = this.selectionIcons[2];
   }
@@ -129,8 +141,67 @@ export class RecipeInfoPage implements OnInit {
         toast.present();
       }
     });
+    }
+  } 
+
+  async onClickDelete() {
+    if (!this.recipe) return;
+
+    const alert = await this.alertCtrl.create({
+      header: 'Confirmar eliminación',
+      message: `¿Estás seguro de que deseas eliminar la receta "${this.recipe.name}"? Esta acción no se puede deshacer.`,
+      buttons: [
+        {
+          text: 'Cancelar',
+          role: 'cancel',
+          cssClass: 'secondary'
+        },
+        {
+          text: 'Eliminar',
+          role: 'destructive',
+          handler: () => {
+            this.deleteRecipe();
+          }
+        }
+      ]
+    });
+
+    await alert.present();
   }
-}
+
+  private deleteRecipe() {
+    if (!this.recipe) return;
+
+    this.recipeService.deleteRecipe(this.recipe.id).subscribe({
+      next: async () => {
+        const toast = await this.toastCtrl.create({
+          message: 'Receta eliminada correctamente',
+          duration: 2000,
+          color: 'success',
+        });
+        await toast.present();
+        
+        this.router.navigate(['/reports']);
+      },
+      error: async (err) => {
+        console.error('Error al eliminar receta:', err);
+        let errorMessage = 'Error al eliminar receta';
+        
+        if (err.status === 403) {
+          errorMessage = 'No tienes permisos para eliminar esta receta';
+        } else if (err.status === 404) {
+          errorMessage = 'La receta no existe';
+        }
+        
+        const toast = await this.toastCtrl.create({
+          message: errorMessage,
+          duration: 3000,
+          color: 'danger',
+        });
+        toast.present();
+      }
+    });
+  }
 
   onClickFavorite() {
     this.openCategorySelector();
@@ -185,18 +256,21 @@ export class RecipeInfoPage implements OnInit {
     'bookmark-outline',
     '../../../assets/icon/chef-outline.png',
     '../../../assets/icon/cookie-outline.png',
-    'flag-outline'
+    'flag-outline',
+    'trash-outline'
   ];
    selectionIcons: string[] = [
     'bookmark',
     '../../../assets/icon/chef.png',
     '../../../assets/icon/cookie.png',
-    'flag'
+    'flag',
+    'trash'
   ];
   currentIcons: string[] = [
     'bookmark-outline',
     '../../../assets/icon/chef-outline.png',
     '../../../assets/icon/cookie-outline.png',
-    'flag-outline'
+    'flag-outline',
+    'trash-outline'
   ];
 }

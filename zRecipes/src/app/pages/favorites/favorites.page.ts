@@ -37,7 +37,7 @@ export class FavoritesPage implements OnInit {
     const { data } = await modal.onDidDismiss();
 
     if (data && data.created) {
-      this.loadCategories(); // Recargar las categorías
+      this.loadCategories(); 
     }
   }
 
