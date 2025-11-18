@@ -5,6 +5,12 @@ form {
     gap: 15px;
 }
 
+h2{
+    font-size: 24px;
+    font-weight: bold;
+    color: var(--ion-color-secondary); 
+}
+
 ion-item {
   --background: #1D1B20;
   --color: #FFFFFF;
@@ -43,4 +49,55 @@ ion-input:focus, ion-textarea:focus {
     align-self: flex-end;
     font-size: 15px;
     color: var(--ion-color-medium);
+}
+
+.ingredients-container {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.ingredient-buttons {
+    display: flex;
+    justify-content: flex-start;
+    gap: 15px;
+}
+
+.step-container {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.step-buttons {
+    display: flex;
+    gap: 15px;
+}
+
+.step-item {
+    display: flex;
+    flex-direction: column;
+    gap: 7px !important;
+    
+    ion-input {
+        margin-right: 10px;
+        
+        &:last-child {
+            margin-right: 0;
+        }
+    }
+}
+
+.ingredient-container {
+    display: flex;
+    flex-direction: row;
+    gap: 10px !important;
+    
+    ion-input {
+        margin-right: 10px;
+        
+        &:last-child {
+            margin-right: 0;
+        }
+    }
 }

@@ -17,9 +17,9 @@
       <p class="contador-caracteres">{{ recipeDescription.length }}/1000
       </div>
   </ion-item>  
-  <div>
-    <p>  Ingredientes </p>
-    <ion-item *ngFor="let ingredient of ingredients; let i = index">
+  <div class="ingredients-container">
+    <h2>  Ingredientes </h2>
+    <ion-item *ngFor="let ingredient of ingredients; let i = index" class="ingredient-container">
       <ion-input 
         fill="outline"
         [placeholder]="'Ingrediente ' + ingredient.id" 
@@ -33,14 +33,14 @@
         [name]="'quantity-' + ingredient.id">
       </ion-input>
     </ion-item>
-    <div>
+    <div class="ingredient-buttons">
       <ion-button (click)="addIngredient()">Agregar Ingrediente</ion-button>
       <ion-button (click)="removeIngredient()" color="danger">Eliminar Último Ingrediente</ion-button>
     </div>
   </div>
-  <div>
-    <p>  Pasos </p>
-    <div *ngFor="let step of steps; let i = index">
+  <div class="step-container">
+    <h2>  Pasos </h2>
+    <div *ngFor="let step of steps; let i = index" class="step-item">
       <ion-item>
         <ion-input 
           fill="outline"
@@ -52,13 +52,13 @@
       <ion-item>
         <ion-input 
           fill="outline"
-          [placeholder]="'imagen-paso-' + step.id" 
+          [placeholder]="'Imagen paso ' + step.id" 
           [(ngModel)]="steps[i].image" 
           [name]="'step-img-' + step.id">
         </ion-input>
       </ion-item>
     </div>
-    <div>
+    <div class="step-buttons">
     <ion-button (click)="addStep()">Agregar Paso</ion-button>
     <ion-button (click)="removeStep()" color="danger">Eliminar Último Paso</ion-button>
     </div>
